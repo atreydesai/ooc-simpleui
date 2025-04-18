@@ -1,0 +1,140 @@
+body {
+    font-family: sans-serif;
+    margin: 20px;
+}
+
+.entry-group {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+}
+
+.entry-group label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.entry-group input[type="text"],
+.entry-group input[type="url"],
+.entry-group input[type="number"],
+.entry-group textarea {
+    width: 95%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* Include padding in width */
+}
+.entry-group input[readonly],
+.entry-group textarea[readonly] {
+    background-color: #eee;
+}
+
+
+.external-link-pair {
+    display: flex;
+    gap: 10px; /* Space between URL and Description */
+    margin-bottom: 5px;
+    align-items: center; /* Align items vertically */
+}
+
+.external-link-pair input[type="url"] {
+    flex: 1; /* URL input takes available space */
+}
+
+.external-link-pair input[type="text"] {
+    flex: 1; /* Description input takes available space */
+}
+
+.external-link-pair button {
+    flex-shrink: 0; /* Prevent button from shrinking */
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #f44336; /* Red */
+    color: white;
+    border: none;
+    border-radius: 3px;
+}
+.external-link-pair button:hover {
+    background-color: #da190b;
+}
+
+
+.add-link-btn, .download-btn, .remove-entry-btn {
+    padding: 8px 15px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+}
+
+.add-link-btn {
+    background-color: #4CAF50; /* Green */
+}
+.add-link-btn:hover {
+    background-color: #45a049;
+}
+
+.download-btn {
+    background-color: #008CBA; /* Blue */
+}
+.download-btn:hover {
+    background-color: #007ba7;
+}
+
+.remove-entry-btn {
+     background-color: #f44336; /* Red */
+     float: right; /* Position remove button to the right */
+}
+.remove-entry-btn:hover {
+    background-color: #da190b;
+}
+
+
+.radio-group label {
+    display: inline-block;
+    margin-right: 15px;
+    font-weight: normal;
+}
+
+.status-message {
+    margin-top: 5px;
+    font-style: italic;
+    color: #555;
+}
+
+hr {
+    margin: 30px 0;
+}
+
+#add-entry-btn, #save-all-btn {
+     padding: 10px 20px;
+     font-size: 16px;
+     cursor: pointer;
+     margin-right: 10px;
+     border: none;
+     border-radius: 5px;
+     color: white;
+}
+#add-entry-btn {
+    background-color: #5cb85c; /* Bootstrap Success Green */
+}
+#add-entry-btn:hover {
+    background-color: #4cae4c;
+}
+#save-all-btn {
+    background-color: #337ab7; /* Bootstrap Primary Blue */
+}
+#save-all-btn:hover {
+    background-color: #286090;
+}
+
+
+.import-section {
+    margin-top: 30px;
+    border-top: 2px solid #eee;
+    padding-top: 20px;
+}
