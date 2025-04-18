@@ -3,104 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Entry Form</title>
+    <title>Fact Check Data Entry</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Your custom styles (load after Bootstrap) -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
-    <h1>Fact Check Data Entry</h1>
+    <div class="container mt-4 mb-5">
+        <h1 class="mb-4">Fact Check Data Entry</h1>
 
-    <form id="data-form">
-        <div id="data-container">
-            {% for item in data %}
-            <div class="entry-group" data-entry-index="{{ loop.index0 }}">
-                 <button type="button" class="remove-entry-btn" title="Remove this entry">X</button>
-                <label>ID:</label>
-                <input type="text" name="data[{{ loop.index0 }}][id]" value="{{ item.id }}" readonly>
-
-                <label for="pf_url_{{ loop.index0 }}">Politifact URL:</label>
-                <input type="url" id="pf_url_{{ loop.index0 }}" name="data[{{ loop.index0 }}][politifact_url]" value="{{ item.politifact_url }}">
-
-                <label for="pf_headline_{{ loop.index0 }}">Politifact Headline:</label>
-                <input type="text" id="pf_headline_{{ loop.index0 }}" name="data[{{ loop.index0 }}][politifact_headline]" value="{{ item.politifact_headline }}">
-
-                <label for="pf_subheadline_{{ loop.index0 }}">Politifact Subheadline:</label>
-                <input type="text" id="pf_subheadline_{{ loop.index0 }}" name="data[{{ loop.index0 }}][politifact_subheadline]" value="{{ item.politifact_subheadline }}">
-
-                <label>Rating:</label>
-                <div class="radio-group">
-                    {% set ratings = ["full flop", "false", "mostly false", "half true", "mostly true", "true", "unrated"] %}
-                    {% for rating in ratings %}
-                        {% set rating_id = "rating_" ~ loop.parent.loop.index0 ~ "_" ~ rating|replace(" ", "_") %}
-                        <label for="{{ rating_id }}">
-                            <input type="radio" id="{{ rating_id }}" name="data[{{ loop.parent.loop.index0 }}][rating]" value="{{ rating }}" {% if item.rating == rating %}checked{% endif %}>
-                            {{ rating|title }}
-                        </label>
-                    {% endfor %}
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category if category in ['success', 'warning', 'danger', 'info'] else 'secondary' }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
 
-                <label for="vid_duration_{{ loop.index0 }}">Video Duration (Politifact):</label>
-                <input type="text" id="vid_duration_{{ loop.index0 }}" name="data[{{ loop.index0 }}][video_duration]" value="{{ item.video_duration }}">
+        <!-- Main Data Entry Form -->
+        <form id="data-form">
+            <div id="data-container">
+                {% for item in data %}
+                <div class="card mb-4 entry-group" data-entry-index="{{ loop.index0 }}">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <span>Entry ID: <input type="text" name="data[{{ loop.index0 }}][id]" value="{{ item.id }}" readonly class="id-readonly-input"></span>
+                        <button type="button" class="btn btn-sm btn-outline-danger remove-entry-btn" title="Remove this entry">
+                            <i class="bi bi-trash"></i> Remove Entry
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <!-- Column 1: Politifact & Social -->
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="pf_url_{{ loop.index0 }}" class="form-label"><i class="bi bi-link-45deg"></i> Politifact URL:</label>
+                                    <input type="url" id="pf_url_{{ loop.index0 }}" name="data[{{ loop.index0 }}][politifact_url]" value="{{ item.politifact_url }}" class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="pf_headline_{{ loop.index0 }}" class="form-label"><i class="bi bi-card-heading"></i> Politifact Headline:</label>
+                                    <input type="text" id="pf_headline_{{ loop.index0 }}" name="data[{{ loop.index0 }}][politifact_headline]" value="{{ item.politifact_headline }}" class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="pf_subheadline_{{ loop.index0 }}" class="form-label"><i class="bi bi-card-text"></i> Politifact Subheadline:</label>
+                                    <input type="text" id="pf_subheadline_{{ loop.index0 }}" name="data[{{ loop.index0 }}][politifact_subheadline]" value="{{ item.politifact_subheadline }}" class="form-control">
+                                </div>
+                                <!-- Politifact Duration Removed -->
+                                <hr>
+                                <div class="mb-3">
+                                    <label for="social_link_{{ loop.index0 }}" class="form-label"><i class="bi bi-share"></i> Social Link:</label>
+                                    <input type="url" id="social_link_{{ loop.index0 }}" name="data[{{ loop.index0 }}][social_link]" value="{{ item.social_link }}" class="form-control social-link-input"> <!-- Added class -->
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 mb-3">
+                                         <label class="form-label"><i class="bi bi-tags"></i> Social Platform:</label>
+                                         <input type="text" name="data[{{ loop.index0 }}][social_platform]" value="{{ item.social_platform }}" class="form-control" readonly>
+                                    </div>
+                                     <div class="col-sm-6 mb-3">
+                                         <label for="social_duration_{{ loop.index0 }}" class="form-label"><i class="bi bi-stopwatch"></i> Social Duration (sec):</label>
+                                         <!-- Changed to text and readonly -->
+                                         <input type="text" id="social_duration_{{ loop.index0 }}" name="data[{{ loop.index0 }}][social_duration]" value="{{ item.social_duration }}" class="form-control" readonly placeholder="Auto-filled">
+                                     </div>
+                                </div>
+                                <div class="mb-3 narrative-box">
+                                     <!-- Made editable, but auto-filled -->
+                                     <label for="social_text_{{ loop.index0 }}" class="form-label"><i class="bi bi-blockquote-left"></i> Social Text (Auto-filled):</label>
+                                     <textarea id="social_text_{{ loop.index0 }}" name="data[{{ loop.index0 }}][social_text]" rows="5" class="form-control">{{ item.social_text }}</textarea>
+                                </div>
+                            </div>
 
-                <label for="social_link_{{ loop.index0 }}">Social Link:</label>
-                <input type="url" id="social_link_{{ loop.index0 }}" name="data[{{ loop.index0 }}][social_link]" value="{{ item.social_link }}">
+                            <!-- Column 2: Rating, Download, External Links -->
+                            <!-- Column 2: Rating, Download, External Links -->
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label d-block"><i class="bi bi-star-half"></i> Rating:</label>
+                                    {% set outer_loop_index = loop.index0 %} {# Capture outer loop index #}
+                                    {% set ratings = ["full flop", "false", "mostly false", "half true", "mostly true", "true", "unrated"] %}
+                                    {% for rating in ratings %} {# Inner loop begins #}
+                                        {% set safe_rating_name = rating|replace(" ", "_") %}
+                                        {# Use the captured outer loop index to create the unique ID #}
+                                        {% set rating_id = "rating_" ~ outer_loop_index ~ "_" ~ safe_rating_name %}
+                                        <div class="form-check form-check-inline">
+                                            {# Use the captured outer loop index for the name attribute #}
+                                            <input class="form-check-input" type="radio" id="{{ rating_id }}" name="data[{{ outer_loop_index }}][rating]" value="{{ rating }}" {% if item.rating == rating %}checked{% endif %}>
+                                            <label class="form-check-label" for="{{ rating_id }}">{{ rating|title }}</label>
+                                        </div>
+                                    {% endfor %} {# Inner loop ends #}
+                                </div>
 
-                <label>Social Platform:</label>
-                <input type="text" name="data[{{ loop.index0 }}][social_platform]" value="{{ item.social_platform }}" readonly>
+                                <hr>
 
-                <label for="social_duration_{{ loop.index0 }}">Social Duration (seconds):</label>
-                <input type="number" step="any" id="social_duration_{{ loop.index0 }}" name="data[{{ loop.index0 }}][social_duration]" value="{{ item.social_duration }}">
+                                <!-- Download Section -->
+                                <div class="mb-3">
+                                    <label class="form-label"><i class="bi bi-film"></i> Download Video (from Social Link)</label>
+                                    <div class="input-group mb-1"> <!-- Use mb-1 for spacing before textarea -->
+                                        <button type="button" class="btn btn-info download-btn" title="Fetch Metadata & Download Video (if < 10 min)">
+                                            <i class="bi bi-download"></i> Download
+                                        </button>
+                                        <!-- Hidden input for success state -->
+                                         <input type="hidden" name="data[{{ loop.index0 }}][download_success]" value="{{ 'true' if item.download_success else 'false' }}">
+                                    </div>
+                                    <!-- Changed to textarea for message -->
+                                    <textarea name="data[{{ loop.index0 }}][download_message]" class="form-control download-message-field" rows="3" readonly placeholder="Download status messages appear here...">{{ item.download_message }}</textarea>
+                                </div>
 
-                <label for="social_text_{{ loop.index0 }}">Social Text:</label>
-                <textarea id="social_text_{{ loop.index0 }}" name="data[{{ loop.index0 }}][social_text]" rows="3">{{ item.social_text }}</textarea>
+                                <div class="mb-3">
+                                    <label class="form-label"><i class="bi bi-folder2-open"></i> Drive Path:</label>
+                                    <input type="text" name="data[{{ loop.index0 }}][drive_path]" value="{{ item.drive_path }}" class="form-control" readonly>
+                                </div>
 
-                <label>External Links:</label>
-                <div class="external-links-container">
-                    {% if item.external_links_info %}
-                        {% for link_pair in item.external_links_info %}
-                         <div class="external-link-pair">
-                             <input type="url" name="data[{{ loop.parent.loop.index0 }}][external_links_info][{{ loop.index0 }}][url]" value="{{ link_pair.url }}" placeholder="URL">
-                             <input type="text" name="data[{{ loop.parent.loop.index0 }}][external_links_info][{{ loop.index0 }}][description]" value="{{ link_pair.description }}" placeholder="Description">
-                             <button type="button" class="remove-link-btn">Remove</button>
-                         </div>
-                        {% endfor %}
-                     {% endif %}
+                                <hr>
+
+                                <div class="mb-3">
+                                    <label class="form-label"><i class="bi bi-box-arrow-up-right"></i> External Links:</label>
+                                    <div class="external-links-container mb-2">
+                                        {% if item.external_links_info %}
+                                            {% for link_pair in item.external_links_info %}
+                                            <div class="row g-2 mb-2 external-link-pair">
+                                                <div class="col">
+                                                    <input type="url" name="data[{{ loop.parent.loop.index0 }}][external_links_info][{{ loop.index0 }}][url]" value="{{ link_pair.url }}" class="form-control form-control-sm" placeholder="URL">
+                                                </div>
+                                                <div class="col">
+                                                    <input type="text" name="data[{{ loop.parent.loop.index0 }}][external_links_info][{{ loop.index0 }}][description]" value="{{ link_pair.description }}" class="form-control form-control-sm" placeholder="Description">
+                                                </div>
+                                                <div class="col-auto">
+                                                    <button type="button" class="btn btn-sm btn-outline-danger remove-link-btn" title="Remove Link">
+                                                         <i class="bi bi-x-lg"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                    <button type="button" class="btn btn-sm btn-success add-link-btn">
+                                        <i class="bi bi-plus-circle"></i> Add External Link
+                                    </button>
+                                </div>
+                            </div>
+                        </div> <!-- End row -->
+                    </div> <!-- End card-body -->
+                </div> <!-- End card / entry-group -->
+                {% else %}
+                <div class="alert alert-secondary" role="alert">
+                    No data entries yet. Click "Add New Entry" to start.
                 </div>
-                 <button type="button" class="add-link-btn">Add External Link</button>
+                {% endfor %}
+            </div> {# End data-container #}
 
+            <hr class="my-4">
 
-                 <label>Download Status:</label>
-                 <button type="button" class="download-btn">Download Video</button>
-                 <input type="text" name="data[{{ loop.index0 }}][download_message]" value="{{ item.download_message }}" readonly placeholder="Download status message...">
-                 <!-- Store boolean state in a hidden field for easier JS access -->
-                 <input type="hidden" name="data[{{ loop.index0 }}][download_success]" value="{{ 'true' if item.download_success else 'false' }}">
-
-
-                <label>Drive Path:</label>
-                <input type="text" name="data[{{ loop.index0 }}][drive_path]" value="{{ item.drive_path }}" readonly>
+            <!-- Action Buttons -->
+            <div class="d-flex gap-2 mb-4">
+                 <button type="button" id="add-entry-btn" class="btn btn-success">
+                     <i class="bi bi-plus-lg"></i> Add New Entry
+                 </button>
+                 <button type="button" id="save-all-btn" class="btn btn-primary">
+                     <i class="bi bi-save"></i> Save All Data
+                 </button>
             </div>
-            {% else %}
-            <p>No data yet. Click "Add New Entry" to start.</p>
-            {% endfor %}
-        </div>
 
-        <hr>
+        </form> <!-- End Main Data Entry Form -->
 
-        <button type="button" id="add-entry-btn">Add New Entry</button>
-        <button type="button" id="save-all-btn">Save All Data</button>
+        <!-- Import Section -->
+        <div class="card mt-5">
+             <div class="card-header">
+                <i class="bi bi-upload"></i> Import Data from JSON
+             </div>
+             <div class="card-body">
+                <form method="post" action="{{ url_for('import_data') }}" enctype="multipart/form-data" class="row g-3 align-items-end">
+                     <div class="col-sm-8">
+                         <label for="jsonfile" class="form-label">Select JSON File:</label>
+                         <input type="file" id="jsonfile" name="jsonfile" accept=".json" class="form-control" required>
+                     </div>
+                     <div class="col-sm-4">
+                          <button type="submit" class="btn btn-warning w-100">
+                              <i class="bi bi-arrow-repeat"></i> Import and Overwrite
+                          </button>
+                     </div>
+                     <div class="col-12">
+                        <small class="text-muted fst-italic">Warning: This will overwrite the current data on the server.</small>
+                    </div>
+                </form>
+             </div>
+        </div> <!-- End Import Card -->
 
-    </form>
+    </div> <!-- End container -->
 
-    <div class="import-section">
-        <h2>Import Data</h2>
-        <form method="post" action="{{ url_for('import_data') }}" enctype="multipart/form-data">
-            <label for="jsonfile">Import JSON File:</label>
-            <input type="file" id="jsonfile" name="jsonfile" accept=".json" required>
-            <button type="submit">Import and Overwrite</button>
-            <p><small>Warning: This will overwrite the current data.</small></p>
-        </form>
-    </div>
-
+    <!-- Bootstrap JS Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!-- Your Custom JS -->
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

@@ -1,140 +1,109 @@
+/* Custom Styles Complementing Bootstrap 5 */
+
 body {
-    font-family: sans-serif;
-    margin: 20px;
+    background-color: #f8f9fa;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-.entry-group {
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin-bottom: 20px;
-    background-color: #f9f9f9;
-}
-
-.entry-group label {
-    display: block;
-    margin-top: 10px;
+.id-readonly-input {
+    background-color: transparent;
+    border: none;
     font-weight: bold;
-}
-
-.entry-group input[type="text"],
-.entry-group input[type="url"],
-.entry-group input[type="number"],
-.entry-group textarea {
-    width: 95%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    box-sizing: border-box; /* Include padding in width */
-}
-.entry-group input[readonly],
-.entry-group textarea[readonly] {
-    background-color: #eee;
-}
-
-
-.external-link-pair {
-    display: flex;
-    gap: 10px; /* Space between URL and Description */
-    margin-bottom: 5px;
-    align-items: center; /* Align items vertically */
-}
-
-.external-link-pair input[type="url"] {
-    flex: 1; /* URL input takes available space */
-}
-
-.external-link-pair input[type="text"] {
-    flex: 1; /* Description input takes available space */
-}
-
-.external-link-pair button {
-    flex-shrink: 0; /* Prevent button from shrinking */
-    padding: 5px 10px;
-    cursor: pointer;
-    background-color: #f44336; /* Red */
-    color: white;
-    border: none;
-    border-radius: 3px;
-}
-.external-link-pair button:hover {
-    background-color: #da190b;
-}
-
-
-.add-link-btn, .download-btn, .remove-entry-btn {
-    padding: 8px 15px;
-    cursor: pointer;
-    margin-top: 10px;
-    margin-right: 5px;
-    border: none;
-    border-radius: 4px;
-    color: white;
-}
-
-.add-link-btn {
-    background-color: #4CAF50; /* Green */
-}
-.add-link-btn:hover {
-    background-color: #45a049;
-}
-
-.download-btn {
-    background-color: #008CBA; /* Blue */
-}
-.download-btn:hover {
-    background-color: #007ba7;
-}
-
-.remove-entry-btn {
-     background-color: #f44336; /* Red */
-     float: right; /* Position remove button to the right */
-}
-.remove-entry-btn:hover {
-    background-color: #da190b;
-}
-
-
-.radio-group label {
     display: inline-block;
-    margin-right: 15px;
-    font-weight: normal;
+    width: auto;
+    min-width: 2em;
+    text-align: left;
+    padding: 0 5px;
+    margin-left: 5px;
+    box-shadow: none !important;
+    outline: none !important;
+    cursor: default;
+    color: var(--bs-emphasis-color);
+    vertical-align: middle;
 }
 
-.status-message {
-    margin-top: 5px;
-    font-style: italic;
-    color: #555;
+.form-control[readonly],
+textarea.form-control[readonly] { /* Apply to textarea too */
+    background-color: #e9ecef;
+    cursor: not-allowed;
+    opacity: 0.8;
 }
 
-hr {
-    margin: 30px 0;
+.narrative-box {
+    border: 2px solid #0d6efd;
+    padding: 1rem;
+    margin-top: 0.5rem;
+    border-radius: var(--bs-border-radius);
+    background-color: #e9f1ff;
+}
+.narrative-box .form-label {
+    font-weight: 500;
+    color: #0a58ca;
+    margin-bottom: 0.5rem;
+}
+.narrative-box textarea {
+    background-color: #fff; /* Ensure editable textarea is white */
+}
+
+/* Style the readonly download message textarea */
+.download-message-field[readonly] {
+    font-size: 0.875rem; /* Slightly smaller text */
+    line-height: 1.4;
+    color: #495057; /* Standard text color */
+}
+
+/* Add visual feedback styles to download message textarea */
+.download-message-field.is-valid {
+    border-color: var(--bs-success) !important; /* Override default readonly border */
+    background-color: #d1e7dd !important; /* Override default readonly background */
+    color: var(--bs-success-text-emphasis);
+}
+.download-message-field.is-invalid {
+     border-color: var(--bs-danger) !important;
+     background-color: #f8d7da !important;
+     color: var(--bs-danger-text-emphasis);
+}
+
+
+.external-link-pair .remove-link-btn {
+    line-height: 1.5;
+}
+
+.form-label i {
+    margin-right: 0.35rem;
+    color: #6c757d;
+}
+
+.form-check-inline {
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 #add-entry-btn, #save-all-btn {
-     padding: 10px 20px;
-     font-size: 16px;
-     cursor: pointer;
-     margin-right: 10px;
-     border: none;
-     border-radius: 5px;
-     color: white;
+    min-width: 150px;
 }
-#add-entry-btn {
-    background-color: #5cb85c; /* Bootstrap Success Green */
+
+.card-header {
+    background-color: #e9ecef;
+    font-weight: 500;
 }
-#add-entry-btn:hover {
-    background-color: #4cae4c;
-}
-#save-all-btn {
-    background-color: #337ab7; /* Bootstrap Primary Blue */
-}
-#save-all-btn:hover {
-    background-color: #286090;
+
+/* Ensure download button doesn't shrink */
+.download-btn {
+    flex-shrink: 0;
 }
 
 
-.import-section {
-    margin-top: 30px;
-    border-top: 2px solid #eee;
-    padding-top: 20px;
+@media (max-width: 767.98px) {
+    .import-section .col-sm-8,
+    .import-section .col-sm-4 {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+     .import-section .align-items-end {
+         align-items: stretch !important;
+     }
+     .import-section .btn {
+         margin-top: 0.5rem;
+     }
 }

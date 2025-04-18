@@ -2,257 +2,169 @@ document.addEventListener('DOMContentLoaded', () => {
     const dataContainer = document.getElementById('data-container');
     const addEntryBtn = document.getElementById('add-entry-btn');
     const saveAllBtn = document.getElementById('save-all-btn');
-    const form = document.getElementById('data-form'); // Get the form itself
-
-    let nextId = calculateNextId();
-
-    // --- Event Listeners ---
-
-    // Add New Entry Button
-    addEntryBtn.addEventListener('click', () => {
-        const newEntryHtml = createEntryHtml(nextId);
-        dataContainer.insertAdjacentHTML('beforeend', newEntryHtml);
-        attachListenersToEntry(dataContainer.lastElementChild); // Attach listeners to the new entry
-        nextId++;
-    });
-
-    // Save All Button (Using Fetch API to send JSON)
-    saveAllBtn.addEventListener('click', async (event) => {
-        event.preventDefault(); // Prevent traditional form submission
-        const data = collectDataFromForm();
-        // console.log("Sending data:", JSON.stringify(data, null, 2)); // For debugging
-
-        try {
-            const response = await fetch('/save', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
-
-            if (response.ok) {
-                alert('Data saved successfully!');
-                // Optional: reload page or update UI minimally
-                // window.location.reload();
-            } else {
-                const errorData = await response.json();
-                alert(`Error saving data: ${errorData.error || response.statusText}`);
-            }
-        } catch (error) {
-            console.error('Save error:', error);
-            alert(`Network or server error during save: ${error}`);
-        }
-    });
-
-    // --- Event Delegation for dynamic elements ---
-    dataContainer.addEventListener('click', (event) => {
-        // Remove External Link Button
-        if (event.target.classList.contains('remove-link-btn')) {
-            event.target.closest('.external-link-pair').remove();
-        }
-        // Add External Link Button
-        else if (event.target.classList.contains('add-link-btn')) {
-            const linksContainer = event.target.previousElementSibling; // The div holding the links
-            const entryGroup = event.target.closest('.entry-group');
-            const entryIndex = Array.from(dataContainer.children).indexOf(entryGroup);
-            const linkIndex = linksContainer.children.length; // Next index for the new link
-            const newLinkHtml = createExternalLinkHtml(entryIndex, linkIndex);
-            linksContainer.insertAdjacentHTML('beforeend', newLinkHtml);
-            // Re-attach listener isn't strictly needed here due to delegation,
-            // but good practice if we had more complex interactions.
-        }
-        // Download Video Button
-        else if (event.target.classList.contains('download-btn')) {
-            handleDownload(event.target);
-        }
-         // Remove Entry Button
-        else if (event.target.classList.contains('remove-entry-btn')) {
-            if (confirm('Are you sure you want to remove this entire entry?')) {
-                 event.target.closest('.entry-group').remove();
-                 // Note: IDs won't be contiguous anymore after removal until next save.
-                 // Saving will re-index if necessary (handled server-side is best)
-                 // Or recalculate client-side if needed before save.
-            }
-        }
-    });
-
-     // Update Social Platform on Social Link change (using delegation)
-     dataContainer.addEventListener('input', (event) => {
-        if (event.target.matches('input[name$="[social_link]"]')) {
-             updateSocialPlatform(event.target);
-        }
-     });
-
-
-    // --- Initialization ---
-    // Attach listeners to initially loaded entries
-    document.querySelectorAll('.entry-group').forEach(entry => {
-        attachListenersToEntry(entry);
-    });
+    const MAX_DURATION_DISPLAY = 600; // 10 minutes in seconds for frontend check reinforcement
 
     // --- Helper Functions ---
 
     function calculateNextId() {
        const entries = dataContainer.querySelectorAll('.entry-group');
-       if (entries.length === 0) {
-           return 0;
-       }
-       // Find the highest existing ID and add 1
+       if (entries.length === 0) return 0;
        let maxId = -1;
        entries.forEach(entry => {
-           const idInput = entry.querySelector('input[name$="[id]"]');
+           const idInput = entry.querySelector('.card-header input[name$="[id]"]');
            if (idInput) {
                const id = parseInt(idInput.value, 10);
-               if (!isNaN(id) && id > maxId) {
-                   maxId = id;
-               }
+               if (!isNaN(id) && id > maxId) maxId = id;
            }
        });
        return maxId + 1;
     }
 
     function createEntryHtml(id) {
-        const entryIndex = dataContainer.children.length; // This will be the index in the form data
+        const entryIndex = dataContainer.children.length;
         return `
-            <div class="entry-group" data-entry-index="${entryIndex}">
-                <button type="button" class="remove-entry-btn" title="Remove this entry">X</button>
-                <label>ID:</label>
-                <input type="text" name="data[${entryIndex}][id]" value="${id}" readonly>
-
-                <label for="pf_url_${entryIndex}">Politifact URL:</label>
-                <input type="url" id="pf_url_${entryIndex}" name="data[${entryIndex}][politifact_url]" value="">
-
-                <label for="pf_headline_${entryIndex}">Politifact Headline:</label>
-                <input type="text" id="pf_headline_${entryIndex}" name="data[${entryIndex}][politifact_headline]" value="">
-
-                <label for="pf_subheadline_${entryIndex}">Politifact Subheadline:</label>
-                <input type="text" id="pf_subheadline_${entryIndex}" name="data[${entryIndex}][politifact_subheadline]" value="">
-
-                <label>Rating:</label>
-                <div class="radio-group">
-                    ${createRadioButtons(`data[${entryIndex}][rating]`, '')}
+            <div class="card mb-4 entry-group" data-entry-index="${entryIndex}">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>Entry ID: <input type="text" name="data[${entryIndex}][id]" value="${id}" readonly class="id-readonly-input"></span>
+                    <button type="button" class="btn btn-sm btn-outline-danger remove-entry-btn" title="Remove this entry">
+                        <i class="bi bi-trash"></i> Remove Entry
+                    </button>
                 </div>
-
-                <label for="vid_duration_${entryIndex}">Video Duration (Politifact):</label>
-                <input type="text" id="vid_duration_${entryIndex}" name="data[${entryIndex}][video_duration]" value="">
-
-                <label for="social_link_${entryIndex}">Social Link:</label>
-                <input type="url" id="social_link_${entryIndex}" name="data[${entryIndex}][social_link]" value="">
-
-                <label>Social Platform:</label>
-                <input type="text" name="data[${entryIndex}][social_platform]" value="" readonly>
-
-                <label for="social_duration_${entryIndex}">Social Duration (seconds):</label>
-                <input type="number" step="any" id="social_duration_${entryIndex}" name="data[${entryIndex}][social_duration]" value="">
-
-                <label for="social_text_${entryIndex}">Social Text:</label>
-                <textarea id="social_text_${entryIndex}" name="data[${entryIndex}][social_text]" rows="3"></textarea>
-
-                <label>External Links:</label>
-                <div class="external-links-container">
-                    <!-- Links added here -->
-                </div>
-                <button type="button" class="add-link-btn">Add External Link</button>
-
-                <label>Download Status:</label>
-                 <button type="button" class="download-btn">Download Video</button>
-                 <input type="text" name="data[${entryIndex}][download_message]" value="" readonly placeholder="Download status message...">
-                 <input type="hidden" name="data[${entryIndex}][download_success]" value="false"> <!-- Store success state -->
-
-
-                <label>Drive Path:</label>
-                <input type="text" name="data[${entryIndex}][drive_path]" value="" readonly>
-            </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <!-- Column 1 -->
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="pf_url_${entryIndex}" class="form-label"><i class="bi bi-link-45deg"></i> Politifact URL:</label>
+                                <input type="url" id="pf_url_${entryIndex}" name="data[${entryIndex}][politifact_url]" value="" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label for="pf_headline_${entryIndex}" class="form-label"><i class="bi bi-card-heading"></i> Politifact Headline:</label>
+                                <input type="text" id="pf_headline_${entryIndex}" name="data[${entryIndex}][politifact_headline]" value="" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label for="pf_subheadline_${entryIndex}" class="form-label"><i class="bi bi-card-text"></i> Politifact Subheadline:</label>
+                                <input type="text" id="pf_subheadline_${entryIndex}" name="data[${entryIndex}][politifact_subheadline]" value="" class="form-control">
+                            </div>
+                            <hr>
+                            <div class="mb-3">
+                                <label for="social_link_${entryIndex}" class="form-label"><i class="bi bi-share"></i> Social Link:</label>
+                                <input type="url" id="social_link_${entryIndex}" name="data[${entryIndex}][social_link]" value="" class="form-control social-link-input">
+                            </div>
+                             <div class="row">
+                                <div class="col-sm-6 mb-3">
+                                    <label class="form-label"><i class="bi bi-tags"></i> Social Platform:</label>
+                                    <input type="text" name="data[${entryIndex}][social_platform]" value="" class="form-control" readonly>
+                                </div>
+                                 <div class="col-sm-6 mb-3">
+                                    <label for="social_duration_${entryIndex}" class="form-label"><i class="bi bi-stopwatch"></i> Social Duration (sec):</label>
+                                    <input type="text" id="social_duration_${entryIndex}" name="data[${entryIndex}][social_duration]" value="" class="form-control" readonly placeholder="Auto-filled">
+                                 </div>
+                             </div>
+                             <div class="mb-3 narrative-box">
+                                 <label for="social_text_${entryIndex}" class="form-label"><i class="bi bi-blockquote-left"></i> Social Text (Auto-filled):</label>
+                                 <textarea id="social_text_${entryIndex}" name="data[${entryIndex}][social_text]" rows="5" class="form-control"></textarea>
+                             </div>
+                        </div>
+                        <!-- Column 2 -->
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label d-block"><i class="bi bi-star-half"></i> Rating:</label>
+                                ${createRadioButtons(`data[${entryIndex}][rating]`, '', entryIndex)}
+                            </div>
+                            <hr>
+                             <div class="mb-3">
+                                <label class="form-label"><i class="bi bi-film"></i> Download Video (from Social Link)</label>
+                                <div class="input-group mb-1">
+                                    <button type="button" class="btn btn-info download-btn" title="Fetch Metadata & Download Video (if < 10 min)">
+                                        <i class="bi bi-download"></i> Download
+                                    </button>
+                                    <input type="hidden" name="data[${entryIndex}][download_success]" value="false">
+                                </div>
+                                <textarea name="data[${entryIndex}][download_message]" class="form-control download-message-field" rows="3" readonly placeholder="Download status messages appear here..."></textarea>
+                            </div>
+                            <div class="mb-3">
+                                 <label class="form-label"><i class="bi bi-folder2-open"></i> Drive Path:</label>
+                                 <input type="text" name="data[${entryIndex}][drive_path]" value="" class="form-control" readonly>
+                            </div>
+                            <hr>
+                            <div class="mb-3">
+                                <label class="form-label"><i class="bi bi-box-arrow-up-right"></i> External Links:</label>
+                                <div class="external-links-container mb-2"></div>
+                                <button type="button" class="btn btn-sm btn-success add-link-btn">
+                                    <i class="bi bi-plus-circle"></i> Add External Link
+                                </button>
+                            </div>
+                        </div>
+                    </div> <!-- End row -->
+                </div> <!-- End card-body -->
+            </div> <!-- End card / entry-group -->
         `;
     }
 
-     function createRadioButtons(name, selectedValue) {
+    function createRadioButtons(name, selectedValue, index) {
         const ratings = ["full flop", "false", "mostly false", "half true", "mostly true", "true", "unrated"];
         let radiosHtml = '';
-        ratings.forEach(rating => {
-            const id = `${name}_${rating.replace(/\s+/g, '_')}`; // Create unique ID
+        ratings.forEach((rating) => {
+            const safeRating = rating.replace(/\s+/g, '_');
+            const id = `rating_${index}_${safeRating}`;
             const checked = (rating === selectedValue) ? 'checked' : '';
             radiosHtml += `
-                <label for="${id}">
-                    <input type="radio" id="${id}" name="${name}" value="${rating}" ${checked}>
-                    ${rating.charAt(0).toUpperCase() + rating.slice(1)}
-                </label>
-            `;
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="${id}" name="${name}" value="${rating}" ${checked}>
+                    <label class="form-check-label" for="${id}">${rating.charAt(0).toUpperCase() + rating.slice(1)}</label>
+                </div> `; // Added space for better wrapping
         });
         return radiosHtml;
     }
 
     function createExternalLinkHtml(entryIndex, linkIndex, url = '', description = '') {
-         // Ensure names match the expected structure for Flask parsing if using request.form
-         // Or structure for easy JS collection if sending JSON
          return `
-            <div class="external-link-pair">
-                <input type="url" name="data[${entryIndex}][external_links_info][${linkIndex}][url]" value="${url}" placeholder="URL">
-                <input type="text" name="data[${entryIndex}][external_links_info][${linkIndex}][description]" value="${description}" placeholder="Description">
-                <button type="button" class="remove-link-btn">Remove</button>
-            </div>
-        `;
+            <div class="row g-2 mb-2 external-link-pair">
+                <div class="col"><input type="url" name="data[${entryIndex}][external_links_info][${linkIndex}][url]" value="${url}" class="form-control form-control-sm" placeholder="URL"></div>
+                <div class="col"><input type="text" name="data[${entryIndex}][external_links_info][${linkIndex}][description]" value="${description}" class="form-control form-control-sm" placeholder="Description"></div>
+                <div class="col-auto"><button type="button" class="btn btn-sm btn-outline-danger remove-link-btn" title="Remove Link"><i class="bi bi-x-lg"></i></button></div>
+            </div> `;
     }
 
-
     function attachListenersToEntry(entryElement) {
-        // Find the social link input within this specific entry
-        const socialLinkInput = entryElement.querySelector('input[name$="[social_link]"]');
-        if (socialLinkInput) {
-             // Attach the input listener directly (or rely on delegation)
-             // socialLinkInput.addEventListener('input', () => updateSocialPlatform(socialLinkInput));
-             // Initial check in case data is loaded
+        const socialLinkInput = entryElement.querySelector('.social-link-input');
+        if (socialLinkInput && socialLinkInput.value) {
              updateSocialPlatform(socialLinkInput);
         }
-
-        // Find the download button within this entry
-        const downloadButton = entryElement.querySelector('.download-btn');
-        if (downloadButton) {
-             // downloadButton.addEventListener('click', () => handleDownload(downloadButton)); // Or rely on delegation
-        }
-
-         // Find Add External Link button
-        const addLinkBtn = entryElement.querySelector('.add-link-btn');
-        if (addLinkBtn) {
-            // addLinkBtn.addEventListener('click', () => { /* Handled by delegation */ });
-        }
-
-         // Add listener for Remove Entry button (optional if using delegation)
-        const removeEntryBtn = entryElement.querySelector('.remove-entry-btn');
-        if(removeEntryBtn) {
-            // removeEntryBtn.addEventListener('click', () => { /* Handled by delegation */ });
-        }
-
-        // Find remove link buttons (optional if using delegation)
-        entryElement.querySelectorAll('.remove-link-btn').forEach(btn => {
-           // btn.addEventListener('click', () => btn.closest('.external-link-pair').remove());
-        });
+        // Set initial state of download message styling if loaded with data
+        const messageTextarea = entryElement.querySelector('.download-message-field');
+        const successInput = entryElement.querySelector('input[name$="[download_success]"]');
+        updateMessageFieldStyle(messageTextarea, successInput);
     }
 
     function getSocialPlatform(url) {
-        if (!url) return '';
-        try {
-            const hostname = new URL(url).hostname.toLowerCase();
-            // Basic stripping
-            let platform = hostname.replace(/^www\./, ''); // Remove www.
-            platform = platform.substring(0, platform.lastIndexOf('.')); // Remove TLD like .com, .org
+        // (Keep the existing getSocialPlatform function as before)
+         if (!url) return '';
+         try {
+             const hostname = new URL(url).hostname.toLowerCase();
+             let platform = hostname.replace(/^www\./, '');
 
-             // Handle common shorteners and specific domains
-            if (hostname.includes('x.com') || hostname.includes('twitter.com') || hostname.includes('t.co')) return 'x'; // Or 'twitter'
-            if (hostname.includes('facebook.com') || hostname.includes('fb.me') || hostname.includes('fb.watch')) return 'facebook';
-            if (hostname.includes('instagram.com') || hostname.includes('instagr.am')) return 'instagram';
-            if (hostname.includes('youtube.com') || hostname.includes('youtu.be')) return 'youtube';
-            if (hostname.includes('tiktok.com')) return 'tiktok';
-            if (hostname.includes('linkedin.com')) return 'linkedin';
-            if (hostname.includes('reddit.com')) return 'reddit';
-            // Add more rules as needed
+             if (hostname.includes('x.com') || hostname.includes('twitter.com') || hostname.includes('t.co')) return 'x';
+             if (hostname.includes('facebook.com') || hostname.includes('fb.me') || hostname.includes('fb.watch')) return 'facebook';
+             if (hostname.includes('instagram.com') || hostname.includes('instagr.am')) return 'instagram';
+             if (hostname.includes('youtube.com') || hostname.includes('youtu.be')) return 'youtube';
+             if (hostname.includes('tiktok.com')) return 'tiktok';
+             if (hostname.includes('linkedin.com')) return 'linkedin';
+             if (hostname.includes('reddit.com')) return 'reddit';
 
-            return platform; // Return the stripped hostname if no specific rule matches
-        } catch (e) {
-            console.error("Error parsing URL for platform:", url, e);
-            return ''; // Invalid URL
-        }
+             const parts = platform.split('.');
+             if (parts.length > 2 && parts[parts.length-2] in ['co', 'com', 'org', 'net', 'gov', 'ac']) {
+                  return parts[parts.length-3];
+             } else if (parts.length > 1) {
+                  return parts[parts.length-2];
+             } else {
+                 return parts[0] || '';
+             }
+         } catch (e) {
+             console.warn("Could not parse URL for platform:", url, e);
+             return '';
+         }
     }
 
      function updateSocialPlatform(socialLinkInput) {
@@ -260,120 +172,253 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!entryGroup) return;
         const platformInput = entryGroup.querySelector('input[name$="[social_platform]"]');
         if (!platformInput) return;
-
-        const platform = getSocialPlatform(socialLinkInput.value);
-        platformInput.value = platform;
+        platformInput.value = getSocialPlatform(socialLinkInput.value);
      }
 
+    // Helper to update message field style based on hidden input
+    function updateMessageFieldStyle(messageField, successInput) {
+         if (!messageField || !successInput) return;
+         messageField.classList.remove('is-valid', 'is-invalid'); // Clear previous styles
+         if (successInput.value === 'true') {
+             messageField.classList.add('is-valid');
+         } else if (messageField.value && successInput.value === 'false') { // Only mark invalid if there's a failure message
+             messageField.classList.add('is-invalid');
+         }
+     }
 
-    async function handleDownload(button) {
+    // --- Main Download Logic (Two Phases) ---
+    async function handleDownloadProcess(button) {
         const entryGroup = button.closest('.entry-group');
-        const urlInput = entryGroup.querySelector('input[name$="[politifact_url]"]');
-        const idInput = entryGroup.querySelector('input[name$="[id]"]');
-        const messageInput = entryGroup.querySelector('input[name$="[download_message]"]');
+        // Use more specific selectors targeting elements within this entryGroup
+        const socialUrlInput = entryGroup.querySelector('.social-link-input');
+        const idInput = entryGroup.querySelector('.card-header input[name$="[id]"]');
+        const messageTextarea = entryGroup.querySelector('.download-message-field');
         const pathInput = entryGroup.querySelector('input[name$="[drive_path]"]');
         const successInput = entryGroup.querySelector('input[name$="[download_success]"]');
+        const durationInput = entryGroup.querySelector('input[name$="[social_duration]"]');
+        const socialTextInput = entryGroup.querySelector('textarea[name$="[social_text]"]');
 
-
-        const url = urlInput.value.trim();
-        const id = idInput.value;
-
-        if (!url) {
-            messageInput.value = "Politifact URL is required for download.";
+        if (!socialUrlInput || !idInput || !messageTextarea || !pathInput || !successInput || !durationInput || !socialTextInput) {
+            console.error("Missing required elements for download in:", entryGroup);
+            alert("Internal error: Cannot initiate download (missing fields). Check console.");
             return;
         }
 
-        messageInput.value = "Downloading...";
+        const url = socialUrlInput.value.trim();
+        const id = idInput.value;
+
+        // --- Reset fields ---
+        messageTextarea.value = "";
         pathInput.value = "";
-        successInput.value = "false"; // Set to false initially
+        successInput.value = "false";
+        durationInput.value = ""; // Clear old duration
+        // Don't clear socialTextInput automatically, but update it later
+        updateMessageFieldStyle(messageTextarea, successInput); // Clear styles
+
+        if (!url) {
+            messageTextarea.value = "Social Link URL is required.";
+            updateMessageFieldStyle(messageTextarea, successInput);
+            socialUrlInput.focus();
+            return;
+        }
+         if (id === '' || id === null || isNaN(parseInt(id, 10))) {
+             messageTextarea.value = "Valid Entry ID is missing.";
+              updateMessageFieldStyle(messageTextarea, successInput);
+             return;
+         }
+
+        // --- Phase 1: Get Metadata & Check Duration ---
         button.disabled = true;
-        button.textContent = "Downloading...";
+        button.innerHTML = '<span class="spinner-border spinner-border-sm" aria-hidden="true"></span> Fetching...';
+        messageTextarea.value = "Fetching video metadata...";
+
+        let metadataResult;
+        try {
+            const metaResponse = await fetch('/get_video_metadata', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ url: url }),
+            });
+             metadataResult = await metaResponse.json(); // Assume server always returns JSON, even for errors
+
+            if (!metaResponse.ok || !metadataResult.success) {
+                 // Handle metadata fetch errors (including duration limit exceeded)
+                 messageTextarea.value = `Metadata Error: ${metadataResult.error || metadataResult.message || 'Unknown error'}`;
+                 successInput.value = "false";
+                 updateMessageFieldStyle(messageTextarea, successInput);
+                 button.disabled = false;
+                 button.innerHTML = '<i class="bi bi-download"></i> Download';
+                 return; // Stop the process
+             }
+
+            // Metadata Success - Populate fields
+            durationInput.value = metadataResult.duration.toFixed(2); // Format to 2 decimal places
+            socialTextInput.value = metadataResult.social_text; // Auto-fill social text
+            messageTextarea.value = `Metadata OK (Duration: ${durationInput.value}s). Proceeding to download...`;
+            // No style change yet, wait for download result
+
+        } catch (error) {
+            console.error('Metadata fetch error:', error);
+            messageTextarea.value = `Network error during metadata fetch: ${error.message}`;
+            successInput.value = "false";
+            updateMessageFieldStyle(messageTextarea, successInput);
+            button.disabled = false;
+            button.innerHTML = '<i class="bi bi-download"></i> Download';
+            return; // Stop the process
+        }
+
+        // --- Phase 2: Download Video ---
+        button.innerHTML = '<span class="spinner-border spinner-border-sm" aria-hidden="true"></span> Downloading...';
 
         try {
-            const response = await fetch('/download_video', {
+            const downloadResponse = await fetch('/download_video', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ url: url, id: id }),
             });
 
-            const result = await response.json();
+            const downloadResult = await downloadResponse.json(); // Assume JSON return
 
-            if (response.ok) {
-                messageInput.value = result.message || "Download status unknown";
-                pathInput.value = result.drive_path || "";
-                successInput.value = result.success ? "true" : "false"; // Update hidden input
+            if (!downloadResponse.ok || !downloadResult.success) {
+                messageTextarea.value = `Download Error: ${downloadResult.error || downloadResult.message || 'Unknown error'}`;
+                successInput.value = "false";
+                pathInput.value = ""; // Clear path on failure
             } else {
-                messageInput.value = `Error: ${result.error || response.statusText}`;
-                pathInput.value = "";
-                 successInput.value = "false";
+                // Download Success
+                messageTextarea.value = downloadResult.message || "Download successful.";
+                pathInput.value = downloadResult.drive_path || "";
+                successInput.value = "true";
             }
+            updateMessageFieldStyle(messageTextarea, successInput); // Update style based on final result
 
         } catch (error) {
-            console.error('Download fetch error:', error);
-            messageInput.value = `Network error: ${error}`;
-            pathInput.value = "";
+            console.error('Download error:', error);
+            messageTextarea.value = `Network error during download: ${error.message}`;
             successInput.value = "false";
+            pathInput.value = "";
+            updateMessageFieldStyle(messageTextarea, successInput);
         } finally {
             button.disabled = false;
-            button.textContent = "Download Video";
+            button.innerHTML = '<i class="bi bi-download"></i> Download';
         }
     }
+
 
     function collectDataFromForm() {
         const entries = [];
         const entryElements = dataContainer.querySelectorAll('.entry-group');
 
-        entryElements.forEach((entryElement, entryIndex) => {
+        entryElements.forEach((entryElement) => {
+             const idInput = entryElement.querySelector('.card-header input[name$="[id]"]');
+             // Read the possibly auto-filled (but readonly) duration
+             const socialDurationValue = entryElement.querySelector(`input[name$="[social_duration]"]`)?.value;
+
             const entryData = {
-                id: parseInt(entryElement.querySelector(`input[name="data[${entryIndex}][id]"]`)?.value || '0', 10),
-                politifact_url: entryElement.querySelector(`input[name="data[${entryIndex}][politifact_url]"]`)?.value || '',
-                politifact_headline: entryElement.querySelector(`input[name="data[${entryIndex}][politifact_headline]"]`)?.value || '',
-                politifact_subheadline: entryElement.querySelector(`input[name="data[${entryIndex}][politifact_subheadline]"]`)?.value || '',
-                rating: entryElement.querySelector(`input[name="data[${entryIndex}][rating]"]:checked`)?.value || '',
-                video_duration: entryElement.querySelector(`input[name="data[${entryIndex}][video_duration]"]`)?.value || '',
-                social_link: entryElement.querySelector(`input[name="data[${entryIndex}][social_link]"]`)?.value || '',
-                social_platform: entryElement.querySelector(`input[name="data[${entryIndex}][social_platform]"]`)?.value || '',
-                social_duration: parseFloat(entryElement.querySelector(`input[name="data[${entryIndex}][social_duration]"]`)?.value || '0'),
-                social_text: entryElement.querySelector(`textarea[name="data[${entryIndex}][social_text]"]`)?.value || '',
+                id: parseInt(idInput?.value ?? '0', 10),
+                politifact_url: entryElement.querySelector(`input[name$="[politifact_url]"]`)?.value ?? '',
+                politifact_headline: entryElement.querySelector(`input[name$="[politifact_headline]"]`)?.value ?? '',
+                politifact_subheadline: entryElement.querySelector(`input[name$="[politifact_subheadline]"]`)?.value ?? '',
+                rating: entryElement.querySelector(`input[name$="[rating]"]:checked`)?.value ?? '',
+                // video_duration removed
+                social_link: entryElement.querySelector(`.social-link-input`)?.value ?? '',
+                social_platform: entryElement.querySelector(`input[name$="[social_platform]"]`)?.value ?? '',
+                // Parse the readonly duration field
+                social_duration: parseFloat(socialDurationValue ?? '0'),
+                // Read the potentially edited social text
+                social_text: entryElement.querySelector(`textarea[name$="[social_text]"]`)?.value ?? '',
                 external_links_info: [],
-                 // Use hidden input value, default to false if not found or invalid
-                download_success: entryElement.querySelector(`input[name="data[${entryIndex}][download_success]"]`)?.value === 'true',
-                download_message: entryElement.querySelector(`input[name="data[${entryIndex}][download_message]"]`)?.value || '',
-                drive_path: entryElement.querySelector(`input[name="data[${entryIndex}][drive_path]"]`)?.value || '',
+                download_success: entryElement.querySelector(`input[name$="[download_success]"]`)?.value === 'true',
+                download_message: entryElement.querySelector(`.download-message-field`)?.value ?? '',
+                drive_path: entryElement.querySelector(`input[name$="[drive_path]"]`)?.value ?? '',
             };
 
-             // Validate/Sanitize Numbers
-             if (isNaN(entryData.id)) entryData.id = 0; // Or handle error appropriately
+             if (isNaN(entryData.id)) entryData.id = 0;
              if (isNaN(entryData.social_duration)) entryData.social_duration = 0.0;
 
-
-            // Collect external links
-            const linkPairs = entryElement.querySelectorAll('.external-link-pair');
-            linkPairs.forEach((pair, linkIndex) => {
-                 // Important: Use the correct naming convention used when creating links
-                 const urlInput = pair.querySelector(`input[name="data[${entryIndex}][external_links_info][${linkIndex}][url]"]`);
-                 const descInput = pair.querySelector(`input[name="data[${entryIndex}][external_links_info][${linkIndex}][description]"]`);
-
-                 if (urlInput && descInput && urlInput.value) { // Only add if URL is present
-                     entryData.external_links_info.push({
-                         url: urlInput.value,
-                         description: descInput.value || ''
-                     });
+            // Collect external links (same as before)
+            const linkPairs = entryElement.querySelectorAll('.external-links-container .external-link-pair');
+            linkPairs.forEach((pair) => {
+                 const urlInput = pair.querySelector(`input[type="url"]`);
+                 const descInput = pair.querySelector(`input[type="text"]`);
+                 if (urlInput && descInput && urlInput.value.trim()) {
+                     entryData.external_links_info.push({ url: urlInput.value.trim(), description: descInput.value.trim() || '' });
                  }
             });
-
             entries.push(entryData);
         });
 
-         // Re-assign sequential IDs before returning, ensuring correctness after removals/additions
-         entries.forEach((entry, index) => {
-            entry.id = index;
-         });
-
-
+        // Re-assign sequential IDs before returning
+        entries.forEach((entry, index) => { entry.id = index; });
         return entries;
     }
+
+    // --- Event Listeners Setup ---
+
+    addEntryBtn.addEventListener('click', () => {
+        const currentId = calculateNextId();
+        const newEntryHtml = createEntryHtml(currentId);
+        dataContainer.insertAdjacentHTML('beforeend', newEntryHtml);
+        const newEntryElement = dataContainer.lastElementChild;
+        newEntryElement.dataset.entryIndex = dataContainer.children.length - 1;
+        attachListenersToEntry(newEntryElement);
+    });
+
+    saveAllBtn.addEventListener('click', async (event) => {
+        event.preventDefault();
+        const dataToSave = collectDataFromForm();
+        saveAllBtn.disabled = true;
+        saveAllBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Saving...';
+        try {
+            const response = await fetch('/save', {
+                method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataToSave),
+            });
+            if (response.ok) { alert('Data saved successfully!'); }
+            else { const errorData = await response.json(); alert(`Error saving data: ${errorData.error || response.statusText}`); }
+        } catch (error) { alert(`Network error during save: ${error.message}`); }
+        finally { saveAllBtn.disabled = false; saveAllBtn.innerHTML = '<i class="bi bi-save"></i> Save All Data'; }
+    });
+
+    dataContainer.addEventListener('click', (event) => {
+        const removeLinkBtn = event.target.closest('.remove-link-btn');
+        if (removeLinkBtn) { removeLinkBtn.closest('.external-link-pair').remove(); return; }
+
+        const addLinkBtn = event.target.closest('.add-link-btn');
+        if (addLinkBtn) {
+             const linksContainer = addLinkBtn.previousElementSibling;
+             const entryGroup = addLinkBtn.closest('.entry-group');
+             const entryIndex = parseInt(entryGroup.dataset.entryIndex, 10);
+             const linkIndex = linksContainer.children.length;
+             if (!isNaN(entryIndex)) { linksContainer.insertAdjacentHTML('beforeend', createExternalLinkHtml(entryIndex, linkIndex)); }
+             else { console.error("Could not determine entry index for adding link."); }
+             return;
+        }
+
+        // Target the download button specifically
+        const downloadBtn = event.target.closest('.download-btn');
+        if (downloadBtn) {
+            handleDownloadProcess(downloadBtn); // Call the updated handler
+            return;
+        }
+
+        const removeEntryBtn = event.target.closest('.remove-entry-btn');
+         if (removeEntryBtn) {
+             if (confirm('Are you sure you want to remove this entire entry?')) {
+                 removeEntryBtn.closest('.entry-group').remove();
+             }
+              return;
+         }
+    });
+
+    dataContainer.addEventListener('input', (event) => {
+        if (event.target.matches('.social-link-input')) {
+             updateSocialPlatform(event.target);
+        }
+     });
+
+    // --- Initialization ---
+    document.querySelectorAll('.entry-group').forEach((entry, index) => {
+         entry.dataset.entryIndex = index;
+         attachListenersToEntry(entry);
+    });
 
 }); // End DOMContentLoaded
