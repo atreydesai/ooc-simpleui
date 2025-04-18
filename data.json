@@ -50,5 +50,77 @@
         "download_success": true,
         "download_message": "Download successful (video_1.mp4).",
         "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_1.mp4"
+    },
+    {
+        "id": 2,
+        "politifact_url": "https://www.politifact.com/factchecks/2025/mar/31/tiktok-posts/apple-isnt-secretly-installing-starlink-into-your/",
+        "politifact_headline": "Apple isn’t secretly installing Starlink into your iPhone",
+        "politifact_subheadline": "The warning is out across social media: Update your iPhone and you risk automatically installing Starlink, satellite tec",
+        "rating": "false",
+        "social_link": "https://mvau.lt/media/8e1f214a-f83f-4db1-8c0e-76e17bafe18b",
+        "social_platform": "mvau",
+        "social_duration": 0,
+        "social_text": "Title: Archived Fact-Checked Media — MediaVault (1)\n\nDescription: “#duet with @♡ Kim ♡ | Commentary & Content #IphoneUpdateIOS18.3DontDoIt#StarlinkSpyware”",
+        "external_links_info": [
+            {
+                "url": "https://www.washingtonpost.com/technology/2025/02/09/tmobile-starlink-satellite-texting/",
+                "description": "The Washington Post, Gizmodo and Forbes have all tackled this rumor, and each pointed to a January Bloomberg article as one potential source of confusion on the topic."
+            },
+            {
+                "url": "https://gizmodo.com/no-the-latest-ios-update-wont-give-starlink-access-to-your-iphone-2000561932",
+                "description": "The Washington Post, Gizmodo and Forbes have all tackled this rumor, and each pointed to a January Bloomberg article as one potential source of confusion on the topic."
+            },
+            {
+                "url": "https://www.forbes.com/sites/davidphelan/2025/02/01/apples-new-game-changer-iphone-update-brings-starlink-satellite-access/",
+                "description": "The Washington Post, Gizmodo and Forbes have all tackled this rumor, and each pointed to a January Bloomberg article as one potential source of confusion on the topic."
+            }
+        ],
+        "download_success": true,
+        "download_message": "Download successful (video_2.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_2.mp4"
+    },
+    {
+        "id": 3,
+        "politifact_url": "https://www.politifact.com/factchecks/2025/mar/28/facebook-posts/phoenixs-wildfire-risk-linked-to-climate-change-an/",
+        "politifact_headline": "No link between Phoenix wildfire risk and Bill Gates",
+        "politifact_subheadline": "Scientists say metro Phoenix is more likely to experience wildfires than it once was, and a social media user claimed Mi",
+        "rating": "false",
+        "social_link": "https://www.facebook.com/reel/630079209743941",
+        "social_platform": "facebook",
+        "social_duration": 38.34,
+        "social_text": "Title: Facebook\nAre you seeing a pattern yet 🤬\n",
+        "external_links_info": [
+            {
+                "url": "https://www.foxnews.com/tech/bill-gates-firm-buys-arizona-land-for-80-million-to-create-smart-city",
+                "description": "However, there’s no credible evidence to link Arizona’s increased wildfire risk to a subsidiary of Gates’ asset management company’s purchase of land around 50 miles west of Phoenix."
+            },
+            {
+                "url": "https://www.politifact.com/article/2023/sep/12/what-are-smart-cities-and-why-are-conspiracy-theor/",
+                "description": "PolitiFact has debunked several conspiracy theories that falsely linked smart city plans to wildfires including those in Maui, Los Angeles, South Carolina and Canada."
+            }
+        ],
+        "download_success": true,
+        "download_message": "Download successful (video_3.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_3.mp4"
+    },
+    {
+        "id": 4,
+        "politifact_url": "https://www.politifact.com/factchecks/2025/mar/28/facebook-posts/theres-no-20000-hidden-grant-program-for-roof-repa/",
+        "politifact_headline": "There’s no $20,000 hidden grant program for roof repairs",
+        "politifact_subheadline": "Elon Musk, the President Donald Trump megadonor and businessman who leads the Department of Government Efficiency, has b",
+        "rating": "full flop",
+        "social_link": "https://mvau.lt/media/860c19e2-1aa6-40d7-8021-6dcb8a4a365e",
+        "social_platform": "mvau",
+        "social_duration": 0,
+        "social_text": "Title: Archived Fact-Checked Media — MediaVault (1)\n\nDescription: “🚨 ELON MUSK EXPOSES HIDDEN $20K ROOF GRANT! 🚨\n\nCongress approved it. The past admin buried it. Now, Elon Musk is bringing it to light! Eligible homeowners can claim up to $20K for roof upgrades—but most don’t even know it exists.\n\n💰 Funds are running out fast! Check your eligibility now before it’s too late! 🏡🔥”",
+        "external_links_info": [
+            {
+                "url": "https://www.youtube.com/watch?v=sSOxPJD-VNo",
+                "description": "A YouTube video of this podcast episode shows Rogan and Musk wearing the same shirts seen in the Facebook video. YouTube’s transcript of the more than three-hour podcast shows no mention of a hidden roof grant program."
+            }
+        ],
+        "download_success": true,
+        "download_message": "Download successful (video_4.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_4.mp4"
     }
 ]

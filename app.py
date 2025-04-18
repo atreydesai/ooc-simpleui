@@ -1,3 +1,4 @@
+# /ooc-simpleui/app.py
 import os
 import json
 import subprocess
@@ -6,6 +7,11 @@ from flask import Flask, render_template, request, jsonify, redirect, url_for, f
 from urllib.parse import urlparse
 import logging
 import shlex # For safe command string construction
+
+# +++ Add these imports +++
+import requests
+from bs4 import BeautifulSoup
+# +++++++++++++++++++++++++
 
 # --- Flask App Setup ---
 app = Flask(__name__)
@@ -20,7 +26,7 @@ DOWNLOAD_DIR = 'downloads'
 MAX_VIDEO_DURATION_SECONDS = 600
 BROWSER_FOR_COOKIES = 'chrome' # Specify the browser to use for cookies
 
-# --- Helper Functions (load_data, save_data, parse_social_platform - Keep as before) ---
+# --- Helper Functions (load_data, save_data, parse_social_platform) ---
 def load_data():
     """Loads data from the JSON file."""
     if not os.path.exists(DATA_FILE):
@@ -33,6 +39,17 @@ def load_data():
                 logging.info(f"Data file '{DATA_FILE}' is empty, returning empty list.")
                 return []
             data = json.loads(content)
+            # Ensure essential keys exist with default values for older data formats
+            for item in data:
+                item.setdefault('politifact_headline', '')
+                item.setdefault('politifact_subheadline', '')
+                item.setdefault('social_platform', '')
+                item.setdefault('social_duration', 0.0)
+                item.setdefault('social_text', '')
+                item.setdefault('download_success', False)
+                item.setdefault('download_message', '')
+                item.setdefault('drive_path', '')
+                item.setdefault('external_links_info', [])
             logging.info(f"Successfully loaded {len(data)} items from '{DATA_FILE}'.")
             return data
     except json.JSONDecodeError as e:
@@ -89,6 +106,75 @@ def parse_social_platform(url_string):
     except ValueError: return ""
     except Exception as e: logging.error(f"Error parsing URL {url_string} for platform: {e}"); return ""
 
+# +++ START: Politifact Headline/Subheadline Fetching Helpers +++
+def get_headline(url):
+    """Fetches the headline (og:title or h1) from a Politifact URL."""
+    if not url or not url.startswith(('http://', 'https://')):
+        logging.warning(f"Invalid or missing URL for headline fetch: {url}")
+        return None
+    try:
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
+        response = requests.get(url, timeout=15, headers=headers, allow_redirects=True)
+        response.raise_for_status() # Raises HTTPError for bad responses (4xx or 5xx)
+        soup = BeautifulSoup(response.content, 'html.parser')
+
+        # Prioritize og:title
+        meta_tag = soup.find('meta', property='og:title')
+        if meta_tag and meta_tag.get('content'):
+            logging.info(f"Found og:title: '{meta_tag['content'][:50]}...' for {url}")
+            return meta_tag['content'].strip()
+
+        # Fallback to the main h1 tag
+        h1_tag = soup.find('h1')
+        if h1_tag:
+            # Sometimes h1 contains nested elements, get_text handles this
+            headline_text = h1_tag.get_text(strip=True)
+            logging.info(f"Found h1: '{headline_text[:50]}...' for {url}")
+            return headline_text
+
+        logging.warning(f"Could not find og:title or h1 tag for URL: {url}")
+        return None
+
+    except requests.exceptions.Timeout:
+        logging.error(f"Timeout error fetching headline for URL: {url}")
+        return None
+    except requests.exceptions.RequestException as e:
+        logging.error(f"Requests error fetching headline for URL {url}: {e}")
+        return None
+    except Exception as e:
+        logging.error(f"Unexpected error getting headline for URL {url}: {e}", exc_info=True)
+        return None
+
+def get_subheadline(url):
+    """Fetches the subheadline (og:description) from a Politifact URL."""
+    if not url or not url.startswith(('http://', 'https://')):
+        logging.warning(f"Invalid or missing URL for subheadline fetch: {url}")
+        return None
+    try:
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
+        response = requests.get(url, timeout=15, headers=headers, allow_redirects=True)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.content, 'html.parser')
+
+        # Look specifically for og:description
+        meta_tag = soup.find('meta', property='og:description')
+        if meta_tag and meta_tag.get('content'):
+            logging.info(f"Found og:description: '{meta_tag['content'][:50]}...' for {url}")
+            return meta_tag['content'].strip()
+
+        logging.warning(f"Could not find og:description meta tag for URL: {url}")
+        return None
+
+    except requests.exceptions.Timeout:
+        logging.error(f"Timeout error fetching subheadline for URL: {url}")
+        return None
+    except requests.exceptions.RequestException as e:
+        logging.error(f"Requests error fetching subheadline for URL {url}: {e}")
+        return None
+    except Exception as e:
+        logging.error(f"Unexpected error getting subheadline for URL {url}: {e}", exc_info=True)
+        return None
+# +++ END: Politifact Headline/Subheadline Fetching Helpers +++
 
 # --- Helper Function: Get Video Metadata (Using --cookies-from-browser) ---
 def get_video_metadata_yt_dlp(video_url):
@@ -167,7 +253,9 @@ def download_video_yt_dlp(video_url, item_id):
         except OSError as e: logging.error(f"Could not create '{DOWNLOAD_DIR}': {e}"); return {"success": False, "message": f"Error creating download directory: {e}", "drive_path": ""}
 
     output_template = os.path.join(DOWNLOAD_DIR, f"video_{item_id}.%(ext)s")
-    expected_final_path = os.path.abspath(os.path.join(DOWNLOAD_DIR, f"video_{item_id}.mp4"))
+    # Allow for different extensions, but still aim for mp4
+    expected_final_path_base = os.path.join(DOWNLOAD_DIR, f"video_{item_id}")
+
 
     command = [
         sys.executable, '-m', 'yt_dlp',
@@ -196,26 +284,29 @@ def download_video_yt_dlp(video_url, item_id):
         download_successful = False
         message = ""
 
-        # Check download outcome (same logic as before)
-        if os.path.exists(expected_final_path) and process.returncode == 0:
-            actual_path = expected_final_path; download_successful = True
-            message = f"Download successful (video_{item_id}.mp4)."
-            logging.info(f"Download Success (ID: {item_id}): {actual_path}")
-        elif process.returncode == 0:
-            found_other_file = False
+        # Improved check for output file, allowing various extensions
+        if process.returncode == 0:
             try:
                 for filename in os.listdir(DOWNLOAD_DIR):
                     if filename.startswith(f"video_{item_id}.") and not filename.endswith((".part", ".ytdl")):
                         potential_path = os.path.abspath(os.path.join(DOWNLOAD_DIR, filename))
                         if os.path.isfile(potential_path):
-                            actual_path = potential_path; found_other_file = True; download_successful = True
-                            message = f"Download successful (Format: {os.path.basename(actual_path)})."
-                            logging.info(f"Download Success (ID: {item_id}, Format: {os.path.basename(actual_path)}): {actual_path}")
-                            break
-            except FileNotFoundError: pass
-            if not found_other_file:
-                message = f"Download process finished (Code: 0) but no output file found for ID {item_id}."
-                logging.warning(f"Download Issue (ID: {item_id}): {message} STDERR: {process.stderr}")
+                            actual_path = potential_path
+                            download_successful = True
+                            message = f"Download successful ({filename})."
+                            logging.info(f"Download Success (ID: {item_id}): {actual_path}")
+                            break # Found the file
+            except FileNotFoundError:
+                 logging.warning(f"Download directory '{DOWNLOAD_DIR}' not found after download attempt for ID {item_id}.")
+                 message = f"Download process finished (Code: 0) but download directory disappeared."
+            except Exception as e:
+                 logging.error(f"Error checking for downloaded file for ID {item_id}: {e}")
+                 message = f"Download process finished (Code: 0) but error occurred checking output: {e}"
+
+            if not download_successful:
+                message = f"Download process finished (Code: 0) but no final output file found for ID {item_id}."
+                logging.warning(f"Download Issue (ID: {item_id}): {message}. Stdout: {process.stdout[:200]}. Stderr: {process.stderr[:200]}")
+
         # Handle failures, adding context about browser cookie attempt
         else:
             error_suffix = ""
@@ -224,9 +315,22 @@ def download_video_yt_dlp(video_url, item_id):
 
             message = f"Download failed (Code: {process.returncode}). Error: {process.stderr or 'Unknown yt-dlp error'}{error_suffix}"
             logging.error(f"Download Failed (ID: {item_id}). Code: {process.returncode}. Stderr: {process.stderr}")
-            if os.path.exists(expected_final_path):
-                try: os.remove(expected_final_path); logging.info(f"Removed potentially incomplete file: {expected_final_path}")
-                except OSError as e: logging.warning(f"Could not remove incomplete file {expected_final_path}: {e}")
+            # Try to remove any potentially incomplete file matching the pattern
+            try:
+                for filename in os.listdir(DOWNLOAD_DIR):
+                    if filename.startswith(f"video_{item_id}."):
+                        file_to_remove = os.path.join(DOWNLOAD_DIR, filename)
+                        try:
+                             if os.path.isfile(file_to_remove):
+                                 os.remove(file_to_remove)
+                                 logging.info(f"Removed potentially incomplete/failed file: {file_to_remove}")
+                        except OSError as e_rem:
+                             logging.warning(f"Could not remove generated file {file_to_remove}: {e_rem}")
+            except FileNotFoundError:
+                 pass # Ignore if dir doesn't exist
+            except Exception as e_clean:
+                 logging.warning(f"Error during cleanup of failed download for ID {item_id}: {e_clean}")
+
 
         return {
             "success": download_successful, "message": message.strip(),
@@ -241,7 +345,7 @@ def download_video_yt_dlp(video_url, item_id):
         logging.exception(msg); return {"success": False, "message": msg, "drive_path": ""}
 
 
-# --- Flask Routes (index, save, import - Keep as before) ---
+# --- Flask Routes (index, save, import) ---
 @app.route('/')
 def index():
     current_data = load_data()
@@ -253,6 +357,11 @@ def save():
     try:
         data_to_save = request.get_json()
         if not isinstance(data_to_save, list): return jsonify({"error": "Invalid data format: Expected list."}), 400
+        # Basic validation of structure (optional but good)
+        for item in data_to_save:
+             if not isinstance(item, dict):
+                 return jsonify({"error": "Invalid data format: List items must be objects."}), 400
+             # Add more checks if needed, e.g., presence of 'id' although we rewrite it
         if save_data(data_to_save): return jsonify({"message": "Data saved successfully."}), 200
         else: return jsonify({"error": "Failed to write data to file."}), 500
     except Exception as e: logging.exception(f"Error processing /save: {e}"); return jsonify({"error": "Internal server error."}), 500
@@ -268,11 +377,41 @@ def import_data():
             if not content.strip(): flash('Import failed: File is empty.', 'danger'); return redirect(url_for('index'))
             new_data = json.loads(content)
             if not isinstance(new_data, list): flash('Import failed: JSON not a list.', 'danger'); return redirect(url_for('index'))
+            # Optional: Validate structure of imported data items here
             if save_data(new_data): flash(f'Data ({len(new_data)} items) imported!', 'success')
             else: flash('Import failed: Could not save data.', 'danger')
-        except Exception as e: flash(f'Import error: {e}', 'danger'); logging.exception(f"Import Error: {e}")
+        except json.JSONDecodeError as e:
+            flash(f'Import error: Invalid JSON format - {e}', 'danger')
+            logging.error(f"Import JSON Decode Error: {e}")
+        except Exception as e:
+            flash(f'Import error: {e}', 'danger')
+            logging.exception(f"Import Error: {e}")
         return redirect(url_for('index'))
     else: flash('Invalid file type (must be .json).', 'warning'); return redirect(url_for('index'))
+
+
+# +++ START: New Route for Politifact Details +++
+@app.route('/get_politifact_details', methods=['POST'])
+def handle_politifact_details_request():
+    if not request.is_json:
+        return jsonify({"error": "Request must be JSON."}), 415
+    data = request.get_json()
+    url = data.get('url')
+    if not url:
+        return jsonify({"error": "Missing 'url' parameter."}), 400
+    if not url.startswith(('http://', 'https://')):
+         return jsonify({"error": "Invalid URL format."}), 400
+
+    logging.info(f"Fetching Politifact details for URL: {url}")
+    headline = get_headline(url)
+    subheadline = get_subheadline(url)
+
+    # Return empty strings if None was returned by helpers
+    return jsonify({
+        "headline": headline if headline is not None else "",
+        "subheadline": subheadline if subheadline is not None else ""
+    }), 200
+# +++ END: New Route for Politifact Details +++
 
 
 # --- Route: Get Video Metadata (Endpoint - Uses browser cookies) ---
@@ -296,7 +435,10 @@ def handle_metadata_request():
 
     # Return metadata result (could be success or failure from yt-dlp)
     if result["success"]: return jsonify(result), 200
-    else: status_code = 500; return jsonify({"error": result.get("message", "Unknown metadata error")}), status_code
+    else:
+        # Determine appropriate status code - use 4xx for client errors like bad URL, 5xx for server/yt-dlp issues
+        status_code = 400 if "invalid url" in result.get("message", "").lower() else 500
+        return jsonify({"error": result.get("message", "Unknown metadata error")}), status_code
 
 # --- Route: Download Video (Endpoint - Uses browser cookies) ---
 @app.route('/download_video', methods=['POST'])
@@ -312,20 +454,39 @@ def handle_download_request():
     result = download_video_yt_dlp(url, item_id) # Calls the updated helper
 
     if result["success"]: return jsonify(result), 200
-    else: status_code = 500; return jsonify({"error": result.get("message", "Unknown download error")}), status_code
+    else:
+        # Determine appropriate status code
+        status_code = 400 if "invalid url" in result.get("message", "").lower() else 500
+        return jsonify({"error": result.get("message", "Unknown download error")}), status_code
 
 
 # --- Main Execution Guard ---
 if __name__ == '__main__':
+    # Ensure download directory exists
     if not os.path.exists(DOWNLOAD_DIR):
         try: os.makedirs(DOWNLOAD_DIR); logging.info(f"Created download directory: {DOWNLOAD_DIR}")
-        except OSError as e: logging.critical(f"FATAL: Cannot create '{DOWNLOAD_DIR}': {e}"); sys.exit(1)
+        except OSError as e: logging.critical(f"FATAL: Cannot create download directory '{DOWNLOAD_DIR}': {e}"); sys.exit(1)
+
+    # Ensure data file exists (create empty if not)
+    if not os.path.exists(DATA_FILE):
+        try:
+            with open(DATA_FILE, 'w', encoding='utf-8') as f:
+                json.dump([], f)
+            logging.info(f"Created empty data file: '{DATA_FILE}'")
+        except IOError as e:
+            logging.critical(f"FATAL: Cannot create data file '{DATA_FILE}': {e}"); sys.exit(1)
+
     # Add instructions for the user about cookies
     logging.info("*"*60)
     logging.info(f"Attempting to use cookies from browser: '{BROWSER_FOR_COOKIES}'")
     logging.info(f"Ensure you are logged into relevant sites (like X/Twitter) in {BROWSER_FOR_COOKIES}")
     logging.info("on the machine running this script for protected content access.")
-    logging.info("If this fails, consider exporting cookies to a file instead (Approach 1).")
+    logging.info("If this fails, consider exporting cookies to a file instead.")
     logging.info("See yt-dlp documentation for '--cookies-from-browser' compatibility.")
     logging.info("*"*60)
+
+    # Make sure to install dependencies:
+    # pip install Flask requests beautifulsoup4 yt-dlp
+    logging.info("Ensure dependencies are installed: pip install Flask requests beautifulsoup4 yt-dlp")
+
     app.run(debug=True, host='127.0.0.1', port=5000)
