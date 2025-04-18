@@ -1,17 +1,54 @@
 [
     {
         "id": 0,
-        "politifact_url": "https://www.politifact.com/factchecks/2025/apr/14/tiktok-posts/rep-jasmine-crockett-is-not-cashing-her-grandmothe/",
-        "politifact_headline": "Rep. Jasmine Crockett is not cashing her grandmother’s Social Security checks. That came from satire",
-        "politifact_subheadline": "A viral TikTok post said U.S. Rep. Jasmine Crockett, D-Texas, has been conning Social Security, without offering proof.",
-        "rating": "full flop",
-        "social_link": "https://x.com/MarioNawfal/status/1908890101087609328",
-        "social_platform": "x",
-        "social_duration": 33.6,
-        "social_text": "Title: Mario Nawfal - 🚨🇺🇸EXPOSED: ANTI-ELON PROTESTS ARE STAGED &amp; PAID—BUSSED-IN, SCRIPTED, CLOCKED-OUT  The anti-Elon, anti-DOGE, anti-Trump protests in D.C.? They aren’t grassroots. They are payroll-driven theater.  - Buses rolled in packed with hired protesters. - Pre-made signs handed out #1\n\nDescription: 🚨🇺🇸EXPOSED: ANTI-ELON PROTESTS ARE STAGED &amp; PAID—BUSSED-IN, SCRIPTED, CLOCKED-OUT  The anti-Elon, anti-DOGE, anti-Trump protests in D.C.? They aren’t grassroots. They are payroll-driven theater.  - Buses rolled in packed with hired protesters. - Pre-made signs handed out https://t.co/jW7mzMFkYV",
-        "external_links_info": [],
+        "politifact_url": "https://www.politifact.com/factchecks/2025/apr/01/marjorie-taylor-greene/rep-marjorie-taylor-greene-is-wrong-sesame-street/",
+        "politifact_headline": "Rep. Marjorie Taylor Greene is wrong, ‘Sesame Street’ was not replaced by ‘drag queen storytime’",
+        "politifact_subheadline": "Cookie Monster, Big Bird, and Elmo have had a prime PBS spot since 1969. Have they been booted? ",
+        "rating": "false",
+        "social_link": "https://www.youtube.com/watch?v=0o2ufeO7AkM",
+        "social_platform": "youtube",
+        "social_duration": 319,
+        "social_text": "Title: Marjorie Taylor Greene: NPR and PBS are brainwashing our children | The Chris Salcedo Show\n\nDescription: On Tuesday's \"The Chris Salcedo Show,\" Rep. Marjorie Taylor Greene called for the defunding of NPR and PBS for brainwashing and indoctrinating children.\n\nWatch NEWSMAX, an independent news network with a conservative perspective, available in 100M+ U.S. homes. \n\nWatch NEWSMAX anytime at http://NewsmaxTV.com.\nDon't have cable/satellite that carries NEWSMAX? Watch NEWSMAX online, on-demand by subscribing to NEWSMAX+ with a free trial at http://NEWSMAXPlus.com. \n\nListen to NEWSMAX from anywhere or subscribe to podcasts: https://newsmax.com/listen/\nShop Newsmax Logo Gear at http://nws.mx/shop\n\nSOCIAL MEDIA\nFacebook: http://nws.mx/FB\nTwitter: http://nws.mx/twitter\nInstagram: http://nws.mx/IG\nThreads: http://threads.net/@NEWSMAX\nYouTube: https://youtube.com/NewsmaxTV\nTelegram: http://t.me/newsmax\nBlueSky: https://bsky.app/profile/newsmax.com\nTRUTH Social: https://truthsocial.com/@NEWSMAX\nGETTR: https://gettr.com/user/newsmax\n\n#NEWSMAX #News #BreakingNews",
+        "external_links_info": [
+            {
+                "url": "https://sesameworkshop.org/about-us/press-room/sesame-streets-new-season-launches-thursday-january-16-on-max/",
+                "description": "The 55th season of \"Sesame Street\" will air on PBS this fall. \""
+            },
+            {
+                "url": "https://www.newsweek.com/backlash-pbs-drag-queen-story-time-children-1593605",
+                "description": "PBS has said it did not distribute it."
+            }
+        ],
         "download_success": true,
         "download_message": "Download successful (video_0.mp4).",
         "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_0.mp4"
+    },
+    {
+        "id": 1,
+        "politifact_url": "https://www.politifact.com/factchecks/2025/apr/01/facebook-posts/video-shows-police-support-ahead-of-us-delegations/",
+        "politifact_headline": "Video doesn’t show troops preparing to defend Greenland against US",
+        "politifact_subheadline": "Are some European nations assembling troops in Greenland because of U.S. threats to that territory? ",
+        "rating": "false",
+        "social_link": "https://mvau.lt/media/62ba7a9a-ade8-4240-9256-d74f34fb3f8d",
+        "social_platform": "mvau",
+        "social_duration": 0,
+        "social_text": "Title: Archived Fact-Checked Media — MediaVault (1)\n\nDescription: “France and Denmark are sending troops to Greenland to prepare for attack from Donald Trump. World War III fighting Europe..is this what you voted for Republican idiots? •#dontheCon is causing many people and countries to lose money. Initially picking fights with #Mexico #Canada and #Panama.Uhhh 🙄 and is he even following through on any of that? 🤷🏽‍♀️ Then JD-trans confronts #Greenland with thr3ats. And now dontheCon is “borderline” declaring war on Denmark, which holds sovereignty over Greenland. This would force other #NATO countries to stand against the US 😳\n1. #Denmark sent hundreds of Special Forces to #Greenland to beef up defense due to US threats.\n2. French Special Forces are in Greenland conducting training activities.\n3. French Attack Submarine visiting Halifax, Canada.\n4. France, Denmark, and other EU countries have stated that they WILL defend Greenland’s sovereignty, regardless of who threatens it.” @graftacus #warmonger #donaldtRUMP #PutinsPuppet‬ ‪#PutinsBitch‬ #Traitors...",
+        "external_links_info": [
+            {
+                "url": "https://x.com/OJoelsen/status/1903856300397666334",
+                "description": "A YouTube channel described the footage as \"Danish & American diplomats\" arriving in Nuuk, Greenland, but an X user said it showed, \"About 100 police officers with 3 police dogs arrived to Nuuk, Greenland from Denmark.\""
+            },
+            {
+                "url": "https://politi.gl/politistationer/nyhedsliste/groenlands-politi-faar-assistance-fra-danske-politikredse/2025/03/24",
+                "description": "Hjørdis Joanardottir Poulsen, a Greenland Police spokesperson, pointed to a March 24 press release that, when translated to English, said Greenland Police \"requested assistance from Danish police districts\" to manage the delegation of U.S. visitors."
+            },
+            {
+                "url": "https://www.dr.dk/nyheder/indland/fly-med-danske-betjente-paa-vej-til-groenland",
+                "description": "A Denmark Ministry of Defense spokesperson pointed us to the Danish media company DR’s March 23 report that said Danish police officers were on the way to Nuuk, Greenland, ahead of the U.S. delegation’s visit."
+            }
+        ],
+        "download_success": true,
+        "download_message": "Download successful (video_1.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_1.mp4"
     }
 ]

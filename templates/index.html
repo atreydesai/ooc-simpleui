@@ -128,10 +128,12 @@
                                             {% for link_pair in item.external_links_info %}
                                             <div class="row g-2 mb-2 external-link-pair">
                                                 <div class="col">
-                                                    <input type="url" name="data[{{ loop.parent.loop.index0 }}][external_links_info][{{ loop.index0 }}][url]" value="{{ link_pair.url }}" class="form-control form-control-sm" placeholder="URL">
+                                                    {# Use the captured outer_loop_index instead of loop.parent.loop.index0 #}
+                                                    <input type="url" name="data[{{ outer_loop_index }}][external_links_info][{{ loop.index0 }}][url]" value="{{ link_pair.url }}" class="form-control form-control-sm" placeholder="URL">
                                                 </div>
                                                 <div class="col">
-                                                    <input type="text" name="data[{{ loop.parent.loop.index0 }}][external_links_info][{{ loop.index0 }}][description]" value="{{ link_pair.description }}" class="form-control form-control-sm" placeholder="Description">
+                                                    {# Use the captured outer_loop_index instead of loop.parent.loop.index0 #}
+                                                    <input type="text" name="data[{{ outer_loop_index }}][external_links_info][{{ loop.index0 }}][description]" value="{{ link_pair.description }}" class="form-control form-control-sm" placeholder="Description">
                                                 </div>
                                                 <div class="col-auto">
                                                     <button type="button" class="btn btn-sm btn-outline-danger remove-link-btn" title="Remove Link">
