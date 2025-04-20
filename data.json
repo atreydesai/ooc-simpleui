@@ -122,5 +122,453 @@
         "download_success": true,
         "download_message": "Download successful (video_4.mp4).",
         "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_4.mp4"
+    },
+    {
+        "id": 5,
+        "politifact_url": "https://www.politifact.com/factchecks/2025/mar/28/susan-crawford/in-wisconsin-supreme-court-race-crawford-claims-sc/",
+        "politifact_headline": "In Wisconsin Supreme Court race, Crawford claims Schimel wants to be part of Trump support network",
+        "politifact_subheadline": "In the race for ideological control of the Wisconsin Supreme Court, candidates Brad Schimel and Susan Crawford have clas",
+        "rating": "mostly true",
+        "social_link": "https://www.youtube.com/watch?v=FbQm3NFaY5c",
+        "social_platform": "youtube",
+        "social_duration": 0,
+        "social_text": "Wisconsin Supreme Court Debate\nSusan Crawford and Brad Schimel face off in their first and only debate before the April 1 election.\n",
+        "external_links_info": [
+            {
+                "url": "https://wisconsinexaminer.com/2025/03/06/schimel-tells-canvassers-hell-be-support-network-for-trump-and-rehashes-election-conspiracies/",
+                "description": "That March 6, 2025, article from the Wisconsin Examiner pointed to the video of Schimel speaking in Waukesha County to a group of canvassers associated with Turning Point USA — a right-wing political group led by conservative activist Charlie Kirk that has become active in Wisconsin’s Republican party."
+            },
+            {
+                "url": "https://www.youtube.com/watch?v=K5AfsSS5MNA",
+                "description": "In the video posted to YouTube, Schimel tells the canvassers that after the election of Trump, \"the job’s not done.\""
+            },
+            {
+                "url": "https://www.jsonline.com/story/news/politics/elections/2025/03/18/brad-schimel-gets-donald-trump-jr-s-backing-in-wi-supreme-court-race/82419142007/",
+                "description": "Donald Trump Jr. and Turning Point Action founder Charlie Kirk backed Schimel in front of hundreds at a March 17, 2025 event in Oconomowoc."
+            }
+        ],
+        "download_success": false,
+        "download_message": "Metadata Error: Video duration (3571.0s) exceeds limit (600s). Download aborted.",
+        "drive_path": ""
+    },
+    {
+        "id": 6,
+        "politifact_url": "https://www.politifact.com/factchecks/2025/mar/28/markwayne-mullin/hillary-clinton-sent-emails-stamped-top-secret-no/",
+        "politifact_headline": "Reviews don’t show Clinton sent emails ‘stamped’ Top Secret",
+        "politifact_subheadline": "After top U.S. national security leaders erroneously messaged a journalist sensitive operational details about impending",
+        "rating": "false",
+        "social_link": "https://mvau.lt/media/b12aebc4-6eb6-41f4-bd83-8c9ca58dcdae",
+        "social_platform": "mvau",
+        "social_duration": 0,
+        "social_text": "Title: Archived Fact-Checked Media — MediaVault (1)\n\nDescription: “Signal contained no classified information. For years, Hillary Clinton shared classified national security secrets from her personal email. Forget about apples to oranges, this is like comparing apples to a steak. https://t.co/dobUV1cDnx”",
+        "external_links_info": [
+            {
+                "url": "https://www.politifact.com/factchecks/2022/sep/13/hillary-clinton/clinton-exaggerates-absence-classified-information/",
+                "description": "As secretary of state, Clinton used a personal email address ending in @clintonemail.com, which meant its data was housed on private servers in her New York home."
+            },
+            {
+                "url": "https://www.fbi.gov/news/press-releases/press-releases/statement-by-fbi-director-james-b-comey-on-the-investigation-of-secretary-hillary-clinton2019s-use-of-a-personal-e-mail-system",
+                "description": "In 2016, the FBI reported that 113 of the approximately 30,000 emails it reviewed contained information that was classified at the time they were sent or received. Of the emails, the FBI reported that \"a very small number\" of emails containing classified information were duly marked signaling their classification."
+            },
+            {
+                "url": "https://www.grassley.senate.gov/imo/media/doc/2019-10-17%20State%20Dept.%20to%20CEG%20-%20Classified%20Emails.pdf#page=9",
+                "description": "The State Department report said \"instances of classified information being deliberately transmitted via unclassified email\" were \"rare.\" \"There was no persuasive evidence of systemic, deliberate mishandling of classified information,\" it said."
+            },
+            {
+                "url": "https://www.grassley.senate.gov/imo/media/doc/2019-10-17%20State%20Dept.%20to%20CEG%20-%20Classified%20Emails.pdf#page=7",
+                "description": "https://www.grassley.senate.gov/imo/media/doc/2019-10-17%20State%20Dept.%20to%20CEG%20-%20Classified%20Emails.pdf#page=7"
+            }
+        ],
+        "download_success": true,
+        "download_message": "Download successful (video_6.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_6.mp4"
+    },
+    {
+        "id": 7,
+        "politifact_url": "https://www.politifact.com/factchecks/2025/mar/28/tiktok-posts/videos-dont-show-seattle-tornadoes-no-twisters-tou/",
+        "politifact_headline": "No, these videos don’t show Seattle tornadoes",
+        "politifact_subheadline": "Several TikTok videos showing dramatic footage of destructive tornadoes said the images showed twisters touching down in",
+        "rating": "full flop",
+        "social_link": "https://mvau.lt/media/49087850-8e75-4ab1-a75d-c842354efb5f",
+        "social_platform": "mvau",
+        "social_duration": 0,
+        "social_text": "Title: Archived Fact-Checked Media — MediaVault (1)\n\nDescription: “Tornado hits Seattle, Washington today! #tornado #seattle #washington ”",
+        "external_links_info": [
+            {
+                "url": "https://www.king5.com/article/weather/weather-blog/widespread-thunderstorm-chances-western-washington-wednesday/281-36cc2f3f-ca95-40e0-a125-ef7e4dbb8c20",
+                "description": "Local news outlets reporting on the storm did not mention tornadoes touching down in the city, either."
+            },
+            {
+                "url": "https://www.seattletimes.com/seattle-news/weather/seattle-weather-whats-next-now-that-lightning-storm-has-passed/",
+                "description": "The Seattle Times reported that residents were preparing for the possibility of two-inch hailstones and the \"minimal threat\" of a tornado, but \"no twisters were reported.\""
+            },
+            {
+                "url": "https://www.tiktok.com/@severe_central/video/7378524295389023530",
+                "description": "Using a reverse image search, we found the first, footage shot from someone’s back porch, that a TikTok user posted in June 2024, saying it was from Goreville, Illinois."
+            },
+            {
+                "url": "https://www.facebook.com/Netan.BenDavid",
+                "description": "The person who posted that says in his profile that he’s a digital creator and shares what appear to be AI-generated disaster videos."
+            }
+        ],
+        "download_success": true,
+        "download_message": "Download successful (video_7.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_7.mp4"
+    },
+    {
+        "id": 8,
+        "politifact_url": "https://www.politifact.com/factchecks/2025/mar/28/social-media/image-of-a-person-dressed-as-pikachu-in-turkey-pro/",
+        "politifact_headline": "Image of Pikachu in Turkey protests is AI-generated",
+        "politifact_subheadline": "Thousands have taken to the streets in Turkey to protest Istanbul Mayor Ekrem Imamoglu’s arrest. Social media users shar",
+        "rating": "false",
+        "social_link": "https://www.threads.net/@the.wellness.therapist/post/DHtYYFAJGag?fbclid=IwY2xjawJTh-ZleHRuA2FlbQIxMAABHZnXJ-gZK--hgyLUIoMinp56hs3CABKRBYJ5UOjZqwKPTjSUdKuRQF4yuw_aem_hmDr7lhK4Bktmsa76jILhg",
+        "social_platform": "threads",
+        "social_duration": 0,
+        "social_text": "Title: Pikachu Flees Police During Turkey Protests\n\nDescription: Streaming now at https://abc7chicago.com/watch/live/11064984/.\n\nA familiar figure was spotted running from police with a crowd of protesters in Antalya, Turkey, in the early hours of Thursday, March 27 — Pikachu, the Pokemon.\n\nFootage from Ismail Koceroglu shows the bizarre moment a person dressed as Pikachu ran alongside protesters, who have gathered for the past week in various cities in opposition to the arrest of Istanbul Mayor Ekrem Imamoglu.\n\nPikachu was cheered on by Turkey’s Republican People’s Party on X, who joked that even Pikachu is affected by pepper spray.",
+        "external_links_info": [
+            {
+                "url": "https://www.404media.co/pikachu-spotted-fleeing-police-crackdowns-during-turkey-protests/",
+                "description": "The technology news site 404 Media reported the authentic video was taken in Antalya, Turkey, by Ismail Koçeroğlu, a photojournalist at Akdeniz University."
+            },
+            {
+                "url": "https://www.youtube.com/shorts/w2JiKHfOAXQ",
+                "description": "There was authentic footage of a person dressed as Pikachu running away during the protests, but this image of Pikachu surrounded by police in Turkey is AI-generated."
+            }
+        ],
+        "download_success": false,
+        "download_message": "Metadata Error: yt-dlp metadata fetch failed (Code: 1). Error: [debug] Command-line config: ['-j', '-v', '--no-warnings', '--ignore-config', '--cookies-from-browser', 'chrome', 'https://www.threads.net/@the.wellness.therapist/post/DHtYYFAJGag?fbclid=IwY2xjawJTh-ZleHRuA2FlbQIxMAABHZnXJ-gZK--hgyLUIoMinp56hs3CABKRBYJ5UOjZqwKPTjSUdKuRQF4yuw_aem_hmDr7lhK4Bktmsa76jILhg']\n[debug] Encodings: locale UTF-8, fs utf-8, pref UTF-8, out utf-8 (No ANSI), error utf-8 (No ANSI), screen utf-8 (No ANSI)\n[debug] yt-dlp version stable@2025.03.31 from yt-dlp/yt-dlp [5e457af57] (pip)\n[debug] Python 3.13.2 (CPython arm64 64bit) - macOS-15.3.2-arm64-arm-64bit-Mach-O (OpenSSL 3.4.1 11 Feb 2025)\n[debug] exe versions: ffmpeg 4.3.2, ffprobe 4.3.2\n[debug] Optional libraries: certifi-2025.01.31, requests-2.32.3, sqlite3-3.45.3, urllib3-2.3.0, websockets-14.2\n[debug] Proxy map: {}\nExtracting cookies from chrome\n[debug] Extracting cookies from: \"/Users/ndesai-air/Library/Application Support/Google/Chrome/Profile 9/Cookies\"\n[debug] using find-generic-password to obtain password from OSX keychain\nExtracted 3009 cookies from chrome\n[debug] cookie version breakdown: {'v10': 3518, 'other': 0, 'unencrypted': 0}\n[debug] Request Handlers: urllib, requests, websockets\n[debug] Plugin directories: none\n[debug] Loaded 1850 extractors\n[generic] Extracting URL: https://www.threads.net/@the.wellness.therapist/post/DHtYYFAJGag?fbclid=IwY2xjawJTh-ZleHRuA2FlbQIxMAABHZnXJ-gZK--hgyLUIoMinp56hs3CABKRBYJ5UOjZqwKPTjSUdKuRQF4yuw_aem_hmDr7lhK4Bktmsa76jILhg\n[generic] DHtYYFAJGag?fbclid=IwY2xjawJTh-ZleHRuA2FlbQIxMAABHZnXJ-gZK--hgyLUIoMinp56hs3CABKRBYJ5UOjZqwKPTjSUdKuRQF4yuw_aem_hmDr7lhK4Bktmsa76jILhg: Downloading webpage\n[generic] DHtYYFAJGag?fbclid=IwY2xjawJTh-ZleHRuA2FlbQIxMAABHZnXJ-gZK--hgyLUIoMinp56hs3CABKRBYJ5UOjZqwKPTjSUdKuRQF4yuw_aem_hmDr7lhK4Bktmsa76jILhg: Extracting information\n[debug] Looking for embeds\nERROR: Unsupported URL: https://www.threads.net/@the.wellness.therapist/post/DHtYYFAJGag?fbclid=IwY2xjawJTh-ZleHRuA2FlbQIxMAABHZnXJ-gZK--hgyLUIoMinp56hs3CABKRBYJ5UOjZqwKPTjSUdKuRQF4yuw_aem_hmDr7lhK4Bktmsa76jILhg\nTraceback (most recent call last):\n  File \"/Users/ndesai-air/miniconda3/envs/yys-atrey-misinfo-demo/lib/python3.13/site-packages/yt_dlp/YoutubeDL.py\", line 1653, in wrapper\n    return func(self, *args, **kwargs)\n  File \"/Users/ndesai-air/miniconda3/envs/yys-atrey-misinfo-demo/lib/python3.13/site-packages/yt_dlp/YoutubeDL.py\", line 1788, in __extract_info\n    ie_result = ie.extract(url)\n  File \"/Users/ndesai-air/miniconda3/envs/yys-atrey-misinfo-demo/lib/python3.13/site-packages/yt_dlp/extractor/common.py\", line 748, in extract\n    ie_result = self._real_extract(url)\n  File \"/Users/ndesai-air/miniconda3/envs/yys-atrey-misinfo-demo/lib/python3.13/site-packages/yt_dlp/extractor/generic.py\", line 2578, in _real_extract\n    raise UnsupportedError(url)\nyt_dlp.utils.UnsupportedError: Unsupported URL: https://www.threads.net/@the.wellness.therapist/post/DHtYYFAJGag?fbclid=IwY2xjawJTh-ZleHRuA2FlbQIxMAABHZnXJ-gZK--hgyLUIoMinp56hs3CABKRBYJ5UOjZqwKPTjSUdKuRQF4yuw_aem_hmDr7lhK4Bktmsa76jILhg\n\n",
+        "drive_path": ""
+    },
+    {
+        "id": 9,
+        "politifact_url": "https://www.politifact.com/factchecks/2025/mar/27/facebook-posts/trump-showed-the-declaration-of-independence-not-t/",
+        "politifact_headline": "Trump didn’t show Bitcoin whitepaper at the White House",
+        "politifact_subheadline": "President Donald Trump is known for being a crypto-friendly president. He launched his own cryptocurrency right before t",
+        "rating": "full flop",
+        "social_link": "https://www.facebook.com/cryptosrus/videos/520787187742234",
+        "social_platform": "facebook",
+        "social_duration": 20.99,
+        "social_text": "Title: Cryptos R Us - 🔥 The $BTC Whitepaper was spotted at the White House",
+        "external_links_info": [
+            {
+                "url": "https://www.youtube.com/watch?t=214&v=6Lbu0i4wEEQ&feature=youtu.be",
+                "description": "The Facebook video is edited. In the original clip uploaded March 20 by Fox, Trump showed Ingraham the Declaration of Independence in the Oval Office. The Fox News chyron read, \"Trump shows Laura the Declaration of Independence.\""
+            }
+        ],
+        "download_success": true,
+        "download_message": "Download successful (video_9.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_9.mp4"
+    },
+    {
+        "id": 10,
+        "politifact_url": "https://www.politifact.com/factchecks/2025/mar/27/tiktok-posts/people-can-get-student-debt-erased-by-filing-famil/",
+        "politifact_headline": "Can student loans be erased because DOGE accessed data? No.",
+        "politifact_subheadline": "After the Department of Government Efficiency gained access to student loan databases, some social media posts promoted",
+        "rating": "false",
+        "social_link": "https://www.tiktok.com/@parislorren/video/7469226324255771950?q=paris%20lorren&t=1742407703088",
+        "social_platform": "tiktok",
+        "social_duration": 44,
+        "social_text": "Title: It’s  bitter sweet but I’m gonna take what I can ##thirdpartyviolatio...\n\nDescription: It’s  bitter sweet but I’m gonna take what I can ##thirdpartyviolation##studentaidforgiveness##nostudentloans##FEEPA",
+        "external_links_info": [
+            {
+                "url": "https://studentprivacy.ed.gov/ferpa",
+                "description": "The law seeks to protect access to student education records from unauthorized parties and to give students, parents and guardians access to their own educational records."
+            },
+            {
+                "url": "https://supreme.justia.com/cases/federal/us/536/273/case.pdf",
+                "description": "In 2002, the U.S. Supreme Court ruled in Gonzaga v. Doe that although the Education Department can sue schools on the basis of violations of the 1974 law, individual people can’t."
+            },
+            {
+                "url": "https://www.washingtonpost.com/business/2025/02/04/elon-musk-government-legal-doge/",
+                "description": "These posts began cropping up on Feb. 9, after The Washington Post reported on Feb. 4 that DOGE gained access to 16 Department of Education and Office of Personnel Management databases, including student loan databases containing more than 40 million borrowers’ personally identifying information."
+            }
+        ],
+        "download_success": true,
+        "download_message": "Download successful (video_10.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_10.mp4"
+    },
+    {
+        "id": 11,
+        "politifact_url": "https://www.politifact.com/factchecks/2025/mar/26/pete-hegseth/fact-checking-pete-hegseths-false-statement-that-n/",
+        "politifact_headline": "Hegseth says Signal text didn’t have ‘war plans.’ False",
+        "politifact_subheadline": "Standing on a Hawaii runway, Defense Secretary Pete Hegseth told a reporter March 24, \"Nobody was texting war plans, and",
+        "rating": "false",
+        "social_link": "https://www.youtube.com/watch?v=Ym7_3ESCpSg",
+        "social_platform": "youtube",
+        "social_duration": 101,
+        "social_text": "Title: Defense Secretary Hegseth: \"Nobody was texting war plans...\"\n\nDescription: Defense Secretary Hegseth on The Atlantic Editor-in-chief Jeffrey Goldberg: \"You're talking about a deceitful and highly discredited so-called journalist who's made a profession of peddling hoaxes time and time again...This is a guy who peddles in garbage...Nobody was texting war plans and that's all I have to say.\" https://www.c-span.org/program/news-conference/defense-secretary-hegseth-speaks-to-reporters/657641\n\nDownload the FREE C-SPAN Now App. https://www.c-span.org/c-spanNow/\n\nDiscover the C-SPAN Video Library at https://www.c-span.org/quickguide/\n\nExplore C-SPAN's Free Educational Resources at https://www.c-span.org/classroom/\n\nC-SPAN: Created by Cable in 1979. Offered as a public service.\n\nSupport C-SPAN by Donating Today: https://donorbox.org/support-c-span?utm_source=YouTube&utm_medium=Video_Description&utm_campaign=Donations&utm_content=Donate\n\nSubscribe to our YouTube channel: https://www.youtube.com/user/CSPAN \n\nFollow us:\nFacebook: https://www.facebook.com/CSPAN\nTwitter: ...",
+        "external_links_info": [
+            {
+                "url": "https://www.theatlantic.com/politics/archive/2025/03/trump-administration-accidentally-texted-me-its-war-plans/682151/?gift=kPTlqn0J1iP9IBZcsdI5IVJpB2t9BYyxpzU4sooa69M&utm_source=copy-link&utm_medium=social&utm_campaign=share",
+                "description": "On March 24, The Atlantic magazine Editor in Chief Jeffrey Goldberg detailed how he was accidentally added to a group chat on the messaging app Signal with senior Trump administration officials discussing an impending airstrike on U.S. adversaries in Yemen."
+            },
+            {
+                "url": "https://archive.ph/JEn5Z",
+                "description": "The National Security Council confirmed the authenticity of the thread and said it would review how Goldberg’s number was added to the chain."
+            },
+            {
+                "url": "https://www.theatlantic.com/politics/archive/2025/03/signal-group-chat-attack-plans-hegseth-goldberg/682176/?gift=Zy8-uzN1YjCAIJovQ7_58mFuhpLVX02RCoS_-Igq378&utm_source=copy-link&utm_medium=social&utm_campaign=share",
+                "description": "The messages released March 26 show Hegseth sent information about when aircraft and drones would launch, when bombs would drop and the expected movement of targets."
+            },
+            {
+                "url": "https://www.jcs.mil/Portals/36/Documents/Library/Handbooks/CJCS%20GUIDE%203130.pdf?ver=2019-03-18-122038-003",
+                "description": "A 2023 Defense Department guide defines an operation plan, aka an OPLAN, as \"a complete and detailed plan containing a full description\" and a \"timephased force and deployment list.\""
+            }
+        ],
+        "download_success": true,
+        "download_message": "Download successful (video_11.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_11.mp4"
+    },
+    {
+        "id": 12,
+        "politifact_url": "https://www.politifact.com/factchecks/2025/mar/25/nick-lalota/lalota-says-he-was-voting-to-protect-medicaid-othe/",
+        "politifact_headline": "LaLota misleads voters on budget resolution vote",
+        "politifact_subheadline": "U.S. Rep. Nick LaLota, a Long Island Republican, said his vote to cut spending was a vote to “protect” Medicaid. Evidence offers a starkly different picture.",
+        "rating": "false",
+        "social_link": "https://www.youtube.com/watch?v=Cbb9iYaxvYQ",
+        "social_platform": "youtube",
+        "social_duration": 60,
+        "social_text": "Title: Congressman LaLota: Resolved to Make Longer Long Island Safer and More Affordable",
+        "external_links_info": [
+            {
+                "url": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/14/text",
+                "description": "On Feb. 25, Rep. Nick LaLota, R-N.Y., voted in favor of a House budget resolution that calls for sharp cuts in spending across a vast array of government areas."
+            },
+            {
+                "url": "https://clerk.house.gov/Votes/202550",
+                "description": "As written, the resolution seeks broad spending reductions across a range of areas overseen by various committees. It specifically asks the House Committee on Energy and Commerce to submit proposals \"to reduce the deficit by not less than $880,000,000,000 [$880 billion] for the period of fiscal years 2025  through 2034.\"  It does not say it would protect Medicaid. The word Medicaid is nowhere in the document. It does not prescribe any specific action on the program , such as instituting work requirements for recipients. Lawmakers separately draft legislation to make program adjustments to achieve the spending cut targets."
+            },
+            {
+                "url": "https://www.cbo.gov/system/files/2025-03/61235-Boyle-Pallone.pdf",
+                "description": "Policy experts and the Congressional Budget Office have said that, after removing Medicare from consideration, there’s not enough under the committee’s jurisdiction to cut $880 billion without substantially reducing Medicaid spending."
+            }
+        ],
+        "download_success": true,
+        "download_message": "Download successful (video_12.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_12.mp4"
+    },
+    {
+        "id": 13,
+        "politifact_url": "https://www.politifact.com/factchecks/2025/mar/24/tweets/why-you-should-be-skeptical-of-that-leaked-audio-o/",
+        "politifact_headline": "Is ‘leaked’ audio of Vance real?",
+        "politifact_subheadline": "From X to TikTok, several users claimed to share \"leaked\" audio of Vice President JD Vance expressing frustration with b",
+        "rating": "false",
+        "social_link": "https://x.com/cwebbonline/status/1903966928957575523",
+        "social_platform": "x",
+        "social_duration": 54.11,
+        "social_text": "Title: Christopher Webb - Leaked audio of JD Vance in a jealous rant…  Let’s just say JD Vance ...\n\nDescription: Leaked audio of JD Vance in a jealous rant…  Let’s just say JD Vance is no fan of Elon Musk and thinks he makes him look bad. But the truth is—Trump and Vance don’t need Elon to make them look bad. https://t.co/Y1jyZPGUOw",
+        "external_links_info": [
+            {
+                "url": "https://x.com/Shayan86/status/1904213670952919052",
+                "description": "Shayan of BBC has confirmed it is fake."
+            },
+            {
+                "url": "https://web.archive.org/web/20250324135833/https://leadstories.com/hoax-alert/2025/03/fact-check-jd-vance-leaked-audio-musk.html",
+                "description": "The Hiya Deepfake Voice Detector identified it as fake."
+            },
+            {
+                "url": "https://x.com/JDVance/status/1904222280655286776",
+                "description": "JD Vance responded and stated it is a “fake AI-generated clip.”"
+            }
+        ],
+        "download_success": true,
+        "download_message": "Download successful (video_13.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_13.mp4"
+    },
+    {
+        "id": 14,
+        "politifact_url": "https://www.politifact.com/factchecks/2025/mar/20/facebook-posts/was-zelenskyys-pennsylvania-visit-election-interfe/",
+        "politifact_headline": "Did Zelenskyy's PA visit count as election interference?",
+        "politifact_subheadline": "Echoing an attack by Vice President JD Vance, a Facebook post said Ukrainian President Volodymyr Zelenskyy interfered in",
+        "rating": "false",
+        "social_link": "https://www.facebook.com/reel/1171917867634005",
+        "social_platform": "facebook",
+        "social_duration": 55.42,
+        "social_text": "Title: Facebook\nForeign interference in our election.\n",
+        "external_links_info": [
+            {
+                "url": "https://www.youtube.com/watch?v=fpZ3Dc4WHJ0",
+                "description": "In September 2024, Zelenskyy visited the Scranton Army Ammunition Plant to thank its workers who were producing munitions for Ukraine."
+            },
+            {
+                "url": "https://bidenwhitehouse.archives.gov/briefing-room/statements-releases/2024/09/26/readout-of-vice-president-harriss-meeting-with-president-zelenskyy-of-ukraine-5/",
+                "description": "Later the same week, Zelenskyy met separately with Harris and then-Republican presidential candidate Donald Trump."
+            },
+            {
+                "url": "https://rollcall.com/factbase/trump/transcript/donald-trump-press-gaggle-volodymyr-zelenskyy-ukraine-new-york-september-27-2024/#3",
+                "description": "Later the same week, Zelenskyy met separately with Harris and then-Republican presidential candidate Donald Trump."
+            },
+            {
+                "url": "https://www.law.cornell.edu/uscode/text/22/2708#k_4",
+                "description": "U.S. Code 2708 says the term \"foreign election interference\" means conduct by a foreign person including \"covert, fraudulent or deceptive acts\" with the intent to significantly influence voters or undermine public confidence in the election."
+            },
+            {
+                "url": "https://apnews.com/article/ukraine-zelenskyy-pennsylvania-ammunition-plan-russia-war-7443f69928054f671fcf510d7204e468",
+                "description": "Zelenskyy’s visit to Scranton was not covert; it was reported by the media in advance and after his visit."
+            }
+        ],
+        "download_success": true,
+        "download_message": "Download successful (video_14.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_14.mp4"
+    },
+    {
+        "id": 15,
+        "politifact_url": "https://www.politifact.com/factchecks/2025/mar/18/ro-khanna/congressman-blames-trump-team-for-ending-telehealt/",
+        "politifact_headline": "What Rep. Khanna calls Medicare 'cuts' was expiration date",
+        "politifact_subheadline": "Rep. Ro Khanna (D-Calif.) warned of Trump administration “cuts” to Medicare telehealth access to hit March 31. But if Medicare recipients lose telemedicine benefits that day, it will be because Congress failed to act.",
+        "rating": "half true",
+        "social_link": "https://www.tiktok.com/@reprokhanna/video/7473600871306136874?_r=1&_t=ZT-8u5lcPKE7I3",
+        "social_platform": "tiktok",
+        "social_duration": 31,
+        "social_text": "Title: #breakingnews #healthcare #elonmusk \n\nDescription: #breakingnews #healthcare #elonmusk",
+        "external_links_info": [
+            {
+                "url": "https://www.medicare.gov/coverage/telehealth",
+                "description": "The same day, the Centers for Medicare & Medicaid Services posted a document online titled \"Telehealth\" that said, \"Through March 31, 2025, you can get telehealth services at any location in the U.S., including your home. Starting April 1, 2025, you must be in an office or medical facility located in a rural area (in the U.S.) for most telehealth services.\""
+            },
+            {
+                "url": "https://www.kff.org/medicare/issue-brief/what-to-know-about-medicare-coverage-of-telehealth/",
+                "description": "Congress made Medicare coverage of behavioral health services delivered remotely permanent in December 2020, but left other telehealth benefits hanging on by a string."
+            }
+        ],
+        "download_success": true,
+        "download_message": "Download successful (video_15.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_15.mp4"
+    },
+    {
+        "id": 16,
+        "politifact_url": "https://www.politifact.com/factchecks/2025/mar/14/facebook-posts/stacey-abrams-didnt-admit-to-using-2-billion-from/",
+        "politifact_headline": "Abrams didn’t admit she used $2 billion grant to buy votes",
+        "politifact_subheadline": "Days after President Donald Trump called out Stacey Abrams in his March 4 speech to Congress, Abrams defended herself in",
+        "rating": "false",
+        "social_link": "https://www.facebook.com/watch/?v=1336210670926130",
+        "social_platform": "facebook",
+        "social_duration": 111.01,
+        "social_text": "Title: Video",
+        "external_links_info": [
+            {
+                "url": "https://www.youtube.com/watch?v=Pn2rykcwV7w",
+                "description": "Some social media users shared the March 6 interview as evidence she admitted to wrongdoing.The interview does not show Abrams admitting to using $2 billion from the Environmental Protection Agency to buy votes. In the interview, she spoke about the Power Forward Communities coalition, which included the nonprofit Rewiring America as one of its five members. Abrams, a lawyer, was involved in Rewiring America in 2023 and 2024 as senior counsel, but there’s been no proof she received money from that grant."
+            },
+            {
+                "url": "https://www.usaspending.gov/award/ASST_NON_84096001_6800",
+                "description": "Abrams left Rewiring America at the end of 2024. In April that year, the EPA awarded the Power Forward Communities coalition $2 billion to build and lead a program to reduce costs for single-family and multi-family housing owners and developers."
+            },
+            {
+                "url": "https://www.politico.com/news/2025/02/24/climate-grant-recipient-spending-trumps-epa-tries-claw-back-00205814",
+                "description": "Abrams spokesperson Joshua Karp told PolitiFact she was not involved in Power Forward Communities beyond her role at Rewiring America. Power Forward Communities CEO Tim Mayopoulos told Politico Abrams \"has not received a penny of this EPA grant.\""
+            }
+        ],
+        "download_success": true,
+        "download_message": "Download successful (video_16.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_16.mp4"
+    },
+    {
+        "id": 17,
+        "politifact_url": "https://www.politifact.com/factchecks/2025/mar/10/social-media/wildfires-werent-deliberately-set-to-make-way-for/",
+        "politifact_headline": "South Carolina wildfires weren’t set for ‘smart city’ plans",
+        "politifact_subheadline": "When wildfires spread, so do conspiracy theories about \"smart cities.\" We saw that happen following fires in Maui, Hawai",
+        "rating": "false",
+        "social_link": "https://www.instagram.com/purerebelusa/reel/DGvF5-ou0Mw/",
+        "social_platform": "instagram",
+        "social_duration": 182.94,
+        "social_text": "Title: Video by purerebelusa\n\nDescription: @ashland_xoxo  has been screaming this from the rooftops.  Carolina’s mayor has given approval for this agenda to go forward.  These fires aren’t natural occurrences. They aren’t because of controlled burns. It’s the result of the global push for 15 min SMART cities. Pray for Carolina. 🙏🙏🙏",
+        "external_links_info": [
+            {
+                "url": "https://www.wmbfnews.com/video/2023/06/07/myrtle-beach-officials-taking-steps-towards-smart-city/",
+                "description": "The posts cited a WMBF-TV News clip posted Jun. 6, 2023, in which Howard Waldie, the city’s chief innovation officer, talked about Myrtle Beach’s smart city plans."
+            },
+            {
+                "url": "https://www.scfc.gov/wp-content/uploads/2025/03/Advisory-StateForestersBurningBan-20250301.pdf",
+                "description": "The South Carolina Forestry Commission issued a March 1 statewide burning ban after it said \"very low relative humidities statewide, coupled with drying fuels\" because of insufficient rain caused 102 wildfire ignitions that day."
+            },
+            {
+                "url": "https://www.scfc.gov/wp-content/uploads/2025/03/For-Release_Arrest_Alexandra-Bialousow.pdf?fbclid=IwY2xjawI4KmRleHRuA2FlbQIxMAABHbo30OoFz4W4fI4-96Nib1iJDUyZ_2gf82P7_5D7HtqEYoh4tJD3vg1Siw_aem_4ip3SNSqzk7bf0RKY9ogIA",
+                "description": "The South Carolina Forestry Commission arrested Alexandra Bialousow, 40, who is facing charges related to the Covington Drive blaze after investigators said she started a fire to burn debris in her backyard. She is accused of negligently allowing fire to spread."
+            }
+        ],
+        "download_success": true,
+        "download_message": "Download successful (video_17.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_17.mp4"
+    },
+    {
+        "id": 18,
+        "politifact_url": "https://www.politifact.com/factchecks/2025/mar/10/social-media/trump-didnt-say-he-became-president-because-of-the/",
+        "politifact_headline": "No, video doesn’t show Trump saying 2024 election was rigged",
+        "politifact_subheadline": "If fact-checkers were referees, we might show a yellow card over social media posts that claim to show President Donald",
+        "rating": "false",
+        "social_link": "https://mvau.lt/media/959936f0-bf8c-47c7-b4e7-940f96f4ee2a",
+        "social_platform": "mvau",
+        "social_duration": 0,
+        "social_text": "Title: Archived Fact-Checked Media — MediaVault (1)\n\nDescription: “ICYMI”",
+        "external_links_info": [
+            {
+                "url": "https://www.whitehouse.gov/presidential-actions/2025/03/establishing-the-white-house-task-force-on-the-fifa-world-cup-2026/",
+                "description": "Trump was speaking in the Oval Office March 7 alongside FIFA President Gianni Infantino as they announced a White House task force that will oversee preparations for the 2025 Club World Cup and the 2026 World Cup."
+            },
+            {
+                "url": "https://www.washingtonpost.com/news/soccer-insider/wp/2018/06/13/u-s-mexico-and-canada-win-joint-bid-for-2026-world-cup-topping-morocco-in-fifa-vote/",
+                "description": "Trump was referring to that successful 2018 bid when he made the Oval Office remarks featured in these social media claims. Trump didn’t say the 2024 election was rigged in his favor."
+            },
+            {
+                "url": "https://www.c-span.org/program/white-house-event/president-trump-signs-executive-orders-on-fifa-world-cup-2026/656923",
+                "description": "In the full, original video, it’s clear that Trump was noting that he wouldn’t have been president during the 2026 World Cup if he had won in 2020. His comments came in response to Infantino’s remarks about the logistics of coordinating a massive event that involves selling 10 million tickets. Starting at the 2:46 mark, Trump said:  \"I love what he said, like three Super Bowls a day for a month. That's what it is. That's really amazing when you think of it. I've never heard that expression. That's a lot. When, you know, when we made this, it was made during my term, my first term, and it was so sad, because I said, ‘Can you imagine, I'm not going to be president, and that's too bad.’ And what happened is, they rigged the election, and I became president. So that was a good thing. It was a good thing. It was quite a … quite an achievement for both of us. So I'll be president during the World Cup and during the Olympics which we were very instrumental in getting.\""
+            }
+        ],
+        "download_success": true,
+        "download_message": "Download successful (video_18.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_18.mp4"
+    },
+    {
+        "id": 19,
+        "politifact_url": "https://www.politifact.com/factchecks/2025/mar/10/social-media/audio-of-bbc-reporter-making-snide-comment-about-t/",
+        "politifact_headline": "Audio of BBC reporter cursing off-camera is fake",
+        "politifact_subheadline": "BBC News Ukraine correspondent James Waterhouse appeared to have a hot mic moment —if social media posts are to be belie",
+        "rating": "full flop",
+        "social_link": "https://www.threads.net/@dennd2021/post/DG3y9DpRRzD",
+        "social_platform": "threads",
+        "social_duration": 0,
+        "social_text": "",
+        "external_links_info": [
+            {
+                "url": "https://www.youtube.com/watch?v=Wp2d7PNECOc",
+                "description": "The original BBC News clip uploaded March 1 did not feature any hot mic statement from Waterhouse, as seen here at the 7:20 timestamp.  Featured"
+            },
+            {
+                "url": "https://x.com/JamWaterhouse/status/1897381041964466668",
+                "description": "Waterhouse also addressed this claim on X and Threads, saying, \"There’s an AI-generated clip of me doing the rounds.\" He linked to the original, blunder-free clip."
+            }
+        ],
+        "download_success": false,
+        "download_message": "Metadata Error: yt-dlp metadata fetch failed (Code: 1). Error: [debug] Command-line config: ['-j', '-v', '--no-warnings', '--ignore-config', '--cookies-from-browser', 'chrome', 'https://www.threads.net/@dennd2021/post/DG3y9DpRRzD']\n[debug] Encodings: locale UTF-8, fs utf-8, pref UTF-8, out utf-8 (No ANSI), error utf-8 (No ANSI), screen utf-8 (No ANSI)\n[debug] yt-dlp version stable@2025.03.31 from yt-dlp/yt-dlp [5e457af57] (pip)\n[debug] Python 3.13.2 (CPython arm64 64bit) - macOS-15.3.2-arm64-arm-64bit-Mach-O (OpenSSL 3.4.1 11 Feb 2025)\n[debug] exe versions: ffmpeg 4.3.2, ffprobe 4.3.2\n[debug] Optional libraries: certifi-2025.01.31, requests-2.32.3, sqlite3-3.45.3, urllib3-2.3.0, websockets-14.2\n[debug] Proxy map: {}\nExtracting cookies from chrome\n[debug] Extracting cookies from: \"/Users/ndesai-air/Library/Application Support/Google/Chrome/Profile 9/Cookies\"\n[debug] using find-generic-password to obtain password from OSX keychain\nExtracted 3070 cookies from chrome\n[debug] cookie version breakdown: {'v10': 3588, 'other': 0, 'unencrypted': 0}\n[debug] Request Handlers: urllib, requests, websockets\n[debug] Plugin directories: none\n[debug] Loaded 1850 extractors\n[generic] Extracting URL: https://www.threads.net/@dennd2021/post/DG3y9DpRRzD\n[generic] DG3y9DpRRzD: Downloading webpage\n[generic] DG3y9DpRRzD: Extracting information\n[debug] Looking for embeds\nERROR: Unsupported URL: https://www.threads.net/@dennd2021/post/DG3y9DpRRzD\nTraceback (most recent call last):\n  File \"/Users/ndesai-air/miniconda3/envs/yys-atrey-misinfo-demo/lib/python3.13/site-packages/yt_dlp/YoutubeDL.py\", line 1653, in wrapper\n    return func(self, *args, **kwargs)\n  File \"/Users/ndesai-air/miniconda3/envs/yys-atrey-misinfo-demo/lib/python3.13/site-packages/yt_dlp/YoutubeDL.py\", line 1788, in __extract_info\n    ie_result = ie.extract(url)\n  File \"/Users/ndesai-air/miniconda3/envs/yys-atrey-misinfo-demo/lib/python3.13/site-packages/yt_dlp/extractor/common.py\", line 748, in extract\n    ie_result = self._real_extract(url)\n  File \"/Users/ndesai-air/miniconda3/envs/yys-atrey-misinfo-demo/lib/python3.13/site-packages/yt_dlp/extractor/generic.py\", line 2578, in _real_extract\n    raise UnsupportedError(url)\nyt_dlp.utils.UnsupportedError: Unsupported URL: https://www.threads.net/@dennd2021/post/DG3y9DpRRzD\n\n",
+        "drive_path": ""
+    },
+    {
+        "id": 20,
+        "politifact_url": "https://www.politifact.com/factchecks/2025/mar/07/social-media/nancy-pelosi-didnt-get-14-million-in-usaid-funding/",
+        "politifact_headline": "Pelosi didn’t get USAID funding for ‘experimental farming’",
+        "politifact_subheadline": "Rep. Nancy Pelosi, D-Calif., isn’t being paid $14 million in federal funds to revolutionize grape farming. But if you’ve",
+        "rating": "false",
+        "social_link": "https://www.tiktok.com/@real.estate.agent/video/7475384340411698478?is_from_webapp=1&web_id=7152892147242239530",
+        "social_platform": "tiktok",
+        "social_duration": 64,
+        "social_text": "Title: If you are in government, you have no business collecting government ...\n\nDescription: If you are in government, you have no business collecting government money for private ventures #usa #fyp",
+        "external_links_info": [
+            {
+                "url": "https://archive.ph/gF1h7",
+                "description": "The claim that USAID funded Pelosi’s vineyard originated on America's Last Line of Defense, a satirical Facebook account that describes itself on its \"about\" page as a \"network of trollery and propaganda for cash.\""
+            },
+            {
+                "url": "https://www.nytimes.com/2024/06/13/technology/facebook-fake-news-culture-wars.html",
+                "description": "The Facebook page claims to be run by \"Busta Troll\" — an alias of Christopher Blair, who has said he posts satire to intentionally trick conservatives into believing outlandish claims."
+            },
+            {
+                "url": "https://www.usaspending.gov/recipient",
+                "description": "USAID’s budget and spending records going back to 2001 show no evidence that the United States’ international humanitarian agency sent Pelosi or her vineyard any federal grants at all."
+            }
+        ],
+        "download_success": true,
+        "download_message": "Download successful (video_20.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_20.mp4"
     }
 ]
