@@ -64,11 +64,6 @@ textarea.form-control[readonly] { /* Apply to textarea too */
      color: var(--bs-danger-text-emphasis);
 }
 
-
-.external-link-pair .remove-link-btn {
-    line-height: 1.5;
-}
-
 .form-label i {
     margin-right: 0.35rem;
     color: #6c757d;
@@ -92,6 +87,98 @@ textarea.form-control[readonly] { /* Apply to textarea too */
 .download-btn {
     flex-shrink: 0;
 }
+
+/* --- OOC Checklist Styling --- */
+.ooc-checklist-container {
+    padding-left: 1.25rem; /* Align roughly with card-body padding */
+    padding-right: 1.25rem;
+    background-color: #f8f9fa; /* Light background to subtly separate */
+}
+
+.ooc-checklist-container h6 {
+    color: var(--bs-primary); /* Use primary color for heading */
+    font-weight: 500;
+}
+.ooc-checklist-container h6 i {
+    color: var(--bs-primary); /* Match icon color */
+    margin-right: 0.4rem;
+}
+
+.ooc-checklist-container .form-check-label {
+    font-size: 0.95rem; /* Slightly adjust label size */
+}
+
+.ooc-checklist-container .form-check-label strong {
+     display: block; /* Make name appear on its own line */
+     margin-bottom: 0.1rem;
+}
+
+.ooc-checklist-container .form-check-label small {
+    font-size: 0.8rem; /* Smaller font for definition */
+    line-height: 1.3;
+}
+/* --- End OOC Checklist Styling --- */
+
+
+/* --- External Link Pair & Evidence Checklist Styling --- */
+.external-link-pair {
+    background-color: #ffffff; /* White background for each link block */
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* Subtle shadow */
+}
+
+.external-link-pair .remove-link-btn {
+    line-height: 1.5; /* Align button text better */
+}
+
+.evidence-checklist {
+    margin-top: 0.75rem;
+    border-top: 1px dashed #ced4da; /* Dashed separator */
+    padding-top: 0.75rem;
+}
+
+.evidence-checklist-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #495057; /* Darker gray */
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.evidence-checklist .form-check {
+    margin-bottom: 0.3rem; /* Tighter spacing for checklist items */
+}
+
+/* Smaller checkboxes and labels for the evidence checklist */
+.evidence-checklist .form-check-input {
+    width: 0.9em;
+    height: 0.9em;
+    margin-top: 0.25em; /* Adjust vertical alignment */
+}
+.evidence-checklist .form-check-label {
+    font-size: 0.85rem;
+    padding-left: 0.3em; /* Space after checkbox */
+    cursor: help; /* Indicate tooltip presence */
+}
+
+/* Style for inline definition shown only for the first link */
+.evidence-checklist .evidence-definition-inline {
+    font-size: 0.75rem;
+    line-height: 1.2;
+    margin-left: 0.2rem; /* Small indent */
+    display: block; /* Ensure it's on a new line */
+    font-style: italic;
+}
+
+
+/* Tooltip Styling (Optional Customization) */
+.tooltip-inner {
+  max-width: 300px; /* Allow wider tooltips for definitions */
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8rem;
+  text-align: left;
+}
+
+/* --- End External Link Styling --- */
 
 
 @media (max-width: 767.98px) {

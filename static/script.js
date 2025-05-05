@@ -6,6 +6,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const saveAllBtn = document.getElementById('save-all-btn');
     const MAX_DURATION_DISPLAY = 600; // 10 minutes in seconds for frontend check reinforcement
 
+    // --- Data Definitions ---
+
+    // +++ OOC Checklist Criteria Definition +++
+    const oocCriteria = [
+        { key: 'temporal_misattribution', name: 'Temporal Misattribution', definition: "Does the content demonstrably shift the event's perceived timing to mislead context (e.g., via clear statements, timestamps, editing)?" },
+        { key: 'geographical_misattribution', name: 'Geographical Misattribution', definition: 'Does the content explicitly claim or suggest an incorrect, yet plausible, location for the event?' },
+        { key: 'person_misidentification', name: 'Person Misidentification', definition: 'Does the content directly name, label, or visually imply incorrect identities for individuals in a believable, misleading way?' },
+        { key: 'contextual_misrepresentation', name: 'Contextual Misrepresentation', definition: 'Does the content explicitly frame the purpose, cause, or background of the event in a deceptive manner?' },
+        { key: 'exaggeration_scale', name: 'Exaggeration (Scale)', definition: "Does the content use specific numbers, comparisons, or visual framing to clearly amplify the event's impact slightly beyond reality?" },
+        { key: 'exaggeration_urgency', name: 'Exaggeration (Urgency)', definition: 'Does the content use explicit time pressure language or editing pace to create false immediacy when unwarranted?' },
+        { key: 'fabricated_consequences', name: 'Fabricated Consequences', definition: 'Does the content clearly state plausible outcomes or effects that are not shown or supported by evidence within the content?' },
+        { key: 'misleading_intent', name: 'Misleading Intent', definition: 'Does the content clearly frame neutral or positive actions with commentary or visuals suggesting malicious intent?' },
+        { key: 'misleading_emotional_framing', name: 'Misleading Emotional Framing', definition: 'Does the content introduce clearly emotionally charged language, music, or imagery unrelated to the core facts specifically to sway perception?' },
+        { key: 'causal_misattribution', name: 'Causal Misattribution', definition: 'Does the content explicitly state or visually edit to show one event clearly causing another, when the link is incorrect or unproven, but plausible?' }
+    ];
+    // +++++++++++++++++++++++++++++++++++++++++++
+
+    // +++ Evidence Checklist Criteria Definition +++
+    const evidenceCriteria = [
+        { key: 'author_expertise', name: 'Author Expertise', definition: 'Author possesses demonstrable, high-level, relevant expertise (e.g., recognized expert, relevant credentials, extensive experience) in the specific subject matter.' },
+        { key: 'source_reputation', name: 'Source Reputation', definition: 'Published by a highly reputable source with strong editorial standards (e.g., major int\'l news org, IFCN signatory fact-checker, respected academic journal, official gov\'t body).' },
+        { key: 'neutrality_fairness', name: 'Neutrality & Fairness', definition: 'Content is demonstrably objective, neutral in tone, and presents multiple perspectives fairly.' },
+        { key: 'fact_vs_opinion', name: 'Fact vs. Opinion', definition: 'Clearly distinguishes fact from opinion.' },
+        { key: 'purpose', name: 'Purpose', definition: 'Purpose is primarily informational.' },
+        { key: 'definitive_proof', name: 'Definitive Proof', definition: 'Evidence provides definitive proof (e.g., timestamped original footage, precise geolocation, official identification, multiple corroborating accounts, detailed description/footage of the same event).' },
+        { key: 'direct_connection', name: 'Direct Connection', definition: 'This proof confirms or refutes the specific time, date, location, key actors/subjects, or core event narrative of the OOC (Out of Context) video event.' },
+        { key: 'source_transparency', name: 'Source Transparency', definition: 'Source clearly identifies author, provides contact info, discloses funding, cites evidence meticulously, has a clear corrections policy, and adheres to it.' },
+        { key: 'evidence_integrity', name: 'Evidence Integrity', definition: 'Evidence is the verified original, unedited, or significantly more complete footage/data, allowing direct comparison or assessment.' },
+        { key: 'fact_verifiability', name: 'Fact Verifiability', definition: 'Presents specific, independently verifiable facts that directly and unambiguously relate to (confirming or refuting) a core element of the OOC narrative.' },
+        { key: 'clarity_relevance', name: 'Clarity & Relevance', definition: 'Information date is clearly stated, current, and highly relevant to the specific timeframe of the event being verified.' }
+    ];
+    // ++++++++++++++++++++++++++++++++++++++++++++
+
+
     // --- Helper Functions ---
 
     function calculateNextId() {
@@ -22,6 +56,58 @@ document.addEventListener('DOMContentLoaded', () => {
        return maxId + 1;
     }
 
+
+    // Helper Function to Create OOC Checklist HTML
+    function createOocChecklistHtml(entryIndex, initialData = {}) {
+        let checklistHtml = '<div class="ooc-checklist-container border-top border-bottom py-3 my-3">';
+        checklistHtml += '<h6 class="mb-3"><i class="bi bi-check2-square"></i> OOC Qualification Checklist</h6>';
+
+        oocCriteria.forEach(criterion => {
+            const fieldName = `data[${entryIndex}][ooc_${criterion.key}]`;
+            const fieldId = `ooc_${criterion.key}_${entryIndex}`;
+            const isChecked = initialData[`ooc_${criterion.key}`] ? 'checked' : '';
+
+            checklistHtml += `
+                <div class="form-check mb-2">
+                    <input class="form-check-input ooc-checkbox" type="checkbox" name="${fieldName}" id="${fieldId}" value="true" ${isChecked}>
+                    <label class="form-check-label" for="${fieldId}" title="${criterion.definition}">
+                        <strong>${criterion.name}</strong>
+                        <small class="text-muted d-block">${criterion.definition}</small>
+                    </label>
+                </div>
+            `;
+        });
+
+        checklistHtml += '</div>';
+        return checklistHtml;
+    }
+
+    // Helper function to create Evidence Checklist HTML (for one link)
+    function createEvidenceChecklistHtml(entryIndex, linkIndex) {
+        let checklistHtml = '<div class="evidence-checklist ps-2">';
+        checklistHtml += '<strong class="evidence-checklist-title">Evidence Checklist:</strong>';
+
+        evidenceCriteria.forEach((criterion, criterionIndex) => {
+            const fieldName = `data[${entryIndex}][external_links_info][${linkIndex}][checklist][${criterion.key}]`;
+            const fieldId = `evidence_${entryIndex}_${linkIndex}_${criterion.key}`;
+            // For newly added links, tooltips are always enabled (as they are subsequent links)
+            const tooltipAttrs = `data-bs-toggle="tooltip" title="${criterion.definition}"`;
+
+            checklistHtml += `
+                <div class="form-check form-check-sm">
+                    <input class="form-check-input evidence-checkbox" type="checkbox" name="${fieldName}" id="${fieldId}" value="true">
+                    <label class="form-check-label" for="${fieldId}" ${tooltipAttrs}>
+                        ${criterion.name}
+                        <!-- No inline definition here for dynamically added links -->
+                    </label>
+                </div>
+            `;
+        });
+        checklistHtml += '</div>'; // End evidence-checklist
+        return checklistHtml;
+    }
+
+
     function createEntryHtml(id) {
         const entryIndex = dataContainer.children.length;
         // Note: politifact_headline and politifact_subheadline inputs are NOT readonly initially here
@@ -33,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <i class="bi bi-trash"></i> Remove Entry
                     </button>
                 </div>
+                ${createOocChecklistHtml(entryIndex)}
                 <div class="card-body">
                     <div class="row g-3">
                         <!-- Column 1 -->
@@ -93,16 +180,22 @@ document.addEventListener('DOMContentLoaded', () => {
                                  <label class="form-label"><i class="bi bi-folder2-open"></i> Drive Path:</label>
                                  <input type="text" name="data[${entryIndex}][drive_path]" value="" class="form-control" readonly>
                             </div>
-                            <hr>
-                            <div class="mb-3">
-                                <label class="form-label"><i class="bi bi-box-arrow-up-right"></i> External Links:</label>
-                                <div class="external-links-container mb-2"></div>
-                                <button type="button" class="btn btn-sm btn-success add-link-btn">
-                                    <i class="bi bi-plus-circle"></i> Add External Link
-                                </button>
-                            </div>
                         </div>
-                    </div> <!-- End row -->
+                    </div> <!-- End row g-3 -->
+
+                    <hr>
+
+
+                    <div class="mb-3">
+                        <label class="form-label"><i class="bi bi-box-arrow-up-right"></i> External Links (Evidence):</label>
+                        <div class="external-links-container mb-2">
+
+                        </div>
+                        <button type="button" class="btn btn-sm btn-success add-link-btn">
+                            <i class="bi bi-plus-circle"></i> Add External Link
+                        </button>
+                    </div>
+
                 </div> <!-- End card-body -->
             </div> <!-- End card / entry-group -->
         `;
@@ -124,13 +217,25 @@ document.addEventListener('DOMContentLoaded', () => {
         return radiosHtml;
     }
 
+    // Modified function to create external link HTML *with* its checklist
     function createExternalLinkHtml(entryIndex, linkIndex, url = '', description = '') {
+         const checklistHtml = createEvidenceChecklistHtml(entryIndex, linkIndex);
          return `
-            <div class="row g-2 mb-2 external-link-pair">
-                <div class="col"><input type="url" name="data[${entryIndex}][external_links_info][${linkIndex}][url]" value="${url}" class="form-control form-control-sm" placeholder="URL"></div>
-                <div class="col"><input type="text" name="data[${entryIndex}][external_links_info][${linkIndex}][description]" value="${description}" class="form-control form-control-sm" placeholder="Description"></div>
-                <div class="col-auto"><button type="button" class="btn btn-sm btn-outline-danger remove-link-btn" title="Remove Link"><i class="bi bi-x-lg"></i></button></div>
-            </div> `;
+            <div class="mb-3 p-3 border rounded external-link-pair" data-link-index="${linkIndex}">
+                <div class="row g-2 mb-3">
+                    <div class="col">
+                        <input type="url" name="data[${entryIndex}][external_links_info][${linkIndex}][url]" value="${url}" class="form-control form-control-sm" placeholder="Evidence URL">
+                    </div>
+                    <div class="col">
+                        <input type="text" name="data[${entryIndex}][external_links_info][${linkIndex}][description]" value="${description}" class="form-control form-control-sm" placeholder="Brief Description">
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-sm btn-outline-danger remove-link-btn" title="Remove Link"><i class="bi bi-x-lg"></i></button>
+                    </div>
+                </div>
+                ${checklistHtml} 
+            </div>
+        `;
     }
 
     function attachListenersToEntry(entryElement) {
@@ -143,15 +248,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const successInput = entryElement.querySelector('input[name$="[download_success]"]');
         updateMessageFieldStyle(messageTextarea, successInput);
 
-        // --- Politifact Auto-fetch on Load (Optional but good) ---
-        // If the page loads with a politifact URL but empty headline/subheadline,
-        // trigger the fetch automatically.
+        // Politifact Auto-fetch on Load
         const politifactUrlInput = entryElement.querySelector('.politifact-url-input');
         const headlineInput = entryElement.querySelector('.politifact-headline-input');
         const subheadlineInput = entryElement.querySelector('.politifact-subheadline-input');
         if (politifactUrlInput && politifactUrlInput.value && headlineInput && !headlineInput.value && subheadlineInput && !subheadlineInput.value) {
              console.log(`Triggering initial Politifact fetch for entry index ${entryElement.dataset.entryIndex}`);
-             fetchPolitifactDetails(politifactUrlInput); // Call the fetch function
+             fetchPolitifactDetails(politifactUrlInput);
         }
     }
 
@@ -203,14 +306,14 @@ document.addEventListener('DOMContentLoaded', () => {
      }
 
 
-    // --- +++ NEW: Fetch Politifact Headline/Subheadline +++ ---
+    // Fetch Politifact Headline/Subheadline
     async function fetchPolitifactDetails(urlInput) {
         const entryGroup = urlInput.closest('.entry-group');
         if (!entryGroup) return;
 
         const headlineInput = entryGroup.querySelector('.politifact-headline-input');
         const subheadlineInput = entryGroup.querySelector('.politifact-subheadline-input');
-        const spinner = urlInput.parentElement.querySelector('.spinner-border'); // Find spinner near URL input
+        const spinner = urlInput.parentElement.querySelector('.spinner-border');
 
         if (!headlineInput || !subheadlineInput || !spinner) {
             console.error("Missing headline, subheadline, or spinner element for Politifact fetch.");
@@ -218,22 +321,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const url = urlInput.value.trim();
-
-        // Clear previous results and remove readonly if URL is cleared or invalid
         if (!url || !url.startsWith('http')) {
             headlineInput.value = '';
             subheadlineInput.value = '';
             headlineInput.readOnly = false;
             subheadlineInput.readOnly = false;
-            spinner.classList.add('d-none'); // Hide spinner
-            return; // Stop if URL is invalid or empty
+            spinner.classList.add('d-none');
+            return;
         }
 
-        // Show spinner and disable inputs temporarily
         spinner.classList.remove('d-none');
         urlInput.disabled = true;
-        headlineInput.readOnly = true; // Make readonly during fetch
-        subheadlineInput.readOnly = true; // Make readonly during fetch
+        headlineInput.readOnly = true;
+        subheadlineInput.readOnly = true;
 
         try {
             const response = await fetch('/get_politifact_details', {
@@ -243,44 +343,35 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (!response.ok) {
-                const errorData = await response.json().catch(() => ({})); // Graceful JSON parse
+                const errorData = await response.json().catch(() => ({}));
                 console.error(`Error fetching Politifact details: ${response.status} ${response.statusText}`, errorData);
-                // On error, clear fields and make editable again
                 headlineInput.value = '';
                 subheadlineInput.value = '';
                 headlineInput.readOnly = false;
                 subheadlineInput.readOnly = false;
-                 // Optionally show an error message to the user
-                 // alert(`Failed to fetch details: ${errorData.error || 'Server error'}`);
             } else {
                 const data = await response.json();
                 headlineInput.value = data.headline || '';
                 subheadlineInput.value = data.subheadline || '';
-                // Keep them readonly after successful fetch
                 headlineInput.readOnly = true;
                 subheadlineInput.readOnly = true;
             }
 
         } catch (error) {
             console.error('Network error fetching Politifact details:', error);
-            // On network error, also clear and make editable
             headlineInput.value = '';
             subheadlineInput.value = '';
             headlineInput.readOnly = false;
             subheadlineInput.readOnly = false;
-            // alert(`Network error fetching details: ${error.message}`);
         } finally {
-            // Hide spinner and re-enable URL input
             spinner.classList.add('d-none');
             urlInput.disabled = false;
         }
     }
-    // --- +++ END: Fetch Politifact Headline/Subheadline +++ ---
 
     // --- Main Download Logic (Two Phases) ---
     async function handleDownloadProcess(button) {
         const entryGroup = button.closest('.entry-group');
-        // Use more specific selectors targeting elements within this entryGroup
         const socialUrlInput = entryGroup.querySelector('.social-link-input');
         const idInput = entryGroup.querySelector('.card-header input[name$="[id]"]');
         const messageTextarea = entryGroup.querySelector('.download-message-field');
@@ -298,13 +389,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const url = socialUrlInput.value.trim();
         const id = idInput.value;
 
-        // --- Reset fields ---
         messageTextarea.value = "";
         pathInput.value = "";
         successInput.value = "false";
-        durationInput.value = ""; // Clear old duration
-        // Don't clear socialTextInput automatically, but update it later
-        updateMessageFieldStyle(messageTextarea, successInput); // Clear styles
+        durationInput.value = "";
+        updateMessageFieldStyle(messageTextarea, successInput);
 
         if (!url) {
             messageTextarea.value = "Social Link URL is required.";
@@ -318,7 +407,6 @@ document.addEventListener('DOMContentLoaded', () => {
              return;
          }
 
-        // --- Phase 1: Get Metadata & Check Duration ---
         button.disabled = true;
         button.innerHTML = '<span class="spinner-border spinner-border-sm" aria-hidden="true"></span> Fetching...';
         messageTextarea.value = "Fetching video metadata...";
@@ -330,31 +418,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ url: url }),
             });
-             metadataResult = await metaResponse.json(); // Assume server always returns JSON, even for errors
+             metadataResult = await metaResponse.json();
 
-             // Check status code AND success flag from backend
              if (!metaResponse.ok || !metadataResult.success) {
                   let errorMsg = "Unknown metadata error";
-                  if (metadataResult.error) {
-                      errorMsg = metadataResult.error;
-                  } else if (metadataResult.message) { // Handle duration exceeded message
-                      errorMsg = metadataResult.message;
-                  } else if (!metaResponse.ok) {
-                      errorMsg = `Server error: ${metaResponse.status} ${metaResponse.statusText}`;
-                  }
+                  if (metadataResult.error) errorMsg = metadataResult.error;
+                  else if (metadataResult.message) errorMsg = metadataResult.message;
+                  else if (!metaResponse.ok) errorMsg = `Server error: ${metaResponse.status} ${metaResponse.statusText}`;
                   messageTextarea.value = `Metadata Error: ${errorMsg}`;
                   successInput.value = "false";
                   updateMessageFieldStyle(messageTextarea, successInput);
                   button.disabled = false;
                   button.innerHTML = '<i class="bi bi-download"></i> Download';
-                  return; // Stop the process
+                  return;
               }
 
-            // Metadata Success - Populate fields
-            durationInput.value = metadataResult.duration.toFixed(2); // Format to 2 decimal places
-            socialTextInput.value = metadataResult.social_text; // Auto-fill social text
+            durationInput.value = metadataResult.duration.toFixed(2);
+            socialTextInput.value = metadataResult.social_text;
             messageTextarea.value = `Metadata OK (Duration: ${durationInput.value}s). Proceeding to download...`;
-            // No style change yet, wait for download result
 
         } catch (error) {
             console.error('Metadata fetch error:', error);
@@ -363,10 +444,9 @@ document.addEventListener('DOMContentLoaded', () => {
             updateMessageFieldStyle(messageTextarea, successInput);
             button.disabled = false;
             button.innerHTML = '<i class="bi bi-download"></i> Download';
-            return; // Stop the process
+            return;
         }
 
-        // --- Phase 2: Download Video ---
         button.innerHTML = '<span class="spinner-border spinner-border-sm" aria-hidden="true"></span> Downloading...';
 
         try {
@@ -375,29 +455,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ url: url, id: id }),
             });
+            const downloadResult = await downloadResponse.json();
 
-            const downloadResult = await downloadResponse.json(); // Assume JSON return
-
-             // Check status code AND success flag
              if (!downloadResponse.ok || !downloadResult.success) {
                   let errorMsg = "Unknown download error";
-                  if (downloadResult.error) {
-                      errorMsg = downloadResult.error;
-                  } else if (downloadResult.message) {
-                      errorMsg = downloadResult.message; // e.g., "Download failed..."
-                  } else if (!downloadResponse.ok) {
-                       errorMsg = `Server error: ${downloadResponse.status} ${downloadResponse.statusText}`;
-                  }
+                  if (downloadResult.error) errorMsg = downloadResult.error;
+                  else if (downloadResult.message) errorMsg = downloadResult.message;
+                  else if (!downloadResponse.ok) errorMsg = `Server error: ${downloadResponse.status} ${downloadResponse.statusText}`;
                   messageTextarea.value = `Download Error: ${errorMsg}`;
                   successInput.value = "false";
-                  pathInput.value = ""; // Clear path on failure
+                  pathInput.value = "";
               } else {
-                // Download Success
                 messageTextarea.value = downloadResult.message || "Download successful.";
                 pathInput.value = downloadResult.drive_path || "";
                 successInput.value = "true";
             }
-            updateMessageFieldStyle(messageTextarea, successInput); // Update style based on final result
+            updateMessageFieldStyle(messageTextarea, successInput);
 
         } catch (error) {
             console.error('Download error:', error);
@@ -416,43 +489,62 @@ document.addEventListener('DOMContentLoaded', () => {
         const entries = [];
         const entryElements = dataContainer.querySelectorAll('.entry-group');
 
-        entryElements.forEach((entryElement) => {
+        entryElements.forEach((entryElement, entryIndex) => { // Use index for ID assignment later
              const idInput = entryElement.querySelector('.card-header input[name$="[id]"]');
-             // Read the possibly auto-filled (but readonly) duration
              const socialDurationValue = entryElement.querySelector(`input[name$="[social_duration]"]`)?.value;
 
-            const entryData = {
-                id: parseInt(idInput?.value ?? '0', 10),
-                politifact_url: entryElement.querySelector(`.politifact-url-input`)?.value ?? '', // Use class
-                politifact_headline: entryElement.querySelector(`.politifact-headline-input`)?.value ?? '', // Use class
-                politifact_subheadline: entryElement.querySelector(`.politifact-subheadline-input`)?.value ?? '', // Use class
+             // Base entry data
+             const entryData = {
+                id: parseInt(idInput?.value ?? '-1', 10), // Placeholder, overwritten later
+                politifact_url: entryElement.querySelector(`.politifact-url-input`)?.value ?? '',
+                politifact_headline: entryElement.querySelector(`.politifact-headline-input`)?.value ?? '',
+                politifact_subheadline: entryElement.querySelector(`.politifact-subheadline-input`)?.value ?? '',
                 rating: entryElement.querySelector(`input[name$="[rating]"]:checked`)?.value ?? '',
                 social_link: entryElement.querySelector(`.social-link-input`)?.value ?? '',
                 social_platform: entryElement.querySelector(`input[name$="[social_platform]"]`)?.value ?? '',
                 social_duration: parseFloat(socialDurationValue ?? '0'),
                 social_text: entryElement.querySelector(`textarea[name$="[social_text]"]`)?.value ?? '',
-                external_links_info: [],
+                external_links_info: [], // Will be populated below
                 download_success: entryElement.querySelector(`input[name$="[download_success]"]`)?.value === 'true',
                 download_message: entryElement.querySelector(`.download-message-field`)?.value ?? '',
                 drive_path: entryElement.querySelector(`input[name$="[drive_path]"]`)?.value ?? '',
-            };
+             };
 
-             if (isNaN(entryData.id)) entryData.id = 0; // Should not happen with readonly input, but safe check
+             // Collect OOC Checklist Data
+             oocCriteria.forEach(criterion => {
+                 const checkbox = entryElement.querySelector(`input[name="data[${entryIndex}][ooc_${criterion.key}]"]`);
+                 entryData[`ooc_${criterion.key}`] = checkbox ? checkbox.checked : false;
+             });
+
+             if (isNaN(entryData.id)) entryData.id = -1;
              if (isNaN(entryData.social_duration)) entryData.social_duration = 0.0;
 
-            // Collect external links
+            // Collect external links and their checklists
             const linkPairs = entryElement.querySelectorAll('.external-links-container .external-link-pair');
-            linkPairs.forEach((pair) => {
-                 const urlInput = pair.querySelector(`input[type="url"]`);
-                 const descInput = pair.querySelector(`input[type="text"]`);
+            linkPairs.forEach((linkPairElement, linkIndex) => { // Use linkIndex here
+                 const urlInput = linkPairElement.querySelector(`input[name$="[url]"]`);
+                 const descInput = linkPairElement.querySelector(`input[name$="[description]"]`);
+
                  if (urlInput && descInput && urlInput.value.trim()) {
-                     entryData.external_links_info.push({ url: urlInput.value.trim(), description: descInput.value.trim() || '' });
+                     const linkData = {
+                         url: urlInput.value.trim(),
+                         description: descInput.value.trim() || '',
+                         checklist: {} // Prepare checklist object for this link
+                     };
+
+                     // Collect evidence checklist data for this specific link
+                     evidenceCriteria.forEach(criterion => {
+                          const checklistCheckbox = linkPairElement.querySelector(`input[name$="[checklist][${criterion.key}]"]`);
+                          linkData.checklist[criterion.key] = checklistCheckbox ? checklistCheckbox.checked : false;
+                     });
+
+                     entryData.external_links_info.push(linkData);
                  }
             });
             entries.push(entryData);
         });
 
-        // Re-assign sequential IDs before returning - Important for consistency
+        // Re-assign sequential IDs before returning
         entries.forEach((entry, index) => { entry.id = index; });
         return entries;
     }
@@ -464,15 +556,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const newEntryHtml = createEntryHtml(currentId);
         dataContainer.insertAdjacentHTML('beforeend', newEntryHtml);
         const newEntryElement = dataContainer.lastElementChild;
-        // Re-calculate index after adding
         const newIndex = Array.from(dataContainer.children).indexOf(newEntryElement);
         newEntryElement.dataset.entryIndex = newIndex;
-        // No need to call attachListenersToEntry here, event delegation handles dynamic elements
+        // Initialize tooltips for the newly added entry (specifically for its potential links later)
+        initializeTooltips(newEntryElement);
     });
 
     saveAllBtn.addEventListener('click', async (event) => {
-        event.preventDefault(); // Prevent default form submission if it were inside a <form> tag with submit type
-        const dataToSave = collectDataFromForm(); // Collects current state, including potentially auto-filled fields
+        event.preventDefault();
+        const dataToSave = collectDataFromForm();
         saveAllBtn.disabled = true;
         saveAllBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Saving...';
         try {
@@ -481,11 +573,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             if (response.ok) {
                  alert('Data saved successfully!');
-                 // Optional: Reload or update UI state if needed after save
-                 // location.reload(); // Simplest way to reflect saved state including IDs
+                 // Consider reloading to see saved state cleanly, esp. with complex nested data
+                 // location.reload();
             }
             else {
-                 const errorData = await response.json().catch(() => ({ error: response.statusText })); // Graceful error parse
+                 const errorData = await response.json().catch(() => ({ error: response.statusText }));
                  alert(`Error saving data: ${errorData.error || 'Unknown server error'}`);
             }
         } catch (error) {
@@ -503,19 +595,40 @@ document.addEventListener('DOMContentLoaded', () => {
         // Remove External Link Button
         const removeLinkBtn = event.target.closest('.remove-link-btn');
         if (removeLinkBtn) {
-            removeLinkBtn.closest('.external-link-pair').remove();
+            const linkPair = removeLinkBtn.closest('.external-link-pair');
+            if (linkPair) {
+                // Dispose tooltips within the element being removed (good practice)
+                const tooltips = bootstrap.Tooltip.getInstance(linkPair.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                 if (tooltips && typeof tooltips.dispose === 'function') { // Check if it's a single instance or needs iteration
+                     // If multiple tooltips, querySelectorAll and loop might be needed
+                    try { tooltips.dispose(); } catch(e) { console.warn("Tooltip disposal issue", e); }
+                 } else { // More robustly handle multiple tooltips if initialized individually
+                    linkPair.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => {
+                        const instance = bootstrap.Tooltip.getInstance(el);
+                        if(instance) instance.dispose();
+                    });
+                 }
+                linkPair.remove();
+                 // Optional: Re-index data-link-index attributes if needed
+            }
             return; // Handled
         }
 
         // Add External Link Button
         const addLinkBtn = event.target.closest('.add-link-btn');
         if (addLinkBtn) {
-             const linksContainer = addLinkBtn.previousElementSibling; // Assumes container is right before button
+             const linksContainer = addLinkBtn.previousElementSibling; // .external-links-container
              const entryGroup = addLinkBtn.closest('.entry-group');
              const entryIndex = parseInt(entryGroup.dataset.entryIndex, 10);
-             const linkIndex = linksContainer.children.length; // Next index
+             // Find next link index based on existing link pairs within *this* entry
+             const linkIndex = linksContainer.querySelectorAll('.external-link-pair').length;
+
              if (!isNaN(entryIndex)) {
-                 linksContainer.insertAdjacentHTML('beforeend', createExternalLinkHtml(entryIndex, linkIndex));
+                 const newLinkHtml = createExternalLinkHtml(entryIndex, linkIndex);
+                 linksContainer.insertAdjacentHTML('beforeend', newLinkHtml);
+                 // Initialize tooltips for the *newly added* link only
+                 const newLinkElement = linksContainer.lastElementChild;
+                 initializeTooltips(newLinkElement);
              } else {
                  console.error("Could not determine entry index for adding link.");
              }
@@ -525,7 +638,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Download Video Button
         const downloadBtn = event.target.closest('.download-btn');
         if (downloadBtn) {
-            handleDownloadProcess(downloadBtn); // Call the download handler
+            handleDownloadProcess(downloadBtn);
             return; // Handled
         }
 
@@ -534,8 +647,13 @@ document.addEventListener('DOMContentLoaded', () => {
          if (removeEntryBtn) {
              if (confirm('Are you sure you want to remove this entire entry?')) {
                  const entryToRemove = removeEntryBtn.closest('.entry-group');
+                 // Dispose any tooltips within the entry before removing
+                 entryToRemove.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => {
+                    const instance = bootstrap.Tooltip.getInstance(el);
+                    if(instance) instance.dispose();
+                 });
                  entryToRemove.remove();
-                 // Optional: Renumber remaining entries' data-entry-index if needed, although collectData handles IDs on save.
+                 // Optional: Renumber remaining entries' data-entry-index
              }
               return; // Handled
          }
@@ -543,25 +661,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event Delegation for Input/Change Events
     dataContainer.addEventListener('input', (event) => {
-        // Update social platform when social link changes
         if (event.target.matches('.social-link-input')) {
              updateSocialPlatform(event.target);
         }
-        // Add other 'input' listeners here if needed
      });
 
      dataContainer.addEventListener('change', (event) => {
-         // Fetch politifact details when URL changes (and loses focus)
          if (event.target.matches('.politifact-url-input')) {
              fetchPolitifactDetails(event.target);
          }
-         // Add other 'change' listeners here if needed
      });
 
-    // --- Initialization ---
-    document.querySelectorAll('.entry-group').forEach((entry, index) => {
-         entry.dataset.entryIndex = index; // Ensure initial indices are set
-         attachListenersToEntry(entry); // Attach listeners needed on load (like platform update, auto-fetch)
-    });
+     // --- Initialization ---
+
+     // Initialize Bootstrap Tooltips
+     function initializeTooltips(parentElement = document.body) {
+        const tooltipTriggerList = parentElement.querySelectorAll('[data-bs-toggle="tooltip"]');
+        [...tooltipTriggerList].forEach(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+        console.log(`Tooltips initialized for ${tooltipTriggerList.length} elements within`, parentElement);
+     }
+
+     // Initial setup for existing entries and tooltips
+     document.querySelectorAll('.entry-group').forEach((entry, index) => {
+          entry.dataset.entryIndex = index; // Ensure initial indices are set
+          attachListenersToEntry(entry); // Attach other listeners
+     });
+     initializeTooltips(); // Initialize tooltips for the whole page on load
+
 
 }); // End DOMContentLoaded

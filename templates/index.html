@@ -29,132 +29,188 @@
             {% endif %}
         {% endwith %}
 
-        <!-- Main Data Entry Container (No form tag needed if using JS fetch for save) -->
+        <!-- Define Evidence Criteria List Once -->
+        {% set evidence_criteria_list = [
+            {'key': 'author_expertise', 'name': 'Author Expertise', 'definition': 'Author possesses demonstrable, high-level, relevant expertise (e.g., recognized expert, relevant credentials, extensive experience) in the specific subject matter.'},
+            {'key': 'source_reputation', 'name': 'Source Reputation', 'definition': 'Published by a highly reputable source with strong editorial standards (e.g., major int\'l news org, IFCN signatory fact-checker, respected academic journal, official gov\'t body).'},
+            {'key': 'neutrality_fairness', 'name': 'Neutrality & Fairness', 'definition': 'Content is demonstrably objective, neutral in tone, and presents multiple perspectives fairly.'},
+            {'key': 'fact_vs_opinion', 'name': 'Fact vs. Opinion', 'definition': 'Clearly distinguishes fact from opinion.'},
+            {'key': 'purpose', 'name': 'Purpose', 'definition': 'Purpose is primarily informational.'},
+            {'key': 'definitive_proof', 'name': 'Definitive Proof', 'definition': 'Evidence provides definitive proof (e.g., timestamped original footage, precise geolocation, official identification, multiple corroborating accounts, detailed description/footage of the same event).'},
+            {'key': 'direct_connection', 'name': 'Direct Connection', 'definition': 'This proof confirms or refutes the specific time, date, location, key actors/subjects, or core event narrative of the OOC (Out of Context) video event.'},
+            {'key': 'source_transparency', 'name': 'Source Transparency', 'definition': 'Source clearly identifies author, provides contact info, discloses funding, cites evidence meticulously, has a clear corrections policy, and adheres to it.'},
+            {'key': 'evidence_integrity', 'name': 'Evidence Integrity', 'definition': 'Evidence is the verified original, unedited, or significantly more complete footage/data, allowing direct comparison or assessment.'},
+            {'key': 'fact_verifiability', 'name': 'Fact Verifiability', 'definition': 'Presents specific, independently verifiable facts that directly and unambiguously relate to (confirming or refuting) a core element of the OOC narrative.'},
+            {'key': 'clarity_relevance', 'name': 'Clarity & Relevance', 'definition': 'Information date is clearly stated, current, and highly relevant to the specific timeframe of the event being verified.'}
+        ] %}
+
+        <!-- Main Data Entry Container -->
         <div id="data-form">
             <div id="data-container">
                 {% for item in data %}
-                <div class="card mb-4 entry-group" data-entry-index="{{ loop.index0 }}">
+                {% set outer_loop_index = loop.index0 %} {# Capture outer loop index for use inside link loop #}
+                <div class="card mb-4 entry-group" data-entry-index="{{ outer_loop_index }}">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <span>Entry ID: <input type="text" name="data[{{ loop.index0 }}][id]" value="{{ item.id }}" readonly class="id-readonly-input"></span>
+                        <span>Entry ID: <input type="text" name="data[{{ outer_loop_index }}][id]" value="{{ item.id }}" readonly class="id-readonly-input"></span>
                         <button type="button" class="btn btn-sm btn-outline-danger remove-entry-btn" title="Remove this entry">
                             <i class="bi bi-trash"></i> Remove Entry
                         </button>
                     </div>
+
+                    {# OOC Checklist Section #}
+                    <div class="ooc-checklist-container border-top border-bottom py-3 my-3">
+                        <h6 class="mb-3"><i class="bi bi-check2-square"></i> OOC Qualification Checklist</h6>
+                        {% set ooc_criteria_list = [
+                            {'key': 'temporal_misattribution', 'name': 'Temporal Misattribution', 'definition': "Does the content demonstrably shift the event's perceived timing to mislead context (e.g., via clear statements, timestamps, editing)?"},
+                            {'key': 'geographical_misattribution', 'name': 'Geographical Misattribution', 'definition': 'Does the content explicitly claim or suggest an incorrect, yet plausible, location for the event?'},
+                            {'key': 'person_misidentification', 'name': 'Person Misidentification', 'definition': 'Does the content directly name, label, or visually imply incorrect identities for individuals in a believable, misleading way?'},
+                            {'key': 'contextual_misrepresentation', 'name': 'Contextual Misrepresentation', 'definition': 'Does the content explicitly frame the purpose, cause, or background of the event in a deceptive manner?'},
+                            {'key': 'exaggeration_scale', 'name': 'Exaggeration (Scale)', 'definition': "Does the content use specific numbers, comparisons, or visual framing to clearly amplify the event's impact slightly beyond reality?"},
+                            {'key': 'exaggeration_urgency', 'name': 'Exaggeration (Urgency)', 'definition': 'Does the content use explicit time pressure language or editing pace to create false immediacy when unwarranted?'},
+                            {'key': 'fabricated_consequences', 'name': 'Fabricated Consequences', 'definition': 'Does the content clearly state plausible outcomes or effects that are not shown or supported by evidence within the content?'},
+                            {'key': 'misleading_intent', 'name': 'Misleading Intent', 'definition': 'Does the content clearly frame neutral or positive actions with commentary or visuals suggesting malicious intent?'},
+                            {'key': 'misleading_emotional_framing', 'name': 'Misleading Emotional Framing', 'definition': 'Does the content introduce clearly emotionally charged language, music, or imagery unrelated to the core facts specifically to sway perception?'},
+                            {'key': 'causal_misattribution', 'name': 'Causal Misattribution', 'definition': 'Does the content explicitly state or visually edit to show one event clearly causing another, when the link is incorrect or unproven, but plausible?'}
+                        ] %}
+                        {% for criterion in ooc_criteria_list %}
+                            {% set field_name = "data[" ~ outer_loop_index ~ "][ooc_" ~ criterion.key ~ "]" %}
+                            {% set field_id = "ooc_" ~ criterion.key ~ "_" ~ outer_loop_index %}
+                            {% set is_checked = item.get('ooc_' ~ criterion.key, False) %}
+                            <div class="form-check mb-2">
+                                <input class="form-check-input ooc-checkbox" type="checkbox" name="{{ field_name }}" id="{{ field_id }}" value="true" {% if is_checked %}checked{% endif %}>
+                                <label class="form-check-label" for="{{ field_id }}" title="{{ criterion.definition }}">
+                                    <strong>{{ criterion.name }}</strong>
+                                     <small class="text-muted d-block">{{ criterion.definition }}</small>
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </div>
+
                     <div class="card-body">
+                        {# Main Two-Column Layout #}
                         <div class="row g-3">
                             <!-- Column 1: Politifact & Social -->
                             <div class="col-md-6">
                                 <div class="mb-3 position-relative">
-                                    <label for="pf_url_{{ loop.index0 }}" class="form-label"><i class="bi bi-link-45deg"></i> Politifact URL:</label>
-                                    <input type="url" id="pf_url_{{ loop.index0 }}" name="data[{{ loop.index0 }}][politifact_url]" value="{{ item.politifact_url }}" class="form-control politifact-url-input">
+                                    <label for="pf_url_{{ outer_loop_index }}" class="form-label"><i class="bi bi-link-45deg"></i> Politifact URL:</label>
+                                    <input type="url" id="pf_url_{{ outer_loop_index }}" name="data[{{ outer_loop_index }}][politifact_url]" value="{{ item.politifact_url }}" class="form-control politifact-url-input">
                                      <div class="spinner-border spinner-border-sm text-secondary position-absolute top-50 end-0 translate-middle-y me-2 d-none" role="status">
                                         <span class="visually-hidden">Loading...</span>
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="pf_headline_{{ loop.index0 }}" class="form-label"><i class="bi bi-card-heading"></i> Politifact Headline:</label>
-                                    {# Add readonly if value exists on load #}
-                                    <input type="text" id="pf_headline_{{ loop.index0 }}" name="data[{{ loop.index0 }}][politifact_headline]" value="{{ item.politifact_headline }}" class="form-control politifact-headline-input" {% if item.politifact_headline %}readonly{% endif %}>
+                                    <label for="pf_headline_{{ outer_loop_index }}" class="form-label"><i class="bi bi-card-heading"></i> Politifact Headline:</label>
+                                    <input type="text" id="pf_headline_{{ outer_loop_index }}" name="data[{{ outer_loop_index }}][politifact_headline]" value="{{ item.politifact_headline }}" class="form-control politifact-headline-input" {% if item.politifact_headline %}readonly{% endif %}>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="pf_subheadline_{{ loop.index0 }}" class="form-label"><i class="bi bi-card-text"></i> Politifact Subheadline:</label>
-                                    {# Add readonly if value exists on load #}
-                                    <input type="text" id="pf_subheadline_{{ loop.index0 }}" name="data[{{ loop.index0 }}][politifact_subheadline]" value="{{ item.politifact_subheadline }}" class="form-control politifact-subheadline-input" {% if item.politifact_subheadline %}readonly{% endif %}>
+                                    <label for="pf_subheadline_{{ outer_loop_index }}" class="form-label"><i class="bi bi-card-text"></i> Politifact Subheadline:</label>
+                                    <input type="text" id="pf_subheadline_{{ outer_loop_index }}" name="data[{{ outer_loop_index }}][politifact_subheadline]" value="{{ item.politifact_subheadline }}" class="form-control politifact-subheadline-input" {% if item.politifact_subheadline %}readonly{% endif %}>
                                 </div>
-                                <!-- Politifact Duration Removed -->
                                 <hr>
                                 <div class="mb-3">
-                                    <label for="social_link_{{ loop.index0 }}" class="form-label"><i class="bi bi-share"></i> Social Link:</label>
-                                    <input type="url" id="social_link_{{ loop.index0 }}" name="data[{{ loop.index0 }}][social_link]" value="{{ item.social_link }}" class="form-control social-link-input">
+                                    <label for="social_link_{{ outer_loop_index }}" class="form-label"><i class="bi bi-share"></i> Social Link:</label>
+                                    <input type="url" id="social_link_{{ outer_loop_index }}" name="data[{{ outer_loop_index }}][social_link]" value="{{ item.social_link }}" class="form-control social-link-input">
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6 mb-3">
                                          <label class="form-label"><i class="bi bi-tags"></i> Social Platform:</label>
-                                         <input type="text" name="data[{{ loop.index0 }}][social_platform]" value="{{ item.social_platform }}" class="form-control" readonly>
+                                         <input type="text" name="data[{{ outer_loop_index }}][social_platform]" value="{{ item.social_platform }}" class="form-control" readonly>
                                     </div>
                                      <div class="col-sm-6 mb-3">
-                                         <label for="social_duration_{{ loop.index0 }}" class="form-label"><i class="bi bi-stopwatch"></i> Social Duration (sec):</label>
-                                         <!-- Changed to text and readonly -->
-                                         <input type="text" id="social_duration_{{ loop.index0 }}" name="data[{{ loop.index0 }}][social_duration]" value="{{ '%.2f'|format(item.social_duration|float) if item.social_duration is not none else '' }}" class="form-control" readonly placeholder="Auto-filled">
+                                         <label for="social_duration_{{ outer_loop_index }}" class="form-label"><i class="bi bi-stopwatch"></i> Social Duration (sec):</label>
+                                         <input type="text" id="social_duration_{{ outer_loop_index }}" name="data[{{ outer_loop_index }}][social_duration]" value="{{ '%.2f'|format(item.social_duration|float) if item.social_duration is not none else '' }}" class="form-control" readonly placeholder="Auto-filled">
                                      </div>
                                 </div>
                                 <div class="mb-3 narrative-box">
-                                     <!-- Made editable, but auto-filled -->
-                                     <label for="social_text_{{ loop.index0 }}" class="form-label"><i class="bi bi-blockquote-left"></i> Social Text (Auto-filled):</label>
-                                     <textarea id="social_text_{{ loop.index0 }}" name="data[{{ loop.index0 }}][social_text]" rows="5" class="form-control">{{ item.social_text }}</textarea>
+                                     <label for="social_text_{{ outer_loop_index }}" class="form-label"><i class="bi bi-blockquote-left"></i> Social Text (Auto-filled):</label>
+                                     <textarea id="social_text_{{ outer_loop_index }}" name="data[{{ outer_loop_index }}][social_text]" rows="5" class="form-control">{{ item.social_text }}</textarea>
                                 </div>
                             </div>
 
-                            <!-- Column 2: Rating, Download, External Links -->
+                            <!-- Column 2: Rating, Download, Drive Path -->
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label d-block"><i class="bi bi-star-half"></i> Rating:</label>
-                                    {% set outer_loop_index = loop.index0 %} {# Capture outer loop index #}
                                     {% set ratings = ["full flop", "false", "mostly false", "half true", "mostly true", "true", "unrated"] %}
-                                    {% for rating in ratings %} {# Inner loop begins #}
+                                    {% for rating in ratings %}
                                         {% set safe_rating_name = rating|replace(" ", "_") %}
-                                        {# Use the captured outer loop index to create the unique ID #}
                                         {% set rating_id = "rating_" ~ outer_loop_index ~ "_" ~ safe_rating_name %}
                                         <div class="form-check form-check-inline">
-                                            {# Use the captured outer loop index for the name attribute #}
                                             <input class="form-check-input" type="radio" id="{{ rating_id }}" name="data[{{ outer_loop_index }}][rating]" value="{{ rating }}" {% if item.rating == rating %}checked{% endif %}>
                                             <label class="form-check-label" for="{{ rating_id }}">{{ rating|title }}</label>
                                         </div>
-                                    {% endfor %} {# Inner loop ends #}
+                                    {% endfor %}
                                 </div>
-
                                 <hr>
-
                                 <!-- Download Section -->
                                 <div class="mb-3">
                                     <label class="form-label"><i class="bi bi-film"></i> Download Video (from Social Link)</label>
-                                    <div class="input-group mb-1"> <!-- Use mb-1 for spacing before textarea -->
+                                    <div class="input-group mb-1">
                                         <button type="button" class="btn btn-info download-btn" title="Fetch Metadata & Download Video (if < 10 min)">
                                             <i class="bi bi-download"></i> Download
                                         </button>
-                                        <!-- Hidden input for success state -->
-                                         <input type="hidden" name="data[{{ loop.index0 }}][download_success]" value="{{ 'true' if item.download_success else 'false' }}">
+                                         <input type="hidden" name="data[{{ outer_loop_index }}][download_success]" value="{{ 'true' if item.download_success else 'false' }}">
                                     </div>
-                                    <!-- Changed to textarea for message -->
-                                    <textarea name="data[{{ loop.index0 }}][download_message]" class="form-control download-message-field" rows="3" readonly placeholder="Download status messages appear here...">{{ item.download_message }}</textarea>
+                                    <textarea name="data[{{ outer_loop_index }}][download_message]" class="form-control download-message-field" rows="3" readonly placeholder="Download status messages appear here...">{{ item.download_message }}</textarea>
                                 </div>
-
                                 <div class="mb-3">
                                     <label class="form-label"><i class="bi bi-folder2-open"></i> Drive Path:</label>
-                                    <input type="text" name="data[{{ loop.index0 }}][drive_path]" value="{{ item.drive_path }}" class="form-control" readonly>
-                                </div>
-
-                                <hr>
-
-                                <div class="mb-3">
-                                    <label class="form-label"><i class="bi bi-box-arrow-up-right"></i> External Links:</label>
-                                    <div class="external-links-container mb-2">
-                                        {% if item.external_links_info %}
-                                            {% for link_pair in item.external_links_info %}
-                                            <div class="row g-2 mb-2 external-link-pair">
-                                                <div class="col">
-                                                    {# Use the captured outer_loop_index #}
-                                                    <input type="url" name="data[{{ outer_loop_index }}][external_links_info][{{ loop.index0 }}][url]" value="{{ link_pair.url }}" class="form-control form-control-sm" placeholder="URL">
-                                                </div>
-                                                <div class="col">
-                                                    {# Use the captured outer_loop_index #}
-                                                    <input type="text" name="data[{{ outer_loop_index }}][external_links_info][{{ loop.index0 }}][description]" value="{{ link_pair.description }}" class="form-control form-control-sm" placeholder="Description">
-                                                </div>
-                                                <div class="col-auto">
-                                                    <button type="button" class="btn btn-sm btn-outline-danger remove-link-btn" title="Remove Link">
-                                                         <i class="bi bi-x-lg"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            {% endfor %}
-                                        {% endif %}
-                                    </div>
-                                    <button type="button" class="btn btn-sm btn-success add-link-btn">
-                                        <i class="bi bi-plus-circle"></i> Add External Link
-                                    </button>
+                                    <input type="text" name="data[{{ outer_loop_index }}][drive_path]" value="{{ item.drive_path }}" class="form-control" readonly>
                                 </div>
                             </div>
-                        </div> <!-- End row -->
+                        </div> <!-- End row g-3 -->
+
+                        <hr> {# Separator before full-width section #}
+
+                        {# +++ External Links Section (Moved Below Columns) +++ #}
+                        <div class="mb-3">
+                            <label class="form-label"><i class="bi bi-box-arrow-up-right"></i> External Links (Evidence):</label>
+                            <div class="external-links-container mb-2">
+                                {# Loop through existing links for this item #}
+                                {% if item.external_links_info %}
+                                    {% for link_pair in item.external_links_info %}
+                                    {% set link_loop_index = loop.index0 %} {# Capture link loop index #}
+                                    <div class="mb-3 p-3 border rounded external-link-pair" data-link-index="{{ link_loop_index }}">
+                                        {# Link URL and Description Row #}
+                                        <div class="row g-2 mb-3">
+                                            <div class="col"><input type="url" name="data[{{ outer_loop_index }}][external_links_info][{{ link_loop_index }}][url]" value="{{ link_pair.url }}" class="form-control form-control-sm" placeholder="Evidence URL"></div>
+                                            <div class="col"><input type="text" name="data[{{ outer_loop_index }}][external_links_info][{{ link_loop_index }}][description]" value="{{ link_pair.description }}" class="form-control form-control-sm" placeholder="Brief Description"></div>
+                                            <div class="col-auto"><button type="button" class="btn btn-sm btn-outline-danger remove-link-btn" title="Remove Link"><i class="bi bi-x-lg"></i></button></div>
+                                        </div>
+                                        {# Evidence Checklist for this link #}
+                                        <div class="evidence-checklist ps-2">
+                                            <strong class="evidence-checklist-title">Evidence Checklist:</strong>
+                                             {% for criterion in evidence_criteria_list %}
+                                                {% set checklist_field_name = "data[" ~ outer_loop_index ~ "][external_links_info][" ~ link_loop_index ~ "][checklist][" ~ criterion.key ~ "]" %}
+                                                {% set checklist_field_id = "evidence_" ~ outer_loop_index ~ "_" ~ link_loop_index ~ "_" ~ criterion.key %}
+                                                {# Safely get checklist data, defaulting to False #}
+                                                {% set checklist_data = link_pair.get('checklist', {}) %}
+                                                {% set is_checked = checklist_data.get(criterion.key, False) %}
+                                                {# Conditionally add tooltip data attributes only for links after the first one #}
+                                                {% set tooltip_attrs = 'data-bs-toggle="tooltip" title="' ~ criterion.definition ~ '"' if link_loop_index > 0 else '' %}
+
+                                                <div class="form-check form-check-sm">
+                                                    <input class="form-check-input evidence-checkbox" type="checkbox" name="{{ checklist_field_name }}" id="{{ checklist_field_id }}" value="true" {% if is_checked %}checked{% endif %}>
+                                                    <label class="form-check-label" for="{{ checklist_field_id }}" {{ tooltip_attrs|safe }}>
+                                                        {{ criterion.name }}
+                                                        {# Show definition inline only for the *first* link #}
+                                                        {% if link_loop_index == 0 %}
+                                                        <small class="text-muted d-block evidence-definition-inline">{{ criterion.definition }}</small>
+                                                        {% endif %}
+                                                    </label>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div> {# End external-link-pair block #}
+                                    {% endfor %}
+                                {% endif %}
+                            </div> {# End external-links-container #}
+                            <button type="button" class="btn btn-sm btn-success add-link-btn">
+                                <i class="bi bi-plus-circle"></i> Add External Link
+                            </button>
+                        </div>
+                        {# ++++++++++++++++++++++++++++++++++++++++++++++++++++++ #}
+
                     </div> <!-- End card-body -->
                 </div> <!-- End card / entry-group -->
                 {% else %}

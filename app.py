@@ -26,6 +26,16 @@ DOWNLOAD_DIR = 'downloads'
 MAX_VIDEO_DURATION_SECONDS = 600
 BROWSER_FOR_COOKIES = 'chrome' # Specify the browser to use for cookies
 
+# +++ Evidence Checklist Criteria Keys (for default setting) +++
+EVIDENCE_CRITERIA_KEYS = [
+    'author_expertise', 'source_reputation', 'neutrality_fairness',
+    'fact_vs_opinion', 'purpose', 'definitive_proof', 'direct_connection',
+    'source_transparency', 'evidence_integrity', 'fact_verifiability',
+    'clarity_relevance'
+]
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
 # --- Helper Functions (load_data, save_data, parse_social_platform) ---
 def load_data():
     """Loads data from the JSON file."""
@@ -39,7 +49,7 @@ def load_data():
                 logging.info(f"Data file '{DATA_FILE}' is empty, returning empty list.")
                 return []
             data = json.loads(content)
-            # Ensure essential keys exist with default values for older data formats
+            # Ensure essential keys exist with default values
             for item in data:
                 item.setdefault('politifact_headline', '')
                 item.setdefault('politifact_subheadline', '')
@@ -50,6 +60,29 @@ def load_data():
                 item.setdefault('download_message', '')
                 item.setdefault('drive_path', '')
                 item.setdefault('external_links_info', [])
+                item.setdefault('ooc_temporal_misattribution', False)
+                item.setdefault('ooc_geographical_misattribution', False)
+                item.setdefault('ooc_person_misidentification', False)
+                item.setdefault('ooc_contextual_misrepresentation', False)
+                item.setdefault('ooc_exaggeration_scale', False)
+                item.setdefault('ooc_exaggeration_urgency', False)
+                item.setdefault('ooc_fabricated_consequences', False)
+                item.setdefault('ooc_misleading_intent', False)
+                item.setdefault('ooc_misleading_emotional_framing', False)
+                item.setdefault('ooc_causal_misattribution', False)
+
+                # +++ Ensure checklist structure within each link +++
+                if isinstance(item.get('external_links_info'), list):
+                    for link_info in item['external_links_info']:
+                        if isinstance(link_info, dict):
+                            link_info.setdefault('url', '')
+                            link_info.setdefault('description', '')
+                            link_info.setdefault('checklist', {}) # Ensure checklist dict exists
+                            if isinstance(link_info['checklist'], dict):
+                                for key in EVIDENCE_CRITERIA_KEYS:
+                                    link_info['checklist'].setdefault(key, False)
+                # ++++++++++++++++++++++++++++++++++++++++++++++++++
+
             logging.info(f"Successfully loaded {len(data)} items from '{DATA_FILE}'.")
             return data
     except json.JSONDecodeError as e:
@@ -66,6 +99,16 @@ def save_data(data):
         for i, item in enumerate(data):
             if isinstance(item, dict):
                  item['id'] = i
+                 # Optional: Clean/validate link checklist structure before saving
+                 if isinstance(item.get('external_links_info'), list):
+                     for link_info in item['external_links_info']:
+                         if isinstance(link_info, dict) and isinstance(link_info.get('checklist'), dict):
+                             # Ensure only valid keys are saved (prevents injection)
+                             valid_checklist = {key: link_info['checklist'].get(key, False) for key in EVIDENCE_CRITERIA_KEYS if key in link_info['checklist']}
+                             link_info['checklist'] = valid_checklist
+                         else:
+                              # Handle malformed link data if necessary
+                              pass
             else:
                 logging.warning(f"Item at index {i} is not a dictionary ({type(item)}), skipping ID assignment.")
 
@@ -377,7 +420,7 @@ def import_data():
             if not content.strip(): flash('Import failed: File is empty.', 'danger'); return redirect(url_for('index'))
             new_data = json.loads(content)
             if not isinstance(new_data, list): flash('Import failed: JSON not a list.', 'danger'); return redirect(url_for('index'))
-            # Optional: Validate structure of imported data items here
+            # Data structure validation happens implicitly in load_data/save_data now
             if save_data(new_data): flash(f'Data ({len(new_data)} items) imported!', 'success')
             else: flash('Import failed: Could not save data.', 'danger')
         except json.JSONDecodeError as e:
