@@ -1,0 +1,576 @@
+[
+    {
+        "id": 0,
+        "politifact_url": "https://www.politifact.com/factchecks/2023/nov/14/ted-cruz/does-texas-really-outproduce-california-in-wind-en/",
+        "politifact_headline": "Does Texas outproduce California in wind energy? Yes.",
+        "politifact_subheadline": "U.S. Sen. Ted Cruz wants people to know that Texas — not California — is the country’s top wind energy producer. \"We pro",
+        "rating": "true",
+        "social_link": "https://x.com/lastcallcnbc/status/1721687839291715878?s=46&t=vji7d0SSe8CvktyIp5b1Sw",
+        "social_platform": "x",
+        "social_duration": 81.69,
+        "social_text": "Title: Last Call - \"We produce a lot more wind energy in Texas than California does,\" sa...\n\nDescription: \"We produce a lot more wind energy in Texas than California does,\" says Senator @tedcruz. \"They produce a lot of hot air, but the wind energy is produced in Texas.\" https://t.co/QvSsiE8ip1",
+        "external_links_info": [
+            {
+                "url": "https://www.elpasotimes.com/story/news/2022/05/26/el-paso-wind-speeds-higher-than-average-spring/9909569002/",
+                "description": "The state boasts extremely high wind speeds, particularly in North and West Texas, and along the southern Gulf Coast, Overbye said. For example, the average peak wind speed in El Paso in West Texas hit 35.9 mph in April 2022, the El Paso Times reported.",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": false,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": true,
+                    "clarity_relevance": false
+                }
+            }
+        ],
+        "download_success": true,
+        "download_message": "Download successful (video_0.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_0.mp4",
+        "ooc_temporal_misattribution": false,
+        "ooc_geographical_misattribution": false,
+        "ooc_person_misidentification": false,
+        "ooc_contextual_misrepresentation": false,
+        "ooc_exaggeration_scale": false,
+        "ooc_exaggeration_urgency": false,
+        "ooc_fabricated_consequences": false,
+        "ooc_misleading_intent": false,
+        "ooc_misleading_emotional_framing": false,
+        "ooc_causal_misattribution": false
+    },
+    {
+        "id": 1,
+        "politifact_url": "https://www.politifact.com/factchecks/2023/apr/08/ron-desantis/are-more-half-felony-charges-manhattan-downgraded/",
+        "politifact_headline": "Bragg has downgraded felonies, but it’s a common practice.",
+        "politifact_subheadline": "Florida Gov. Ron DeSantis joined his fellow Republicans in attacking Manhattan District Attorney Alvin Bragg, who presen",
+        "rating": "true",
+        "social_link": "https://x.com/flvoicenews/status/1637825433759612928?s=46&amp;t=235YHvofhzNXd72ZAgIIYw",
+        "social_platform": "x",
+        "social_duration": 129.93,
+        "social_text": "Title: Florida’s Voice - #BREAKING: DeSantis grills Manhattan District Attorney for potential ...\n\nDescription: #BREAKING: DeSantis grills Manhattan District Attorney for potential Trump indictment  \"I don't know what's going to happen [...] The Manhattan District Attorney is a Soros-funded prosecutor [...] That's an example of pursuing a political agenda and weaponizing the office.\" https://t.co/urEQIbhPHF",
+        "external_links_info": [
+            {
+                "url": "https://data.manhattanda.org/",
+                "description": "Data posted on the district attorney’s website shows how the office handled arrests over the years.   Sign up for PolitiFact texts Felonies are more serious charges and can lead to more than one year in jail. Misdemeanors are lesser charges and carry a penalty of up to a year in jail.   In 2022, Manhattan prosecutors reviewed 15,710 felony arrests and the office declined to prosecute 1,225 of them, or 7.8%. Of the felony cases that survived review, 52% were downgraded to a misdemeanor, 7% were downgraded to a lower-level felony, 8% were upgraded to a different felony, 33% were an equivalent felony, and in 0.1% of cases, 12 in all, the charge was downgraded to a violation. The data does not signal why prosecutors changed the charges, though experts told us this practice is not unusual.",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": false,
+                    "direct_connection": false,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": true,
+                    "clarity_relevance": true
+                }
+            },
+            {
+                "url": "https://www.nytimes.com/2022/04/03/nyregion/nyc-prosecutors-jobs.html",
+                "description": "\"Law enforcement must establish probable cause to effectuate an arrest, but prosecutors are likely applying the higher standard of proof beyond a reasonable doubt to determine what charges they may be able to prove at trial,\" said Krystal Rodriguez, policy director at the Data Collaborative for Justice.   There are other factors, too, said Hannah Meyers, a fellow and director of policing and public safety at the conservative Manhattan Institute. A state discovery law from 2019 burdened prosecutors, leading to increases in dismissed cases and other outcomes, including downgrading charges, she said. The law requires prosecutors to share their evidence with defense attorneys quickly — within 20 days if a defendant is in jail — or risk having the case dismissed, though extensions are granted.",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": true,
+                    "neutrality_fairness": true,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": false,
+                    "direct_connection": false,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": false,
+                    "clarity_relevance": true
+                }
+            }
+        ],
+        "download_success": true,
+        "download_message": "Download successful (video_1.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_1.mp4",
+        "ooc_temporal_misattribution": false,
+        "ooc_geographical_misattribution": false,
+        "ooc_person_misidentification": false,
+        "ooc_contextual_misrepresentation": false,
+        "ooc_exaggeration_scale": false,
+        "ooc_exaggeration_urgency": false,
+        "ooc_fabricated_consequences": false,
+        "ooc_misleading_intent": false,
+        "ooc_misleading_emotional_framing": false,
+        "ooc_causal_misattribution": false
+    },
+    {
+        "id": 2,
+        "politifact_url": "https://www.politifact.com/factchecks/2022/nov/09/everytown-gun-safety/yes-arizona-republican-governor-candidate-kari-lak/",
+        "politifact_headline": "Yes, Arizona’s Kari Lake opposes red flag laws",
+        "politifact_subheadline": "A new bipartisan federal firearms law, the Safer Communities Act, includes a provision that provides money for states to",
+        "rating": "true",
+        "social_link": "https://www.youtube.com/watch?v=lq2S3Lpua2w&t=11s",
+        "social_platform": "youtube",
+        "social_duration": 30,
+        "social_text": "Title: Threat (Arizona)",
+        "external_links_info": [
+            {
+                "url": "https://www.politifact.com/article/2022/jun/10/ask-politifact-what-are-red-flag-gun-laws-and-do-t/",
+                "description": "Red flag laws are meant to remove weapons from dangerous people before a crime or tragedy occurs — hence the phrase \"red flag.\"",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": true,
+                    "definitive_proof": false,
+                    "direct_connection": false,
+                    "source_transparency": true,
+                    "evidence_integrity": false,
+                    "fact_verifiability": false,
+                    "clarity_relevance": false
+                }
+            },
+            {
+                "url": "https://x.com/KariLake/status/1441426498775240709",
+                "description": "\"The entire Country should be a sanctuary for the Second Amendment,\" Lake tweeted Sept. 24, 2021, \"No red flag Laws. N magazine capacity bans. No ‘Gun-Free’ Zones. Shall. Not. Be. Infringed.\"",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": false,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": true,
+                    "clarity_relevance": true
+                }
+            },
+            {
+                "url": "https://x.com/KariLake/status/1537675492379066368",
+                "description": "\"I think I can speak for most moms in America: you can shove your ‘red flag laws’ where the sun don’t shine,\" she tweeted June 16. \"I dare you to try and throw us on lists and come after our firearms.\"",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": false,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": true,
+                    "clarity_relevance": true
+                }
+            }
+        ],
+        "download_success": true,
+        "download_message": "Download successful (video_2.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_2.mp4",
+        "ooc_temporal_misattribution": false,
+        "ooc_geographical_misattribution": false,
+        "ooc_person_misidentification": false,
+        "ooc_contextual_misrepresentation": false,
+        "ooc_exaggeration_scale": false,
+        "ooc_exaggeration_urgency": false,
+        "ooc_fabricated_consequences": false,
+        "ooc_misleading_intent": false,
+        "ooc_misleading_emotional_framing": false,
+        "ooc_causal_misattribution": false
+    },
+    {
+        "id": 3,
+        "politifact_url": "https://www.politifact.com/factchecks/2022/oct/24/better-wisconsin-together/better-wisconsin-together-target-ad-michels-and-gu/",
+        "politifact_headline": "Ad on Michels opposing closure of gun law loophole is on tar",
+        "politifact_subheadline": "In Wisconsin’s race for governor, each candidate (and their supporters) have been portraying the other as too radical to",
+        "rating": "true",
+        "social_link": "https://www.youtube.com/watch?v=fw5hrk9zi7A",
+        "social_platform": "youtube",
+        "social_duration": 15,
+        "social_text": "Title: Domestic Abuser Loophole - A Better Wisconsin Together Political Fund",
+        "external_links_info": [
+            {
+                "url": "https://www.iheart.com/podcast/426-the-vicki-mckenna-show-27246267/episode/the-vicki-mckenna-show-political-99564351/",
+                "description": "The Michels team did not respond to our request for comment by deadline. However, we found Michels has been quite clear on where he stands on the issue. Michels was a guest July 18 on the \"Vicki McKenna Show\" on iHeart Radio. Here is the relevant portion of the conversation:  McKenna: Would you promise — the Biden administration, along with some Republican support, just passed a piece of gun control legislation that is going to try to entice states to adopt red flag laws? Would you — in exchange for dollars from the federal government. Would you pledge not to take that money, and not to encourage the Republican Assembly and Senate to pass red flag laws? Michels: The federal government wants to attach dollars to some agenda that they have, and we won’t take it if I don’t agree with it. … I own a lot of guns and I know how to use them properly. Red flag laws, you know, people are entitled to due process. You just can’t have somebody make a complaint against you, and … your Second Amendment right be taken away. Now, that won’t happen here in Wisconsin, when I’m governor.",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": false,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": false,
+                    "clarity_relevance": true
+                }
+            },
+            {
+                "url": "https://www.youtube.com/watch?v=Tal5eXq7DR8",
+                "description": "When we asked for backup to the claim, a spokesperson pointed us to a 52-second video clip of Michels posted online by state Democrats from an Aug. 1 town hall meeting before the Republican primary.   We went back to the full hourlong debate, posted on YouTube by forum sponsor WISN-TV, Channel 12, to see it all in context. Michels was responding to a question from an audience member who was described as an advocate for victims of domestic violence and sexual assault.   The question:  \"What’s your plan for reducing and/or eliminating the repeat acts of gun violence from those who have minor convictions and are still able to possess and/or purchase firearms in the state of Wisconsin?\"   The answer from Michels:  \"Yeah, so like I said, guns haven’t changed, society has changed. And I want to make sure that law abiding gun owners aren’t having their guns confiscated because an angry ex, ex-spouse, makes a complaint. ‘Oh, he made a threat to me and then the police have to go confiscate his guns.’ The Second Amendment is constitutional. It’s a right given by the Constitution to bear arms, and I will support the Second Amendment. I believe what we have to do is enforce the gun laws that are on the books.\"",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": true,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": true,
+                    "direct_connection": false,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": false,
+                    "clarity_relevance": true
+                }
+            }
+        ],
+        "download_success": true,
+        "download_message": "Download successful (video_3.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_3.mp4",
+        "ooc_temporal_misattribution": false,
+        "ooc_geographical_misattribution": false,
+        "ooc_person_misidentification": false,
+        "ooc_contextual_misrepresentation": false,
+        "ooc_exaggeration_scale": false,
+        "ooc_exaggeration_urgency": false,
+        "ooc_fabricated_consequences": false,
+        "ooc_misleading_intent": false,
+        "ooc_misleading_emotional_framing": false,
+        "ooc_causal_misattribution": false
+    },
+    {
+        "id": 4,
+        "politifact_url": "https://www.politifact.com/factchecks/2022/nov/08/liquid-death/giving-water-voter-within-150-feet-ga-polling-plac/",
+        "politifact_headline": "Giving water near Ga. polling places could result in jail",
+        "politifact_subheadline": "For more than a week before Election Day, a commercial has warned Georgians against giving water to voters waiting outsi",
+        "rating": "true",
+        "social_link": "https://www.youtube.com/watch?v=-9yIqpPy5DE",
+        "social_platform": "youtube",
+        "social_duration": 87,
+        "social_text": "Title: Liquid Death Georgia Election Hydration Kit Commercial\n\nDescription: In Georgia, it’s now illegal to give people water within 150 feet of a polling place on Election Day even with some lines lasting up to 8 hours.\n\nBut don’t worry! We have a solution. Introducing the Georgia Election Hydration Kit. Georgia residents, get yours for just $1 at http://liquiddeath.com/vote.\n\nThen, whether you live in Georgia or just enjoy functioning democracy, visit headcount.org/liquiddeath to make your plan to vote on Tuesday, November 8th.",
+        "external_links_info": [
+            {
+                "url": "https://www.politifact.com/factchecks/2021/mar/29/josh-holmes/facts-about-georgias-ban-food-water-giveaways-vote/",
+                "description": "But the section on food and drinks for people in line has received some of the most outside attention. Here is the section of the law that addresses water and says no person shall \"participate in the giving of any money or gifts, including, but not limited to, food and drink, to an elector, nor shall any person solicit signatures for any petition, nor shall any person, other than election officials discharging their duties, establish or set up any tables or booths on any day in which ballots are being cast (1) Within 150 feet of the outer edge of any building within which a polling place is established; (2) Within any polling place; or (3) Within 25 feet of any voter standing in line to vote at any polling place.\"",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": true,
+                    "purpose": false,
+                    "definitive_proof": false,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": false,
+                    "clarity_relevance": false
+                }
+            },
+            {
+                "url": "https://www.npr.org/2020/10/17/924527679/why-do-nonwhite-georgia-voters-have-to-wait-in-line-for-hours-too-few-polling-pl",
+                "description": "For years, voting rights advocates organized efforts to give away bottles of water or food near voting sites where residents sometimes waited in line for hours to vote. Voters in majority Black neighborhoods have had disproportionate waiting times. In the state’s June 2020 primary election, voters waited in line for hours to cast a ballot, NPR reported that fall.",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": true,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": false,
+                    "direct_connection": false,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": false,
+                    "clarity_relevance": true
+                }
+            }
+        ],
+        "download_success": true,
+        "download_message": "Download successful (video_4.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_4.mp4",
+        "ooc_temporal_misattribution": false,
+        "ooc_geographical_misattribution": false,
+        "ooc_person_misidentification": false,
+        "ooc_contextual_misrepresentation": false,
+        "ooc_exaggeration_scale": false,
+        "ooc_exaggeration_urgency": false,
+        "ooc_fabricated_consequences": false,
+        "ooc_misleading_intent": false,
+        "ooc_misleading_emotional_framing": false,
+        "ooc_causal_misattribution": false
+    },
+    {
+        "id": 5,
+        "politifact_url": "https://www.politifact.com/factchecks/2022/apr/30/kathy-hochul/new-york-state-so-many-bills/",
+        "politifact_headline": "Hochul has signed more than 500 pieces of legislation since",
+        "politifact_subheadline": "Gov. Kathy Hochul said that she has passed more than 400 bills since she became governor in a recent campaign ad. The ad",
+        "rating": "true",
+        "social_link": "https://www.youtube.com/watch?v=TiqdjA2L_qc",
+        "social_platform": "youtube",
+        "social_duration": 30,
+        "social_text": "Title: Hard Work | Kathy Hochul for Governor",
+        "external_links_info": [
+            {
+                "url": "https://legiscan.com/NY/legislation?status=passed&type=bill",
+                "description": "We asked Hochul’s campaign for a list of the bills that she signed, and communications director Jerrel Harvey directed us to a database that tracks legislation, called LegiScan. The database showed that between Sept. 2, 2021 and April 9, 2022, Hochul signed 585 bills, according to a count by the campaign that that PolitiFact confirmed.",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": true,
+                    "definitive_proof": true,
+                    "direct_connection": false,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": false,
+                    "clarity_relevance": false
+                }
+            },
+            {
+                "url": "https://buffalonews.com/news/local/kathy-hochul-sworn-in-as-new-yorks-first-female-governor/article_439e4336-043f-11ec-a3d2-d31f16f3cf93.html",
+                "description": "When she came into office after the resignation of Gov. Andrew Cuomo, she had 471 pieces of legislation to review, according to a Buffalo News article. The legislation had been passed by lawmakers but had not yet been sent to the governor’s office for consideration.",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": true,
+                    "fact_vs_opinion": true,
+                    "purpose": false,
+                    "definitive_proof": false,
+                    "direct_connection": false,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": false,
+                    "clarity_relevance": true
+                }
+            }
+        ],
+        "download_success": true,
+        "download_message": "Download successful (video_5.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_5.mp4",
+        "ooc_temporal_misattribution": false,
+        "ooc_geographical_misattribution": false,
+        "ooc_person_misidentification": false,
+        "ooc_contextual_misrepresentation": false,
+        "ooc_exaggeration_scale": false,
+        "ooc_exaggeration_urgency": false,
+        "ooc_fabricated_consequences": false,
+        "ooc_misleading_intent": false,
+        "ooc_misleading_emotional_framing": false,
+        "ooc_causal_misattribution": false
+    },
+    {
+        "id": 6,
+        "politifact_url": "https://www.politifact.com/factchecks/2021/mar/01/tom-cotton/becerras-longtime-single-payer-supporter-doesnt-me/",
+        "politifact_headline": "Becerra’s support for ‘Medicare for All’ isn’t secret",
+        "politifact_subheadline": "A digital ad running in Georgia and New Hampshire says that Xavier Becerra, President Joe Biden’s nominee for Health and",
+        "rating": "true",
+        "social_link": "https://www.youtube.com/embed/JGjFLgIhJCI?feature=oembed",
+        "social_platform": "youtube",
+        "social_duration": 30,
+        "social_text": "Title: Becerra Can't be Trusted — New Hampshire\n\nDescription: Xavier Becerra is an unqualified radical who supports California's disastrous lockdowns. Tell your Senator to vote no on Becerra.",
+        "external_links_info": [
+            {
+                "url": "https://www.nytimes.com/2020/12/10/upshot/becerra-medicare-for-all-waivers-hhs.html",
+                "description": "We reached out to Cotton’s press team to ask for evidence to support the ad but didn’t hear back. The ad does cite a December New York Times article with the headline \"Becerra Supports ‘Medicare for All’ and Could Help States Get There\" to back up the claim.",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": true,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": false,
+                    "direct_connection": false,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": false,
+                    "clarity_relevance": true
+                }
+            },
+            {
+                "url": "https://kffhealthnews.org/news/2018-midterms-medicare-for-all-slogan-health-care-policy/",
+                "description": "Since Becerra was first elected to Congress, he has been an advocate for single-payer, or universal, health coverage. This type of coverage can take many forms, but by most definitions, it means the federal government would have some role in funding and administering health insurance for the public.",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": true,
+                    "definitive_proof": false,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": false,
+                    "clarity_relevance": false
+                }
+            },
+            {
+                "url": "https://kffhealthnews.org/news/for-california-attorney-general-xavier-becerra-resistance-is-personal/",
+                "description": "And in 2019, Becerra told KHN’s Samantha Young he’s \"been a single-payer advocate all my life.\"",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": false,
+                    "direct_connection": false,
+                    "source_transparency": false,
+                    "evidence_integrity": true,
+                    "fact_verifiability": true,
+                    "clarity_relevance": false
+                }
+            }
+        ],
+        "download_success": true,
+        "download_message": "Download successful (video_6.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_6.mp4",
+        "ooc_temporal_misattribution": false,
+        "ooc_geographical_misattribution": false,
+        "ooc_person_misidentification": false,
+        "ooc_contextual_misrepresentation": false,
+        "ooc_exaggeration_scale": false,
+        "ooc_exaggeration_urgency": false,
+        "ooc_fabricated_consequences": false,
+        "ooc_misleading_intent": false,
+        "ooc_misleading_emotional_framing": false,
+        "ooc_causal_misattribution": false
+    },
+    {
+        "id": 7,
+        "politifact_url": "https://www.politifact.com/factchecks/2020/aug/13/national-republican-senatorial-committee/attack-ad-right-about-cunninghams-2001-budget-vote/",
+        "politifact_headline": "Attack ad gets Cunningham tax vote right",
+        "politifact_subheadline": "A new ad from the National Republican Senatorial Committee attacks the voting record of North Carolina’s Democratic Sena",
+        "rating": "true",
+        "social_link": "https://x.com/nrsc/status/1284103101310533634?s=21",
+        "social_platform": "x",
+        "social_duration": 30.03,
+        "social_text": "Title: Senate Republicans - Don’t miss our new ad in North Carolina! 📺  Washington liberals are e...\n\nDescription: Don’t miss our new ad in North Carolina! 📺  Washington liberals are embracing Cal Cunningham and his tax raising fancy footwork.   But North Carolina can’t afford his higher taxes at the big dance 🕺🏼  #NCsen #NCpol https://t.co/BEesZLaZRX",
+        "external_links_info": [
+            {
+                "url": "https://www.ncleg.gov/BillLookup/2001/S1005",
+                "description": "In an email to PolitiFact, the NRSC cited several news stories from 2001. That year, North Carolina’s legislature and Gov. Mike Easley approved a state budget that raised taxes and fees to generate $1 billion over two years, according to clips from the Charlotte Observer and News & Observer.",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": false,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": false,
+                    "clarity_relevance": false
+                }
+            },
+            {
+                "url": "https://www.newsobserver.com/news/politics-government/election/article244431957.html",
+                "description": "At the time, North Carolina was the only state to raise personal income tax rates, a budget analyst for the National Conference of State Legislatures told the News & Observer for a Sept. 22, 2001 article.  The budget included a half-cent sales tax increase, bumping the rate from 4% to 4.5%. It also raised the tax on telecommunications services from 4.5% to 6%, and applied a 6% sales tax on liquor. It also included a half-percentage-point increase in income tax on the wealthy for tax years 2001 and 2003, the N&O reported.",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": false,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": true,
+                    "clarity_relevance": false
+                }
+            }
+        ],
+        "download_success": true,
+        "download_message": "Download successful (video_7.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_7.mp4",
+        "ooc_temporal_misattribution": false,
+        "ooc_geographical_misattribution": false,
+        "ooc_person_misidentification": false,
+        "ooc_contextual_misrepresentation": false,
+        "ooc_exaggeration_scale": false,
+        "ooc_exaggeration_urgency": false,
+        "ooc_fabricated_consequences": false,
+        "ooc_misleading_intent": false,
+        "ooc_misleading_emotional_framing": false,
+        "ooc_causal_misattribution": false
+    },
+    {
+        "id": 8,
+        "politifact_url": "https://www.politifact.com/factchecks/2020/jun/24/priorities-usa-action/trump-positive-coronavirus-tests-slowdown-look-bad/",
+        "politifact_headline": "Ad says Trump raised slowing testing because of bad optics",
+        "politifact_subheadline": "Months into the coronavirus pandemic, much remains unknown about the virus’ origins, transmission and longevity. But the",
+        "rating": "true",
+        "social_link": "https://www.youtube.com/watch?v=Q346nJM3uGw",
+        "social_platform": "youtube",
+        "social_duration": 15,
+        "social_text": "Title: Testing",
+        "external_links_info": [
+            {
+                "url": "https://www.youtube.com/watch?v=Ok1T1XMZah0&t=528s",
+                "description": "‘By doing all of this testing we make ourselves look bad.’ Trump said this May 6, 2020, during a meeting with Iowa Gov. Kim Reynolds.  The quote  \"The media likes to say we have the most cases, but we do, by far, the most testing.  If we did very little testing, we wouldn’t have the most cases. So, in a way, by doing all of this testing, we make ourselves look bad.\"  The context  Reynolds — a Republican — responded to Trump by highlighting the importance of testing: \"That really provides us the data we need to understand the virus activity better.\" Trump, meanwhile, has made numerous similar comments, including a June 19, 2020, Wall Street Journal interview where he called testing \"overrated\" and said \"in many ways, it makes us look bad.\"",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": true,
+                    "direct_connection": false,
+                    "source_transparency": false,
+                    "evidence_integrity": true,
+                    "fact_verifiability": false,
+                    "clarity_relevance": false
+                }
+            },
+            {
+                "url": "https://www.youtube.com/watch?t=1230&v=JB54ejj-4a0&feature=youtu.be",
+                "description": "‘When you test you find something is wrong.’ Trump said this May 14, 2020, during an appearance in Pennsylvania.  The quote  \"Don’t forget, we have more cases than anyone in the world, but why? Because we do more testing. When you test, you have a case. When you test, you find something is wrong with people. If we didn’t do any testing, we would have very few cases.\"  The context  Trump asserts there would be fewer cases if there were less testing. Of course, less testing would simply mean officials are aware of less cases, or there would be fewer identified cases — it wouldn’t mean fewer cases exist.",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": true,
+                    "direct_connection": false,
+                    "source_transparency": false,
+                    "evidence_integrity": true,
+                    "fact_verifiability": false,
+                    "clarity_relevance": false
+                }
+            },
+            {
+                "url": "https://www.youtube.com/watch?v=9CBReIcgQYw&feature=youtu.be&t=1108",
+                "description": "\"Testing is a double-edged sword. … So I said to my people, slow the testing down please.\" These statements, used separately in the ad, are both from a June 20, 2020, rally in Oklahoma.  The quote  \"You know, testing is a double-edged sword. We’ve tested now 25 million people. It’s probably 20 million people more than anybody else. German’s done a lot. South Korea’s done a lot. They called me, they said the job you’re doing (trails off). Here’s the bad part. When you’re testing to that extent, you’re going to find more people, you’re going to find more cases. So I said to my people, ‘Slow the testing down, please.’\"",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": true,
+                    "direct_connection": false,
+                    "source_transparency": false,
+                    "evidence_integrity": true,
+                    "fact_verifiability": false,
+                    "clarity_relevance": false
+                }
+            }
+        ],
+        "download_success": true,
+        "download_message": "Download successful (video_8.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_8.mp4",
+        "ooc_temporal_misattribution": false,
+        "ooc_geographical_misattribution": false,
+        "ooc_person_misidentification": false,
+        "ooc_contextual_misrepresentation": false,
+        "ooc_exaggeration_scale": false,
+        "ooc_exaggeration_urgency": false,
+        "ooc_fabricated_consequences": false,
+        "ooc_misleading_intent": false,
+        "ooc_misleading_emotional_framing": false,
+        "ooc_causal_misattribution": false
+    }
+]
