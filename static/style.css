@@ -5,6 +5,23 @@ body {
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
+/* Style for Mode Toggle Text */
+#mode-toggle:checked ~ .form-check-label + .text-secondary {
+    color: var(--bs-body-color) !important;
+    font-weight: 600;
+}
+#mode-toggle:not(:checked) ~ .form-check-label {
+    /* This targets the label which is between the switch and the first text span in the DOM */
+    /* A bit tricky, a sibling selector is used. To make it work reliably, we style based on what IS checked */
+}
+#mode-toggle + .form-check-label {
+    cursor: pointer;
+}
+.form-switch .form-check-input {
+    cursor: pointer;
+}
+
+
 .id-readonly-input {
     background-color: transparent;
     border: none;
