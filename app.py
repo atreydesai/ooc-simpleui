@@ -1,4 +1,3 @@
-# /ooc-simpleui/app.py
 import os
 import json
 import subprocess
@@ -6,38 +5,30 @@ import sys
 from flask import Flask, render_template, request, jsonify, redirect, url_for, flash
 from urllib.parse import urlparse
 import logging
-import shlex # For safe command string construction
+import shlex
 
-# +++ Add these imports +++
 import requests
 from bs4 import BeautifulSoup
 import re
-# +++++++++++++++++++++++++
 
-# --- Flask App Setup ---
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
-# --- Logging Configuration ---
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-# --- Constants ---
 DATA_FILE = 'data.json'
 DOWNLOAD_DIR = 'downloads'
 MAX_VIDEO_DURATION_SECONDS = 600
-BROWSER_FOR_COOKIES = 'chrome' # Specify the browser to use for cookies
+BROWSER_FOR_COOKIES = 'chrome'
 
-# +++ Evidence Checklist Criteria Keys (for default setting) +++
 EVIDENCE_CRITERIA_KEYS = [
     'author_expertise', 'source_reputation', 'neutrality_fairness',
     'fact_vs_opinion', 'purpose', 'definitive_proof', 'direct_connection',
     'source_transparency', 'evidence_integrity', 'fact_verifiability',
     'clarity_relevance'
 ]
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-# --- Helper Functions (load_data, save_data, parse_social_platform) ---
 def load_data():
     """Loads data from the JSON file."""
     if not os.path.exists(DATA_FILE):
@@ -72,17 +63,15 @@ def load_data():
                 item.setdefault('ooc_misleading_emotional_framing', False)
                 item.setdefault('ooc_causal_misattribution', False)
 
-                # +++ Ensure checklist structure within each link +++
                 if isinstance(item.get('external_links_info'), list):
                     for link_info in item['external_links_info']:
                         if isinstance(link_info, dict):
                             link_info.setdefault('url', '')
                             link_info.setdefault('description', '')
-                            link_info.setdefault('checklist', {}) # Ensure checklist dict exists
+                            link_info.setdefault('checklist', {})
                             if isinstance(link_info['checklist'], dict):
                                 for key in EVIDENCE_CRITERIA_KEYS:
                                     link_info['checklist'].setdefault(key, False)
-                # ++++++++++++++++++++++++++++++++++++++++++++++++++
 
             logging.info(f"Successfully loaded {len(data)} items from '{DATA_FILE}'.")
             return data
@@ -100,16 +89,11 @@ def save_data(data):
         for i, item in enumerate(data):
             if isinstance(item, dict):
                  item['id'] = i
-                 # Optional: Clean/validate link checklist structure before saving
                  if isinstance(item.get('external_links_info'), list):
                      for link_info in item['external_links_info']:
                          if isinstance(link_info, dict) and isinstance(link_info.get('checklist'), dict):
-                             # Ensure only valid keys are saved (prevents injection)
                              valid_checklist = {key: link_info['checklist'].get(key, False) for key in EVIDENCE_CRITERIA_KEYS if key in link_info['checklist']}
                              link_info['checklist'] = valid_checklist
-                         else:
-                              # Handle malformed link data if necessary
-                              pass
             else:
                 logging.warning(f"Item at index {i} is not a dictionary ({type(item)}), skipping ID assignment.")
 
@@ -150,10 +134,8 @@ def parse_social_platform(url_string):
     except ValueError: return ""
     except Exception as e: logging.error(f"Error parsing URL {url_string} for platform: {e}"); return ""
 
-# +++ START: NYT Link Finder +++
 def find_nyt_link(text):
     """Finds the first nyti.ms or nytimes.com link in a block of text."""
-    # Regex to find nyti.ms links or full nytimes.com article links
     nyt_regex = r'https?://(?:nyti\.ms/|www\.nytimes\.com/)[a-zA-Z0-9/.\-?=_]+'
     match = re.search(nyt_regex, text)
     if match:
@@ -161,9 +143,7 @@ def find_nyt_link(text):
         logging.info(f"Found NYT-like link in text: {found_url}")
         return found_url
     return None
-# +++ END: NYT Link Finder +++
 
-# +++ START: Generic Page Detail Scraper (for PolitiFact, NYT, etc.) +++
 def get_page_details(url):
     """Fetches headline and subheadline from a URL, prioritizing OG tags with fallbacks."""
     if not url or not url.startswith(('http://', 'https://')):
@@ -171,28 +151,24 @@ def get_page_details(url):
         return None, None
     try:
         headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
-        # Use allow_redirects=True to handle short URLs like nyti.ms
         response = requests.get(url, timeout=15, headers=headers, allow_redirects=True)
         response.raise_for_status()
         soup = BeautifulSoup(response.content, 'html.parser')
 
         headline, subheadline = None, None
 
-        # 1. Get headline: og:title -> <title> -> <h1>
         og_title = soup.find('meta', property='og:title')
         if og_title and og_title.get('content'):
             headline = og_title['content'].strip()
         else:
             title_tag = soup.find('title')
             if title_tag:
-                # Clean up common suffix from title tags
                 headline = title_tag.get_text(strip=True).replace(" - The New York Times", "").strip()
             else:
                 h1_tag = soup.find('h1')
                 if h1_tag:
                     headline = h1_tag.get_text(strip=True)
 
-        # 2. Get subheadline: og:description -> <meta name="description">
         og_desc = soup.find('meta', property='og:description')
         if og_desc and og_desc.get('content'):
             subheadline = og_desc['content'].strip()
@@ -210,9 +186,7 @@ def get_page_details(url):
     except Exception as e:
         logging.error(f"Unexpected error getting page details for {url}: {e}", exc_info=True)
         return None, None
-# +++ END: Generic Page Detail Scraper +++
 
-# --- Helper Function: Get Video Metadata (Using --cookies-from-browser) ---
 def get_video_metadata_yt_dlp(video_url):
     """Fetches video metadata using yt-dlp and scans description for an article link."""
     command = [
@@ -250,14 +224,12 @@ def get_video_metadata_yt_dlp(video_url):
         social_text = "\n\n".join(social_text_parts) if social_text_parts else "No title or description found."
         if duration is None: duration = 0.0
 
-        # +++ Scan social text for a relevant article link +++
         found_article_url = find_nyt_link(social_text)
-        # +++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         return {
             "success": True, "duration": float(duration), "social_text": social_text.strip(),
             "message": "Metadata fetched successfully.",
-            "found_article_url": found_article_url # Will be null if not found
+            "found_article_url": found_article_url
         }
 
     except (json.JSONDecodeError, IndexError) as e:
@@ -272,7 +244,6 @@ def get_video_metadata_yt_dlp(video_url):
         logging.exception(msg); return {"success": False, "message": msg}
 
 
-# --- Helper Function: Download Video (Using --cookies-from-browser) ---
 def download_video_yt_dlp(video_url, item_id):
     """Downloads video using yt-dlp, attempting to use cookies from browser."""
     if not os.path.exists(DOWNLOAD_DIR):
@@ -315,7 +286,6 @@ def download_video_yt_dlp(video_url, item_id):
                  error_suffix = f" (Tried using cookies from {BROWSER_FOR_COOKIES}. Ensure you're logged in.)"
             message = f"Download failed. Error: {process.stderr or 'Unknown yt-dlp error'}{error_suffix}"
             logging.error(f"Download Failed (ID: {item_id}): {message}")
-            # Clean up partial files
             try:
                 for filename in os.listdir(DOWNLOAD_DIR):
                     if filename.startswith(f"video_{item_id}."): os.remove(os.path.join(DOWNLOAD_DIR, filename))
@@ -332,7 +302,6 @@ def download_video_yt_dlp(video_url, item_id):
         logging.exception(msg); return {"success": False, "message": msg, "drive_path": ""}
 
 
-# --- Flask Routes (index, save, import) ---
 @app.route('/')
 def index():
     current_data = load_data()
@@ -365,7 +334,6 @@ def import_data():
     else: flash('Invalid file type (must be .json).', 'warning'); return redirect(url_for('index'))
 
 
-# +++ NEW: Generic Route for Article Details (replaces old politifact route) +++
 @app.route('/get_page_details', methods=['POST'])
 def handle_page_details_request():
     if not request.is_json:
@@ -382,9 +350,8 @@ def handle_page_details_request():
         "headline": headline if headline is not None else "",
         "subheadline": subheadline if subheadline is not None else ""
     }), 200
-# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-# --- Route: Get Video Metadata (Endpoint - Uses browser cookies) ---
+
 @app.route('/get_video_metadata', methods=['POST'])
 def handle_metadata_request():
     if not request.is_json: return jsonify({"error": "Request must be JSON."}), 415
@@ -392,7 +359,7 @@ def handle_metadata_request():
     url = data.get('url')
     if not url: return jsonify({"error": "Missing 'url'."}), 400
 
-    result = get_video_metadata_yt_dlp(url) # Calls the updated helper
+    result = get_video_metadata_yt_dlp(url)
 
     if result["success"] and result.get("duration") is not None:
         duration = result["duration"]
@@ -407,7 +374,6 @@ def handle_metadata_request():
         status_code = 400 if "invalid url" in result.get("message", "").lower() else 500
         return jsonify({"error": result.get("message", "Unknown metadata error"), "success": False}), status_code
 
-# --- Route: Download Video (Endpoint - Uses browser cookies) ---
 @app.route('/download_video', methods=['POST'])
 def handle_download_request():
     if not request.is_json: return jsonify({"error": "Request must be JSON."}), 415
