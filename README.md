@@ -1,15 +1,20 @@
 # OOC Simple UI
 
-A Flask-based web application for analyzing and managing Out-of-Context (OOC) video content with evidence verification capabilities. The application supports both PolitiFact and New York Times modes for fact-checking workflows.
+A Flask-based web application for analyzing and managing Out-of-Context (OOC) video content with evidence verification capabilities. 
 
 ## Features
 
-- **Dual Mode Operation**: Switch between PolitiFact and New York Times analysis modes
+### Core Features
 - **Video Metadata Extraction**: Automatically fetch video information using yt-dlp
-- **Video Download**: Download social media videos (with duration limits)
-- **Evidence Verification**: Comprehensive checklist system for evaluating evidence quality
-- **OOC Qualification**: Detailed checklist for identifying out-of-context content
-- **Data Management**: Import/export JSON data, persistent storage
+- **Video Download**: Download social media videos (with duration limits of under 10 minutes)
+- **Evidence Verification**: Comprehensive 11-point checklist system for evaluating evidence quality
+- **OOC Qualification**: Detailed 10-point checklist for identifying out-of-context content
+
+### Other Features
+- **Auto-Save**: Changes are automatically saved as you work (1-second debounce)
+- **Visual Save Indicator**: Real-time save status with color-coded badges (Saving/Saved/Error)
+- **Undo/Redo**: Full history tracking with keyboard shortcuts (Ctrl/Cmd+Z, Ctrl/Cmd+Y)
+- **Search & Filter**: Search by text and filter by platform/rating
 
 ## Prerequisites
 
@@ -33,7 +38,7 @@ A Flask-based web application for analyzing and managing Out-of-Context (OOC) vi
 
    Or install manually:
    ```bash
-   pip install Flask requests beautifulsoup4 yt-dlp
+   pip install Flask requests beautifulsoup4 yt-dlp pytest
    ```
 
 3. **Install yt-dlp (if not already installed)**
@@ -68,21 +73,27 @@ A Flask-based web application for analyzing and managing Out-of-Context (OOC) vi
 3. **Fetch Metadata**: Click "Download" to automatically extract video information
 4. **Complete OOC Checklist**: Mark relevant out-of-context criteria
 5. **Add Evidence**: Include external links with evidence verification checklists
-6. **Save Data**: Click "Save All Data" to persist your work
+6. **Auto-Save**: Data is automatically saved as you work (watch the save indicator)
 
-### Key Features
+### New Features
 
-- **Mode Toggle**: Switch between PolitiFact and New York Times analysis modes
-- **Automatic Data Population**: URLs automatically populate headlines and metadata
-- **Video Downloads**: Videos under 10 minutes can be downloaded locally
-- **Evidence Verification**: 11-point checklist for evaluating evidence quality
-- **OOC Detection**: 10-point checklist for identifying out-of-context content
+#### Auto-Save
+- Changes save automatically 1 second after your last edit
+- Visual indicator shows save status (Saving → Saved ✓)
+- No manual save button needed
 
-### Data Management
+#### Undo/Redo
+- **Ctrl/Cmd+Z**: Undo last change
+- **Ctrl/Cmd+Y** or **Ctrl/Cmd+Shift+Z**: Redo
+- History counter shows your position
+- Up to 50 undo states maintained
 
-- **Import Data**: Upload JSON files to restore previous work
-- **Export Data**: Data is automatically saved to `data.json`
-- **Persistent Storage**: All data persists between application restarts
+#### Search & Filter
+- **Search**: Find entries by URL, headline, or any text
+- **Filter by Platform**: Show only specific social media platforms
+- **Filter by Rating**: Show only specific rating categories
+- **Clear Filters**: Reset all filters with one click
+- Result counter shows filtered vs. total entries
 
 ## Configuration
 
@@ -99,15 +110,14 @@ The application uses browser cookies for accessing protected content:
 
 ```
 ooc-simpleui/
-├── app.py                 # Main Flask application
+├── app.py                 # Main Flask application (with type hints)
+├── test_app.py           # Comprehensive test suite
 ├── data.json             # Data storage (auto-created)
 ├── requirements.txt      # Python dependencies
 ├── downloads/            # Video download directory (auto-created)
-│   ├── video_falselabel/
-│   └── video_positivelabel/
 ├── static/
-│   ├── style.css        # Custom CSS styles
-│   └── script.js        # JavaScript functionality
+│   ├── style.css        # Custom CSS with animations
+│   └── script.js        # Modular JavaScript (JSDoc annotated)
 └── templates/
     └── index.html       # Main web interface
 ```
@@ -141,17 +151,43 @@ ooc-simpleui/
 
 ## Development
 
+### Running Tests
+```bash
+# Run all tests
+pytest test_app.py -v
+
+# Run specific test class
+pytest test_app.py::TestSocialPlatformParsing -v
+
+# Run with coverage
+pytest test_app.py --cov=app
+```
+
 ### Running in Debug Mode
 The application runs in debug mode by default, which provides:
 - Automatic reloading on code changes
 - Detailed error messages
 - Development server features
 
+### Code Organization
+The JavaScript is organized into modules:
+- **State Management**: Centralized state handling
+- **UI Module**: Visual updates and indicators
+- **API Module**: Backend communication
+- **History Module**: Undo/redo functionality
+- **Search/Filter Module**: Search and filtering logic
+- **Auto-Save Module**: Debounced save operations
+- **Data Management**: Form data collection
+- **Entry Builder**: HTML generation
+- **Helpers**: Utility functions
+- **Event Handlers**: User interaction handling
+
 ### Adding New Features
-1. Modify `app.py` for backend functionality
-2. Update `templates/index.html` for UI changes
-3. Add styles in `static/style.css`
-4. Add JavaScript in `static/script.js`
+1. **Backend**: Modify `app.py` with type hints
+2. **Frontend UI**: Update `templates/index.html`
+3. **Styling**: Add styles in `static/style.css`
+4. **Logic**: Add JavaScript in appropriate module in `static/script.js`
+5. **Tests**: Add tests in `test_app.py`
 
 ## Support
 

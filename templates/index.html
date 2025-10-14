@@ -17,19 +17,6 @@
     <div class="container mt-4 mb-5">
         <h1 class="mb-4">OOC Simple UI</h1>
 
-        <!-- +++ Mode Toggle +++ -->
-        <div class="card mb-4">
-            <div class="card-body d-flex justify-content-center align-items-center p-2">
-                <span class="fw-bold me-3 text-secondary">PolitiFact Mode</span>
-                <div class="form-check form-switch fs-4 m-0">
-                    <input class="form-check-input" type="checkbox" role="switch" id="mode-toggle">
-                    <label class="form-check-label" for="mode-toggle"></label>
-                </div>
-                <span class="fw-bold ms-2 text-secondary">New York Times Mode</span>
-            </div>
-        </div>
-        <!-- +++++++++++++++++++ -->
-
 
         <!-- Flash Messages -->
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -106,19 +93,19 @@
                             <!-- Column 1: Source & Social -->
                             <div class="col-md-6">
                                 <div class="mb-3 position-relative">
-                                    <label for="pf_url_{{ outer_loop_index }}" class="form-label source-label-url"><i class="bi bi-link-45deg"></i> Politifact URL:</label>
-                                    <input type="url" id="pf_url_{{ outer_loop_index }}" name="data[{{ outer_loop_index }}][politifact_url]" value="{{ item.politifact_url }}" class="form-control source-input-url">
-                                     <div class="spinner-border spinner-border-sm text-secondary position-absolute top-50 end-0 translate-middle-y me-2 d-none" role="status">
+                                    <label for="source_url_{{ outer_loop_index }}" class="form-label"><i class="bi bi-link-45deg"></i> Source URL:</label>
+                                    <input type="url" id="source_url_{{ outer_loop_index }}" name="data[{{ outer_loop_index }}][politifact_url]" value="{{ item.politifact_url }}" class="form-control source-url-input" placeholder="Enter PolitiFact or other source URL">
+                                     <div class="spinner-border spinner-border-sm text-secondary position-absolute top-50 end-0 translate-middle-y me-2 d-none source-spinner" role="status">
                                         <span class="visually-hidden">Loading...</span>
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="pf_headline_{{ outer_loop_index }}" class="form-label source-label-headline"><i class="bi bi-card-heading"></i> Politifact Headline:</label>
-                                    <input type="text" id="pf_headline_{{ outer_loop_index }}" name="data[{{ outer_loop_index }}][politifact_headline]" value="{{ item.politifact_headline }}" class="form-control source-input-headline" {% if item.politifact_headline %}readonly{% endif %}>
+                                    <label for="source_headline_{{ outer_loop_index }}" class="form-label"><i class="bi bi-card-heading"></i> Headline:</label>
+                                    <input type="text" id="source_headline_{{ outer_loop_index }}" name="data[{{ outer_loop_index }}][politifact_headline]" value="{{ item.politifact_headline }}" class="form-control source-headline-input" {% if item.politifact_headline %}readonly{% endif %}>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="pf_subheadline_{{ outer_loop_index }}" class="form-label source-label-subheadline"><i class="bi bi-card-text"></i> Politifact Subheadline:</label>
-                                    <input type="text" id="pf_subheadline_{{ outer_loop_index }}" name="data[{{ outer_loop_index }}][politifact_subheadline]" value="{{ item.politifact_subheadline }}" class="form-control source-input-subheadline" {% if item.politifact_subheadline %}readonly{% endif %}>
+                                    <label for="source_subheadline_{{ outer_loop_index }}" class="form-label"><i class="bi bi-card-text"></i> Subheadline:</label>
+                                    <input type="text" id="source_subheadline_{{ outer_loop_index }}" name="data[{{ outer_loop_index }}][politifact_subheadline]" value="{{ item.politifact_subheadline }}" class="form-control source-subheadline-input" {% if item.politifact_subheadline %}readonly{% endif %}>
                                 </div>
                                 <hr>
                                 <div class="mb-3">
@@ -144,16 +131,13 @@
                             <!-- Column 2: Rating, Download, Drive Path -->
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label d-block"><i class="bi bi-star-half"></i> Rating:</label>
-                                    {% set ratings = ["full flop", "false", "mostly false", "half true", "mostly true", "true", "unrated"] %}
-                                    {% for rating in ratings %}
-                                        {% set safe_rating_name = rating|replace(" ", "_") %}
-                                        {% set rating_id = "rating_" ~ outer_loop_index ~ "_" ~ safe_rating_name %}
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" id="{{ rating_id }}" name="data[{{ outer_loop_index }}][rating]" value="{{ rating }}" {% if item.rating == rating %}checked{% endif %}>
-                                            <label class="form-check-label" for="{{ rating_id }}">{{ rating|title }}</label>
-                                        </div>
-                                    {% endfor %}
+                                    <label class="form-label d-block"><i class="bi bi-star-half"></i> Label:</label>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input rating-switch" type="checkbox" role="switch" id="rating_switch_{{ outer_loop_index }}" name="data[{{ outer_loop_index }}][rating]" value="Positive Label" {% if item.rating == "Positive Label" %}checked{% endif %}>
+                                        <label class="form-check-label" for="rating_switch_{{ outer_loop_index }}">
+                                            <span class="rating-label-text">{{ "Positive Label" if item.rating == "Positive Label" else "Negative Label" }}</span>
+                                        </label>
+                                    </div>
                                 </div>
                                 <hr>
                                 <!-- Download Section -->
@@ -237,13 +221,65 @@
             <hr class="my-4">
 
             <!-- Action Buttons -->
-            <div class="d-flex gap-2 mb-4">
+            <div class="d-flex gap-2 mb-4 align-items-center">
                  <button type="button" id="add-entry-btn" class="btn btn-success">
                      <i class="bi bi-plus-lg"></i> Add New Entry
                  </button>
-                 <button type="button" id="save-all-btn" class="btn btn-primary">
-                     <i class="bi bi-save"></i> Save All Data
-                 </button>
+                 <div id="autosave-indicator" class="ms-auto">
+                     <span class="badge bg-secondary" id="save-status">
+                         <i class="bi bi-check-circle"></i> Saved
+                     </span>
+                 </div>
+            </div>
+            
+            <!-- Search and Filter Controls -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="search-input" class="form-label"><i class="bi bi-search"></i> Search</label>
+                            <input type="text" id="search-input" class="form-control" placeholder="Search by URL, headline, or text...">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="filter-platform" class="form-label"><i class="bi bi-filter"></i> Platform</label>
+                            <select id="filter-platform" class="form-select">
+                                <option value="">All Platforms</option>
+                                <option value="x">X (Twitter)</option>
+                                <option value="facebook">Facebook</option>
+                                <option value="instagram">Instagram</option>
+                                <option value="youtube">YouTube</option>
+                                <option value="tiktok">TikTok</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="filter-rating" class="form-label"><i class="bi bi-star"></i> Label</label>
+                            <select id="filter-rating" class="form-select">
+                                <option value="">All Labels</option>
+                                <option value="Negative Label">Negative Label</option>
+                                <option value="Positive Label">Positive Label</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <button type="button" id="clear-filters-btn" class="btn btn-sm btn-outline-secondary">
+                            <i class="bi bi-x-circle"></i> Clear Filters
+                        </button>
+                        <span id="filter-results" class="ms-3 text-muted"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Undo/Redo Controls -->
+            <div class="mb-3">
+                <div class="btn-group" role="group">
+                    <button type="button" id="undo-btn" class="btn btn-sm btn-outline-secondary" disabled title="Undo (Ctrl+Z)">
+                        <i class="bi bi-arrow-counterclockwise"></i> Undo
+                    </button>
+                    <button type="button" id="redo-btn" class="btn btn-sm btn-outline-secondary" disabled title="Redo (Ctrl+Y)">
+                        <i class="bi bi-arrow-clockwise"></i> Redo
+                    </button>
+                </div>
+                <span id="history-status" class="ms-3 text-muted small"></span>
             </div>
 
         </div> <!-- End #data-form -->

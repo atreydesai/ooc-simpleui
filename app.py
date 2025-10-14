@@ -2,6 +2,7 @@ import os
 import json
 import subprocess
 import sys
+from typing import Dict, List, Any, Tuple, Optional
 from flask import Flask, render_template, request, jsonify, redirect, url_for, flash
 from urllib.parse import urlparse
 import logging
@@ -29,8 +30,13 @@ EVIDENCE_CRITERIA_KEYS = [
 ]
 
 
-def load_data():
-    """Loads data from the JSON file."""
+def load_data() -> List[Dict[str, Any]]:
+    """
+    Loads data from the JSON file.
+    
+    Returns:
+        List[Dict[str, Any]]: List of data entries, empty list if file doesn't exist or error occurs
+    """
     if not os.path.exists(DATA_FILE):
         logging.info(f"Data file '{DATA_FILE}' not found, returning empty list.")
         return []
@@ -83,19 +89,33 @@ def load_data():
         return []
 
 
-def save_data(data):
-    """Saves data to the JSON file, ensuring sequential IDs."""
+def save_data(data: List[Dict[str, Any]]) -> bool:
+    """
+    Saves data to the JSON file, preserving stable IDs.
+    
+    Args:
+        data: List of entry dictionaries to save
+        
+    Returns:
+        bool: True if save successful, False otherwise
+    """
     try:
+        # Clean up checklist data but preserve IDs
         for i, item in enumerate(data):
             if isinstance(item, dict):
-                 item['id'] = i
-                 if isinstance(item.get('external_links_info'), list):
-                     for link_info in item['external_links_info']:
-                         if isinstance(link_info, dict) and isinstance(link_info.get('checklist'), dict):
-                             valid_checklist = {key: link_info['checklist'].get(key, False) for key in EVIDENCE_CRITERIA_KEYS if key in link_info['checklist']}
-                             link_info['checklist'] = valid_checklist
+                # Ensure item has an ID - if not, this is a critical error
+                if 'id' not in item or item['id'] is None:
+                    logging.error(f"Item at index {i} is missing ID field. This should not happen.")
+                    return False
+                    
+                # Clean up external links checklist data
+                if isinstance(item.get('external_links_info'), list):
+                    for link_info in item['external_links_info']:
+                        if isinstance(link_info, dict) and isinstance(link_info.get('checklist'), dict):
+                            valid_checklist = {key: link_info['checklist'].get(key, False) for key in EVIDENCE_CRITERIA_KEYS if key in link_info['checklist']}
+                            link_info['checklist'] = valid_checklist
             else:
-                logging.warning(f"Item at index {i} is not a dictionary ({type(item)}), skipping ID assignment.")
+                logging.warning(f"Item at index {i} is not a dictionary ({type(item)}), skipping.")
 
         with open(DATA_FILE, 'w', encoding='utf-8') as f:
             json.dump(data, f, indent=4, ensure_ascii=False)
@@ -112,8 +132,16 @@ def save_data(data):
         return False
 
 
-def parse_social_platform(url_string):
-    """Extracts a simplified platform name from a URL string."""
+def parse_social_platform(url_string: str) -> str:
+    """
+    Extracts a simplified platform name from a URL string.
+    
+    Args:
+        url_string: The URL to parse
+        
+    Returns:
+        str: Simplified platform name (e.g., 'x', 'facebook', 'youtube')
+    """
     if not url_string: return ""
     try:
         parsed_url = urlparse(url_string)
@@ -134,18 +162,16 @@ def parse_social_platform(url_string):
     except ValueError: return ""
     except Exception as e: logging.error(f"Error parsing URL {url_string} for platform: {e}"); return ""
 
-def find_nyt_link(text):
-    """Finds the first nyti.ms or nytimes.com link in a block of text."""
-    nyt_regex = r'https?://(?:nyti\.ms/|www\.nytimes\.com/)[a-zA-Z0-9/.\-?=_]+'
-    match = re.search(nyt_regex, text)
-    if match:
-        found_url = match.group(0)
-        logging.info(f"Found NYT-like link in text: {found_url}")
-        return found_url
-    return None
-
-def get_page_details(url):
-    """Fetches headline and subheadline from a URL, prioritizing OG tags with fallbacks."""
+def get_page_details(url: str) -> Tuple[Optional[str], Optional[str]]:
+    """
+    Fetches headline and subheadline from a URL, prioritizing OG tags with fallbacks.
+    
+    Args:
+        url: The URL to fetch page details from
+        
+    Returns:
+        Tuple[Optional[str], Optional[str]]: (headline, subheadline) or (None, None) on error
+    """
     if not url or not url.startswith(('http://', 'https://')):
         logging.warning(f"Invalid URL for page details fetch: {url}")
         return None, None
@@ -187,8 +213,16 @@ def get_page_details(url):
         logging.error(f"Unexpected error getting page details for {url}: {e}", exc_info=True)
         return None, None
 
-def get_video_metadata_yt_dlp(video_url):
-    """Fetches video metadata using yt-dlp and scans description for an article link."""
+def get_video_metadata_yt_dlp(video_url: str) -> Dict[str, Any]:
+    """
+    Fetches video metadata using yt-dlp and scans description for an article link.
+    
+    Args:
+        video_url: URL of the video to fetch metadata from
+        
+    Returns:
+        Dict[str, Any]: Result dictionary with 'success', 'duration', 'social_text', 'message'
+    """
     command = [
         sys.executable, '-m', 'yt_dlp', '-j', '-v', '--no-warnings', '--ignore-config',
         '--cookies-from-browser', BROWSER_FOR_COOKIES, video_url
@@ -224,12 +258,9 @@ def get_video_metadata_yt_dlp(video_url):
         social_text = "\n\n".join(social_text_parts) if social_text_parts else "No title or description found."
         if duration is None: duration = 0.0
 
-        found_article_url = find_nyt_link(social_text)
-
         return {
             "success": True, "duration": float(duration), "social_text": social_text.strip(),
-            "message": "Metadata fetched successfully.",
-            "found_article_url": found_article_url
+            "message": "Metadata fetched successfully."
         }
 
     except (json.JSONDecodeError, IndexError) as e:
@@ -244,13 +275,36 @@ def get_video_metadata_yt_dlp(video_url):
         logging.exception(msg); return {"success": False, "message": msg}
 
 
-def download_video_yt_dlp(video_url, item_id):
-    """Downloads video using yt-dlp, attempting to use cookies from browser."""
-    if not os.path.exists(DOWNLOAD_DIR):
-        try: os.makedirs(DOWNLOAD_DIR); logging.info(f"Created download directory: {DOWNLOAD_DIR}")
-        except OSError as e: logging.error(f"Could not create '{DOWNLOAD_DIR}': {e}"); return {"success": False, "message": f"Error creating download directory: {e}", "drive_path": ""}
+def download_video_yt_dlp(video_url: str, item_id: int, rating: str = "") -> Dict[str, Any]:
+    """
+    Downloads video using yt-dlp, attempting to use cookies from browser.
+    
+    Args:
+        video_url: URL of the video to download
+        item_id: ID number for the video file naming
+        rating: Rating/label for the video (determines subfolder)
+        
+    Returns:
+        Dict[str, Any]: Result dictionary with 'success', 'message', 'drive_path'
+    """
+    # Determine subfolder based on rating
+    subfolder = ""
+    if rating == "Negative Label":
+        subfolder = "video_negativelabel"
+    elif rating == "Positive Label":
+        subfolder = "video_positivelabel"
+    
+    # Create download directory path
+    if subfolder:
+        download_path = os.path.join(DOWNLOAD_DIR, subfolder)
+    else:
+        download_path = DOWNLOAD_DIR
+    
+    if not os.path.exists(download_path):
+        try: os.makedirs(download_path, exist_ok=True); logging.info(f"Created download directory: {download_path}")
+        except OSError as e: logging.error(f"Could not create '{download_path}': {e}"); return {"success": False, "message": f"Error creating download directory: {e}", "drive_path": ""}
 
-    output_template = os.path.join(DOWNLOAD_DIR, f"video_{item_id}.%(ext)s")
+    output_template = os.path.join(download_path, f"video_{item_id}.%(ext)s")
     
     command = [
         sys.executable, '-m', 'yt_dlp',
@@ -270,9 +324,9 @@ def download_video_yt_dlp(video_url, item_id):
         actual_path, download_successful, message = None, False, ""
 
         if process.returncode == 0:
-            for filename in os.listdir(DOWNLOAD_DIR):
+            for filename in os.listdir(download_path):
                 if filename.startswith(f"video_{item_id}.") and not filename.endswith((".part", ".ytdl")):
-                    actual_path = os.path.abspath(os.path.join(DOWNLOAD_DIR, filename))
+                    actual_path = os.path.abspath(os.path.join(download_path, filename))
                     download_successful = True
                     message = f"Download successful ({filename})."
                     logging.info(f"Download Success (ID: {item_id}): {actual_path}")
@@ -287,8 +341,8 @@ def download_video_yt_dlp(video_url, item_id):
             message = f"Download failed. Error: {process.stderr or 'Unknown yt-dlp error'}{error_suffix}"
             logging.error(f"Download Failed (ID: {item_id}): {message}")
             try:
-                for filename in os.listdir(DOWNLOAD_DIR):
-                    if filename.startswith(f"video_{item_id}."): os.remove(os.path.join(DOWNLOAD_DIR, filename))
+                for filename in os.listdir(download_path):
+                    if filename.startswith(f"video_{item_id}."): os.remove(os.path.join(download_path, filename))
             except Exception as e_clean:
                  logging.warning(f"Error during cleanup of failed download for ID {item_id}: {e_clean}")
 
@@ -378,17 +432,45 @@ def handle_metadata_request():
 def handle_download_request():
     if not request.is_json: return jsonify({"error": "Request must be JSON."}), 415
     data = request.get_json()
-    url, item_id_str = data.get('url'), data.get('id')
+    url, item_id_str, rating = data.get('url'), data.get('id'), data.get('rating', '')
     if not url or item_id_str is None: return jsonify({"error": "Missing 'url' or 'id'."}), 400
     try: item_id = int(item_id_str)
     except (ValueError, TypeError): return jsonify({"error": f"Invalid 'id': '{item_id_str}'."}), 400
 
-    result = download_video_yt_dlp(url, item_id)
+    result = download_video_yt_dlp(url, item_id, rating)
 
     if result["success"]: return jsonify(result), 200
     else:
         status_code = 400 if "invalid url" in result.get("message", "").lower() else 500
         return jsonify({"error": result.get("message", "Unknown download error"), "success": False}), status_code
+
+@app.route('/delete_video', methods=['POST'])
+def handle_delete_video():
+    """Deletes video file associated with an entry ID."""
+    if not request.is_json: return jsonify({"error": "Request must be JSON."}), 415
+    data = request.get_json()
+    item_id_str = data.get('id')
+    if item_id_str is None: return jsonify({"error": "Missing 'id'."}), 400
+    try: item_id = int(item_id_str)
+    except (ValueError, TypeError): return jsonify({"error": f"Invalid 'id': '{item_id_str}'."}), 400
+
+    try:
+        deleted_files = []
+        if os.path.exists(DOWNLOAD_DIR):
+            for filename in os.listdir(DOWNLOAD_DIR):
+                if filename.startswith(f"video_{item_id}.") and not filename.endswith((".part", ".ytdl")):
+                    filepath = os.path.join(DOWNLOAD_DIR, filename)
+                    os.remove(filepath)
+                    deleted_files.append(filename)
+                    logging.info(f"Deleted video file: {filepath}")
+        
+        if deleted_files:
+            return jsonify({"success": True, "message": f"Deleted {len(deleted_files)} file(s)", "files": deleted_files}), 200
+        else:
+            return jsonify({"success": True, "message": "No video files found for this ID"}), 200
+    except Exception as e:
+        logging.error(f"Error deleting video for ID {item_id}: {e}")
+        return jsonify({"error": f"Error deleting video: {str(e)}", "success": False}), 500
 
 
 # --- Main Execution Guard ---
@@ -406,4 +488,4 @@ if __name__ == '__main__':
     logging.info("*"*60)
     logging.info("Ensure dependencies are installed: pip install Flask requests beautifulsoup4 yt-dlp")
 
-    app.run(debug=True, host='127.0.0.1', port=5000)
+    app.run(debug=True, host='127.0.0.1', port=5001)

@@ -198,6 +198,81 @@ textarea.form-control[readonly] { /* Apply to textarea too */
 /* --- End External Link Styling --- */
 
 
+/* Auto-save indicator styling */
+#autosave-indicator {
+    transition: opacity 0.3s ease;
+}
+
+#save-status {
+    font-size: 0.875rem;
+    padding: 0.35em 0.65em;
+    transition: all 0.3s ease;
+}
+
+#save-status.saving {
+    background-color: #ffc107 !important;
+    animation: pulse 1s infinite;
+}
+
+#save-status.saved {
+    background-color: #198754 !important;
+}
+
+#save-status.error {
+    background-color: #dc3545 !important;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* Search and filter results */
+#filter-results {
+    font-size: 0.9rem;
+}
+
+.entry-group.filtered-out {
+    display: none !important;
+}
+
+.entry-group.highlight-match {
+    animation: highlightFade 2s ease-out;
+}
+
+@keyframes highlightFade {
+    0% { background-color: #fff3cd; }
+    100% { background-color: transparent; }
+}
+
+/* Undo/Redo button styling */
+#undo-btn:disabled, #redo-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Rating Switch Styling */
+.rating-switch {
+    cursor: pointer;
+    width: 3em;
+    height: 1.5em;
+}
+
+.rating-label-text {
+    font-weight: 600;
+    margin-left: 0.5rem;
+    transition: color 0.2s ease;
+}
+
+/* Color based on parent having checked switch */
+.form-switch:has(.rating-switch:checked) .rating-label-text {
+    color: #198754; /* Green for Positive Label */
+}
+
+.form-switch:has(.rating-switch:not(:checked)) .rating-label-text {
+    color: #dc3545; /* Red for Negative Label */
+}
+
 @media (max-width: 767.98px) {
     .import-section .col-sm-8,
     .import-section .col-sm-4 {
