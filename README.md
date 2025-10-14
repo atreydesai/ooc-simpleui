@@ -1,3 +1,5 @@
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/atreydesai/ooc-simpleui)
+
 # OOC Simple UI
 
 A Flask-based web application for analyzing and managing Out-of-Context (OOC) video content with evidence verification capabilities. 
@@ -68,7 +70,7 @@ A Flask-based web application for analyzing and managing Out-of-Context (OOC) vi
 
 1. **Add New Entry**: Click "Add New Entry" to create a new analysis record
 2. **Enter URLs**: 
-   - Add PolitiFact URL (for fact-checking context)
+   - Add PolitiFact URL or any other relevant URL (for fact-checking context)
    - Add Social Link (video URL to analyze)
 3. **Fetch Metadata**: Click "Download" to automatically extract video information
 4. **Complete OOC Checklist**: Mark relevant out-of-context criteria
