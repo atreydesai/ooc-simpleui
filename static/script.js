@@ -739,6 +739,12 @@
                 return;
             }
 
+            // Don't re-attempt if headline box already has content
+            if (headlineInput.value.trim()) {
+                spinner.classList.add('d-none');
+                return;
+            }
+
             spinner.classList.remove('d-none');
             urlInput.disabled = true;
 
