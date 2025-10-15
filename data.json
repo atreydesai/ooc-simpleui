@@ -8593,5 +8593,1187 @@
         "ooc_misleading_intent": false,
         "ooc_misleading_emotional_framing": false,
         "ooc_causal_misattribution": true
+    },
+    {
+        "id": 141,
+        "politifact_url": "https://factcheck.afp.com/doc.afp.com.649E8CP",
+        "politifact_headline": "Video shows quake-hit building in Myanmar, not proof of corruption in Bangladesh",
+        "politifact_subheadline": "A video circulating ahead of the first anniversary of protests that culminated in the ouster of Bangladesh's former leader Sheikh Hasina shows a fire station damaged by an earthquake in Myanmar, contrary to posts claiming it shows the result of corruption by the overthrown government. Similar images of the fire house, in the central Myanmar city of Sagaing, were shared in local news reports after the devastating 7.7-magnitude earthquake in late March 2025.",
+        "rating": "Negative Label",
+        "social_link": "https://mvau.lt/media/a8384056-f495-40ef-8d56-7f6f3e6c12d4",
+        "social_platform": "mvau",
+        "social_duration": 0,
+        "social_text": "Title: Archived Fact-Checked Media — MediaVault (1)\n\nDescription: “ঠিকাদার বলছে, সবাইকে দিতে গিয়েই শেষ।\nআজই একটি সরকারি ভবন দেখে ভাবছিলাম সত্যি হয়ে গেল। \nঘুষ খাওয়ার রাস্তা সংকোচিত হচ্ছে বলে সরকারি যারা ঘুষখোর কর্মকর্তা তাদের মাথা খারাপ হয়ে যাচ্ছে,আর এতে মচকাচ্ছে একটা দল”",
+        "download_success": true,
+        "download_message": "Download successful (video_141.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_negativelabel/video_141.mp4",
+        "external_links_info": [
+            {
+                "url": "https://www.youtube.com/watch?v=wC_PajfC2_k",
+                "description": "A reverse image search on Google using keyframes from the falsely shared clip led to a YouTube video posted on May 24 by a channel called \"2025 Sagaing Earthquake Archive\" (archived link).  The video is titled, \"Damage To Sagaing Fire Station, Sagaing, Myanmar\".",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": false,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": true,
+                    "fact_verifiability": false,
+                    "clarity_relevance": false
+                }
+            },
+            {
+                "url": "https://www.france24.com/en/live-news/20250428-myanmar-marks-month-of-misery-since-historic-quake",
+                "description": "The city of Sagaing was less than 15 kilometres (nine miles) from the epicentre of a devastating 7.7-magnitude quake that struck Myanmar on March 28, killing nearly 3,800 people and destroying swathes of homes and businesses (archived link).  Image",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": true,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": true,
+                    "definitive_proof": false,
+                    "direct_connection": false,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": true,
+                    "clarity_relevance": false
+                }
+            }
+        ],
+        "ooc_temporal_misattribution": true,
+        "ooc_geographical_misattribution": true,
+        "ooc_person_misidentification": true,
+        "ooc_contextual_misrepresentation": true,
+        "ooc_exaggeration_scale": false,
+        "ooc_exaggeration_urgency": false,
+        "ooc_fabricated_consequences": true,
+        "ooc_misleading_intent": true,
+        "ooc_misleading_emotional_framing": true,
+        "ooc_causal_misattribution": true
+    },
+    {
+        "id": 142,
+        "politifact_url": "https://factcheck.afp.com/doc.afp.com.64CD2KD",
+        "politifact_headline": "Iraq religious procession misrepresented as Zohran Mamdani supporters",
+        "politifact_subheadline": "Posts across X are suggesting a video of a crowd dancing to a call-and-response chant in Arabic shows the streets of New York City after Zohran Mamdani, who is Muslim, won the US financial capital's 2025 Democratic mayoral primary. But the footage is misrepresented; it shows a procession in Baghdad, Iraq more than five months earlier.",
+        "rating": "Negative Label",
+        "social_link": "https://x.com/stillgray/status/1938069795716452717",
+        "social_platform": "x",
+        "social_duration": 41.35,
+        "social_text": "Title: Ian Miles Cheong - What is going on in New York?\n\nDescription: What is going on in New York? https://t.co/ls9Z9erkbf",
+        "download_success": true,
+        "download_message": "Download successful (video_142.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_negativelabel/video_142.mp4",
+        "external_links_info": [
+            {
+                "url": "https://www.tiktok.com/@iael55/video/7460550329067769095",
+                "description": "Reverse image searches surfaced matching videos posted to TikTok, Instagram and other platforms as early as January 16 (archived here and here).",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": false,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": false,
+                    "clarity_relevance": true
+                }
+            },
+            {
+                "url": "https://t.me/hamelallewaa/7981",
+                "description": "AFP could not verify the exact location of the footage, but the posts -- as well as an event brochure Mawkeb Hamel Al-Lewa shared January 10 on Telegram -- place it in Baghdad's Al-Ghazaliya neighborhood (archived here). Photos and videos attached to one Google Maps location in the area show the same buildings as well as what appears to be a similar procession in 2024 (archived here).",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": false,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": true,
+                    "clarity_relevance": false
+                }
+            }
+        ],
+        "ooc_temporal_misattribution": true,
+        "ooc_geographical_misattribution": true,
+        "ooc_person_misidentification": true,
+        "ooc_contextual_misrepresentation": true,
+        "ooc_exaggeration_scale": false,
+        "ooc_exaggeration_urgency": false,
+        "ooc_fabricated_consequences": false,
+        "ooc_misleading_intent": true,
+        "ooc_misleading_emotional_framing": true,
+        "ooc_causal_misattribution": true
+    },
+    {
+        "id": 143,
+        "politifact_url": "https://factcheck.afp.com/doc.afp.com.64CV29D",
+        "politifact_headline": "Silver note commemorating Indonesian independence is not legal tender",
+        "politifact_subheadline": "Ahead of the 80th anniversary of Indonesia's independence, a video surfaced in posts alongside false claims it showed a new 80,000 Indonesian rupiah (US$5) banknote released to mark the milestone. The video in fact shows a commemorative silver plate and the Indonesian central bank said it had not issued a new banknote denomination.",
+        "rating": "Negative Label",
+        "social_link": "https://www.tiktok.com/@jurnas.tv/video/7517630297341496582?_r=1&_t=ZS-8xSY3RgAuYy",
+        "social_platform": "tiktok",
+        "social_duration": 15,
+        "social_text": "Title: Penampakan uang edisi spesial 80 tahun kemerdekaan RI. #jurnascom #ju...\n\nDescription: Penampakan uang edisi spesial 80 tahun kemerdekaan RI. #jurnascom #jurnastv #uang #hutri80 #uang80ribu",
+        "download_success": true,
+        "download_message": "Download successful (video_143.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_negativelabel/video_143.mp4",
+        "external_links_info": [
+            {
+                "url": "https://www.tiktok.com/@iskander1873/video/7516395157479083269?_r=1&_t=ZS-8xSYC3OslaZ",
+                "description": "A reverse image search on Google found the circulating video was first uploaded to TikTok on June 16, where the user said it showed a \"commemorative silver sheet for Indonesia's 80th anniversary\" and that it was \"not a banknote\" (archived link).  Image",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": true,
+                    "definitive_proof": true,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": false,
+                    "clarity_relevance": false
+                }
+            },
+            {
+                "url": "https://www.instagram.com/p/DLeMlOHv5mJ/",
+                "description": "The same silver note can be seen in an Instagram video by the company promoting a commemorative coin collection for the 80th anniversary (archived link).",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": true,
+                    "definitive_proof": false,
+                    "direct_connection": false,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": true,
+                    "clarity_relevance": false
+                }
+            }
+        ],
+        "ooc_temporal_misattribution": false,
+        "ooc_geographical_misattribution": false,
+        "ooc_person_misidentification": false,
+        "ooc_contextual_misrepresentation": true,
+        "ooc_exaggeration_scale": false,
+        "ooc_exaggeration_urgency": false,
+        "ooc_fabricated_consequences": true,
+        "ooc_misleading_intent": false,
+        "ooc_misleading_emotional_framing": false,
+        "ooc_causal_misattribution": true
+    },
+    {
+        "id": 144,
+        "politifact_url": "https://factcheck.afp.com/doc.afp.com.64D27ZQ",
+        "politifact_headline": "Philippine senator's plea to colleagues misrepresented as 'vow to defy constitution'",
+        "politifact_subheadline": "Edited footage of a Philippine senator has surfaced in posts falsely claiming she vowed to flout the country's constitution to remove Vice President Sara Duterte from office. Video and transcript of Senator Risa Hontiveros's remarks show she in fact said her fellow senators would be defying their constitutional duty if they failed to convene an impeachment trial for the vice president.",
+        "rating": "Negative Label",
+        "social_link": "https://www.tiktok.com/@dickrhoaks73/video/7519014990435683602?_r=1&_t=ZS-8xbHi8HiekK",
+        "social_platform": "tiktok",
+        "social_duration": 10,
+        "social_text": "Title: TikTok video #7519014990435683602",
+        "download_success": true,
+        "download_message": "Download successful (video_144.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_negativelabel/video_144.mp4",
+        "external_links_info": [
+            {
+                "url": "https://www.youtube.com/watch?t=555&v=n6njtDhBZMQ&feature=youtu.be",
+                "description": "A reverse image search on Google using a keyframe from the falsely shared clip found it was taken from a news conference held by Hontiveros on June 9 (archived link).  At the 9:15 mark, Hontiveros was asked if she thinks convening as an impeachment court is optional for the Senate.  \"Oh, definitely not. Definitely not,\" she says before responding further in Tagalog.  \"If we look at it and act as if convening as an impeachment court is optional, we will be defying the constitution, we, the senators.  \"And that's why I've been saying that we in the minority will not allow this. As a senator, I will not agree to that.\"",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": true,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": true,
+                    "fact_verifiability": false,
+                    "clarity_relevance": false
+                }
+            },
+            {
+                "url": "https://web.senate.gov.ph/press_release/2025/0609_hontiveros3.asp#:~:text=Oh%2C%20definitely%20not,susuway%20sa%20Konstitusyon.",
+                "description": "Her answer is also shown in the transcript of the press conference published on the Senate's website (archived link).",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": true,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": false,
+                    "direct_connection": false,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": true,
+                    "clarity_relevance": false
+                }
+            }
+        ],
+        "ooc_temporal_misattribution": false,
+        "ooc_geographical_misattribution": false,
+        "ooc_person_misidentification": false,
+        "ooc_contextual_misrepresentation": true,
+        "ooc_exaggeration_scale": false,
+        "ooc_exaggeration_urgency": false,
+        "ooc_fabricated_consequences": false,
+        "ooc_misleading_intent": true,
+        "ooc_misleading_emotional_framing": true,
+        "ooc_causal_misattribution": false
+    },
+    {
+        "id": 145,
+        "politifact_url": "https://factcheck.afp.com/doc.afp.com.64GK9T3",
+        "politifact_headline": "Flag removal video falsely linked to Zohran Mamdani's election win",
+        "politifact_subheadline": "The Conservative Political Action Conference (CPAC) suggested in posts on X and other platforms that a video shows a person climbing a streetlamp and ripping down American and United Nations flags following Muslim candidate Zohran Mamdani's victory in New York City's 2025 Democratic mayoral primary. This is false; the clip shows an incident that took place at a pro-Palestinian protest in November 2023.",
+        "rating": "Negative Label",
+        "social_link": "https://x.com/CPAC/status/1938326473409962108",
+        "social_platform": "x",
+        "social_duration": 28.58,
+        "social_text": "Title: CPAC - @TimRunsHisMouth:  Muslims ripping down American flags in NYC…  You g...\n\nDescription: @TimRunsHisMouth:  Muslims ripping down American flags in NYC…  You get exactly what you voted for… https://t.co/tiyWUotwCn",
+        "download_success": true,
+        "download_message": "Download successful (video_145.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_negativelabel/video_145.mp4",
+        "external_links_info": [
+            {
+                "url": "https://www.youtube.com/watch?v=FftaMPrnW0o",
+                "description": "Reverse image searches surfaced the same clip posted online as early as November 11, 2023, in relation to a pro-Palestinian protest that erupted in the city a little over a month after war broke out between Israel and Hamas in Gaza (archived here).",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": false,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": true,
+                    "fact_verifiability": false,
+                    "clarity_relevance": false
+                }
+            },
+            {
+                "url": "https://www.gettyimages.com/detail/news-photo/view-of-palestinian-flag-as-thousands-of-pro-palestinians-news-photo/1775477576?adppopup=true",
+                "description": "The same flag-decorated lamp post and individual -- identifiable by his attire -- also appear in photos taken by Selcuk Acar for the Turkish news agency Anadolu, dated November 10 (archived here and here).",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": true,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": false,
+                    "direct_connection": false,
+                    "source_transparency": false,
+                    "evidence_integrity": true,
+                    "fact_verifiability": false,
+                    "clarity_relevance": true
+                }
+            }
+        ],
+        "ooc_temporal_misattribution": true,
+        "ooc_geographical_misattribution": false,
+        "ooc_person_misidentification": true,
+        "ooc_contextual_misrepresentation": true,
+        "ooc_exaggeration_scale": false,
+        "ooc_exaggeration_urgency": false,
+        "ooc_fabricated_consequences": true,
+        "ooc_misleading_intent": true,
+        "ooc_misleading_emotional_framing": true,
+        "ooc_causal_misattribution": true
+    },
+    {
+        "id": 146,
+        "politifact_url": "https://factcheck.afp.com/doc.afp.com.64M33CQ",
+        "politifact_headline": "Clip shows Peruvian pilgrimage, not Israelis fleeing war with Iran",
+        "politifact_subheadline": "A video circulating in Indonesian-language social media posts shows a religious pilgrimage, not Israeli refugees who fled from Iranian missile strikes during the 12-day war between the Middle East arch foes. While thousands of people caught up in the conflict were evacuated, the clip matches satellite imagery of a cultural heritage site in southern Peru.",
+        "rating": "Negative Label",
+        "social_link": "tiktok.com/@alekgp6/video/7519756179753504056?q=tenda%20pengungsian%20israel%20lereng%20gunun&t=1751342944943",
+        "social_platform": "",
+        "social_duration": 18,
+        "social_text": "Title: tenda tenda memenuhi lereng gunung Mesir #iran🇮🇷 #israel🇮🇱 #warga62 #...\n\nDescription: tenda tenda memenuhi lereng gunung Mesir #iran🇮🇷 #israel🇮🇱 #warga62 #viraltiktok #fyppppppppppppppppppppppp #perangduniake3",
+        "download_success": true,
+        "download_message": "Download successful (video_146.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_negativelabel/video_146.mp4",
+        "external_links_info": [
+            {
+                "url": "https://www.facebook.com/watch/?v=1014080367380163",
+                "description": "A reverse image search on Google using keyframes from the falsely shared video led to the same footage uploaded on June 19 (archived link).  Image",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": true,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": true,
+                    "fact_verifiability": false,
+                    "clarity_relevance": false
+                }
+            },
+            {
+                "url": "https://www.google.com/maps/place/Sanctuary+of+the+Lord+of+Qoyllorit'i/@-13.5479679,-71.2368908,477m/data=!3m1!1e3!4m6!3m5!1s0x916e55791cb8bdd3:0xba5fdcf621b36a98!8m2!3d-13.5480666!4d-71.2366605!16s%2Fg%2F11b6c0c2f1?entry=ttu&g_ep=EgoyMDI1MTAxMy4wIKXMDSoASAFQAw%3D%3D",
+                "description": "Structures seen in Google Maps satellite imagery of the sanctuary in southern Peru also correspond to buildings visible in the falsely shared footage (archived link).",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": true,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": true,
+                    "definitive_proof": false,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": false,
+                    "clarity_relevance": false
+                }
+            }
+        ],
+        "ooc_temporal_misattribution": true,
+        "ooc_geographical_misattribution": true,
+        "ooc_person_misidentification": true,
+        "ooc_contextual_misrepresentation": true,
+        "ooc_exaggeration_scale": false,
+        "ooc_exaggeration_urgency": false,
+        "ooc_fabricated_consequences": true,
+        "ooc_misleading_intent": true,
+        "ooc_misleading_emotional_framing": true,
+        "ooc_causal_misattribution": true
+    },
+    {
+        "id": 147,
+        "politifact_url": "https://factcheck.afp.com/doc.afp.com.64WU9ZQ",
+        "politifact_headline": "Video does not show 'Israeli air force defection' in war with Iran",
+        "politifact_subheadline": "Before a ceasefire halted 12 days of war between Iran and Israel in June, a video of a group of people in uniform walking down a street surfaced in posts falsely claiming it shows Israeli air force members \"quitting\" to protest the fighting. In fact, the footage was first shared online in November 2024 and shows Israeli police on their way to put out bonfires during a demonstration in Tel Aviv.",
+        "rating": "Negative Label",
+        "social_link": "https://www.facebook.com/reel/1108208198030242",
+        "social_platform": "facebook",
+        "social_duration": 22.29,
+        "social_text": "Title: Video\n\nDescription: Israel is in surrender MODE??",
+        "download_success": true,
+        "download_message": "Download successful (video_147.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_negativelabel/video_147.mp4",
+        "external_links_info": [
+            {
+                "url": "https://x.com/bar_peleg/status/1853916445811384329",
+                "description": "Google reverse image searches of the video's keyframes led to an X post by Israeli journalist Bar Peleg on November 6, 2024 (archived here and here). The Hebrew-language description states border police officers at the Ayalon highway were moving to extinguish bonfires during a protest.  At the clip's five-second mark, a woman in uniform can be seen holding a fire extinguisher.   Image",
+                "checklist": {
+                    "author_expertise": true,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": true,
+                    "definitive_proof": false,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": false,
+                    "clarity_relevance": false
+                }
+            },
+            {
+                "url": "https://web.archive.org/web/20250706093058/https://www.afpforum.com/AFPForum/Search/ViewMedia.aspx?mui=1&hid=2C0A40E51CBFD0E17869765F881B666F1CAE6DDB1861DAB17A4A0CC2339096C2",
+                "description": "AFP published footage from a protest in Tel Aviv against the sacking of defence minister Yoav Gallant in November 2024, which shows demonstrators had set fires along a stretch of the Ayalon highway in the city (archived link).",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": true,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": true,
+                    "definitive_proof": false,
+                    "direct_connection": false,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": true,
+                    "clarity_relevance": false
+                }
+            }
+        ],
+        "ooc_temporal_misattribution": true,
+        "ooc_geographical_misattribution": false,
+        "ooc_person_misidentification": true,
+        "ooc_contextual_misrepresentation": true,
+        "ooc_exaggeration_scale": false,
+        "ooc_exaggeration_urgency": false,
+        "ooc_fabricated_consequences": true,
+        "ooc_misleading_intent": true,
+        "ooc_misleading_emotional_framing": true,
+        "ooc_causal_misattribution": true
+    },
+    {
+        "id": 148,
+        "politifact_url": "https://factcheck.afp.com/doc.afp.com.62JA9NU",
+        "politifact_headline": "Video shows hospital in Lebanon, not hostel struck in Air India crash",
+        "politifact_subheadline": "Days after an Air India passenger jet crashed shortly after takeoff into a residential area of Ahmedabad, a compilation circulated in social media posts falsely claiming it showed the impact of the plane smashing into a medical college's hostel in the western Indian city. While the London-bound aircraft did hit the building, the footage in fact shows a hospital in southern Lebanon.",
+        "rating": "Negative Label",
+        "social_link": "https://www.facebook.com/vaddekushichand/videos/726181659798538/",
+        "social_platform": "facebook",
+        "social_duration": 15.14,
+        "social_text": "Title: Video\n\nDescription: CCTV footage from BJ Medical College Hospital captures the terrifying moment an Air India plane crashed into the hospital premises, bursting into flames in just seconds",
+        "download_success": true,
+        "download_message": "Download successful (video_148.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_negativelabel/video_148.mp4",
+        "external_links_info": [
+            {
+                "url": "https://www.instagram.com/reel/DFsuBa4MU1D/",
+                "description": "A reverse image search on Google using keyframes from the video led to the same footage posted February 5 on Instagram by the Lebanon-based Ragheb Harb University Hospital (archived link).   The clips appear in a longer video detailing the hospital's restoration after being damaged.",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": true,
+                    "definitive_proof": true,
+                    "direct_connection": false,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": false,
+                    "clarity_relevance": false
+                }
+            },
+            {
+                "url": "https://www.google.com/maps/place/Sheikh+Ragheb+Hospital/@33.3892651,35.4406224,3a,75y,90t/data=!3m8!1e2!3m6!1sCIHM0ogKEICAgIDcr5_5XA!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgps-cs-s%2FAC9h4npZSShslNb3uHTzgrONdQ4B0v6SXplrc9Fjlu9RwhPgId10YVuAb1h4ipOKAOkpeWInY5UpTodOzny9ujHJW6sjkgfglCJWqU9a-X0DYn6xk7XKU40YSpW1a_OqULKKg-Vb2lCq%3Dw203-h134-k-no!7i4288!8i2848!4m7!3m6!1s0x151e932417730e47:0x40bff8f5713c8343!8m2!3d33.3893837!4d35.440603!10e5!16s%2Fg%2F1tf5b3g5?entry=tts&g_ep=EgoyMDI1MDYxMS4wIPu8ASoASAFQAw%3D%3D&skid=eeb59af1-0322-4147-ac80-2b94599e5904",
+                "description": "Images of the hospital on Google Maps also correspond to the footage circulating online (archived link).   Image",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": true,
+                    "definitive_proof": false,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": true,
+                    "clarity_relevance": false
+                }
+            },
+            {
+                "url": "https://www.facebook.com/watch/?v=3848936988705730",
+                "description": "According to local media reports and a post on the hospital's Facebook page, the hospital was damaged in November 2024 (archived here, here and here).  At the time, border clashes between Israeli forces and the Lebanese armed group Hezbollah had escalated into all-out war (archived link).  A",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": true,
+                    "definitive_proof": false,
+                    "direct_connection": false,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": true,
+                    "clarity_relevance": true
+                }
+            }
+        ],
+        "ooc_temporal_misattribution": true,
+        "ooc_geographical_misattribution": true,
+        "ooc_person_misidentification": false,
+        "ooc_contextual_misrepresentation": true,
+        "ooc_exaggeration_scale": false,
+        "ooc_exaggeration_urgency": false,
+        "ooc_fabricated_consequences": true,
+        "ooc_misleading_intent": false,
+        "ooc_misleading_emotional_framing": true,
+        "ooc_causal_misattribution": true
+    },
+    {
+        "id": 149,
+        "politifact_url": "https://factcheck.afp.com/doc.afp.com.62RB39E",
+        "politifact_headline": "Video does not show astronaut exposing 'fake' life in space",
+        "politifact_subheadline": "Retired NASA astronaut Karen Nyberg regularly recorded videos as she floated while working on the International Space Station (ISS). Social media posts falsely claim she later revealed the agency fakes these scenes by filming in front of a green screen, but the clip shared as evidence features a different woman, as confirmed by the owner of the account where it originated.",
+        "rating": "Negative Label",
+        "social_link": "https://x.com/karma44921039/status/1934534642767364596",
+        "social_platform": "x",
+        "social_duration": 111.5,
+        "social_text": "Title: karma - Former Astronaut Karen Nyberg Shows How NASA Fakes Space Flights..\n\nDescription: Former Astronaut Karen Nyberg Shows How NASA Fakes Space Flights.. https://t.co/jEUqlIgiVJ",
+        "download_success": true,
+        "download_message": "Download successful (video_149.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_negativelabel/video_149.mp4",
+        "external_links_info": [
+            {
+                "url": "https://www.politifact.com/factchecks/2022/sep/09/instagram-posts/no-isnt-video-nasa-astronaut-pretending-be-space/",
+                "description": "Comments on the post on X included links to previous debunks from USA Today and PolitiFact who named the woman in the video as Paige Windle. In the clip, a person off-camera is heard calling the woman Paige.",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": true,
+                    "neutrality_fairness": true,
+                    "fact_vs_opinion": true,
+                    "purpose": true,
+                    "definitive_proof": true,
+                    "direct_connection": true,
+                    "source_transparency": true,
+                    "evidence_integrity": false,
+                    "fact_verifiability": true,
+                    "clarity_relevance": true
+                }
+            },
+            {
+                "url": "https://opengovus.com/connecticut-business/0935293#google_vignette",
+                "description": "Windle is the founder of a lifestyle management company and the wife of David Weiss, known online as \"Flat Earth Dave,\" the host of \"The Flat Earth Podcast.\"  Contacted by AFP, Weiss confirmed Windle is the one on-camera. \"This video never dies. It keeps coming back,\" Weiss said in a June 17 email.",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": false,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": false,
+                    "clarity_relevance": true
+                }
+            }
+        ],
+        "ooc_temporal_misattribution": false,
+        "ooc_geographical_misattribution": false,
+        "ooc_person_misidentification": true,
+        "ooc_contextual_misrepresentation": true,
+        "ooc_exaggeration_scale": false,
+        "ooc_exaggeration_urgency": false,
+        "ooc_fabricated_consequences": true,
+        "ooc_misleading_intent": false,
+        "ooc_misleading_emotional_framing": false,
+        "ooc_causal_misattribution": true
+    },
+    {
+        "id": 150,
+        "politifact_url": "https://factcheck.afp.com/doc.afp.com.62RZ8T2",
+        "politifact_headline": "Baseless claims about 'historic arrest' in Indonesia misrepresent old video",
+        "politifact_subheadline": "Indonesia's Corruption Eradication Commission (KPK) has charged hundreds of officials through the years but online claims that the agency recently arrested \"700 village heads\" during a single operation are baseless. The video in the false posts depicts a much lower number of graft suspects nabbed in South Sulawesi province in November 2024.",
+        "rating": "Negative Label",
+        "social_link": "https://www.youtube.com/shorts/gF1QrJHJPIE",
+        "social_platform": "youtube",
+        "social_duration": 27,
+        "social_text": "Title: 700 kepala desa sudah tertangkap siap siap yang brlum ke tangkap kpk #shots #kpk #kepaladesa",
+        "download_success": true,
+        "download_message": "Download successful (video_150.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_negativelabel/video_150.mp4",
+        "external_links_info": [
+            {
+                "url": "https://www.tiktok.com/@andi.uwais26/video/7436305180536212754?q=polda%20sulsel%2021%20tersangka%20korupsi&t=1750404726864",
+                "description": "A keyword search traced the footage to a TikTok post on November 12, 2024 (archived link). Its caption includes a link to a news report about the South Sulawesi police arresting 21 corruption suspects (archived link).",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": false,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": true,
+                    "fact_verifiability": false,
+                    "clarity_relevance": true
+                }
+            },
+            {
+                "url": "https://mediasulsel.id/polda-sulsel-tetapkan-21-tersangka-tindak-pidana-korupsi-dengan-total-kerugian-negara-84-miliar/",
+                "description": "A keyword search traced the footage to a TikTok post on November 12, 2024 (archived link). Its caption includes a link to a news report about the South Sulawesi police arresting 21 corruption suspects (archived link).",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": true,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": true,
+                    "direct_connection": false,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": false,
+                    "clarity_relevance": false
+                }
+            }
+        ],
+        "ooc_temporal_misattribution": true,
+        "ooc_geographical_misattribution": false,
+        "ooc_person_misidentification": true,
+        "ooc_contextual_misrepresentation": true,
+        "ooc_exaggeration_scale": true,
+        "ooc_exaggeration_urgency": false,
+        "ooc_fabricated_consequences": true,
+        "ooc_misleading_intent": true,
+        "ooc_misleading_emotional_framing": true,
+        "ooc_causal_misattribution": false
+    },
+    {
+        "id": 151,
+        "politifact_url": "https://factcheck.afp.com/doc.afp.com.62TD7KD",
+        "politifact_headline": "Video shows fire at Iran oil depot after Israeli strike, not blaze at Haifa refinery",
+        "politifact_subheadline": "After Iran launched missiles at Israeli cities in retaliation for strikes on nuclear and military facilities, a video of a massive fire began circulating in posts falsely claiming it shows Israel's Haifa refinery ablaze following an Iranian attack. The footage in fact shows the aftermath of an Israeli strike on an oil depot in northwest Tehran.",
+        "rating": "Negative Label",
+        "social_link": "https://x.com/EVILSAGAGemini/status/1934527227485630895",
+        "social_platform": "x",
+        "social_duration": 22.1,
+        "social_text": "Title: 🇹🇭 มณีแดง 🇹🇭 - ภาพที่ยืนยันการโจมตีของอิหร่านที่แหล่งพลังงานใหญ่ที่สุดของอิสราเอลในเ...\n\nDescription: ภาพที่ยืนยันการโจมตีของอิหร่านที่แหล่งพลังงานใหญ่ที่สุดของอิสราเอลในเมือง Haifa  โรงกลั่นแห่งนี้เป็นหัวใจหลักด้านพลังงานเชิงกลยุทธ์ของอิสราเอล  โดยผลิตเชื้อเพลิงได้ 9 ล้านตัน/ปี  การโจมตีโรงกลั่นน้ำมันแห่งนี้ของอิหร่าน จะส่งผลกระทบด้านพลังงานสำหรับกองทัพอิสราเอลและภาคพลเรือน https://t.co/OKHyGxFeJC",
+        "download_success": true,
+        "download_message": "Download successful (video_151.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_negativelabel/video_151.mp4",
+        "external_links_info": [
+            {
+                "url": "https://x.com/Tanha_5566/status/1934018756939813250",
+                "description": "A reverse image search using keyframes from the falsely shared video led to the same clip posted by an Iranian user on X on June 15 (archived link).  Its Persian-language caption indicates it shows the Shahran oil depot.",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": true,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": true,
+                    "fact_verifiability": false,
+                    "clarity_relevance": false
+                }
+            },
+            {
+                "url": "https://www.france24.com/en/live-news/20250614-israel-targets-iran-s-military-capabilities",
+                "description": "Iran’s oil ministry said two depots -- including Shahran -- had been struck (archived link).",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": true,
+                    "neutrality_fairness": true,
+                    "fact_vs_opinion": true,
+                    "purpose": true,
+                    "definitive_proof": false,
+                    "direct_connection": false,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": true,
+                    "clarity_relevance": false
+                }
+            }
+        ],
+        "ooc_temporal_misattribution": false,
+        "ooc_geographical_misattribution": true,
+        "ooc_person_misidentification": true,
+        "ooc_contextual_misrepresentation": true,
+        "ooc_exaggeration_scale": true,
+        "ooc_exaggeration_urgency": false,
+        "ooc_fabricated_consequences": true,
+        "ooc_misleading_intent": true,
+        "ooc_misleading_emotional_framing": true,
+        "ooc_causal_misattribution": false
+    },
+    {
+        "id": 152,
+        "politifact_url": "https://factcheck.afp.com/doc.afp.com.62YC8CR",
+        "politifact_headline": "Video shows fire at power plant in Yemen, not Israel refinery hit by Iran",
+        "politifact_subheadline": "Footage of the aftermath of an Israeli airstrike on a Yemeni power plant has resurfaced in posts falsely linking it to the Iran-Israel war.",
+        "rating": "Negative Label",
+        "social_link": "https://x.com/EVILSAGAGemini/status/1935091074021867680",
+        "social_platform": "x",
+        "social_duration": 10.94,
+        "social_text": "Title: 🇹🇭 มณีแดง 🇹🇭 - ภาพโรงไฟฟ้าของบริษัท Baszan ในเมือง Haifa ถูกทำลายอย่างสื้นเชิงจากการ... #1\n\nDescription: ภาพโรงไฟฟ้าของบริษัท Baszan ในเมือง Haifa ถูกทำลายอย่างสื้นเชิงจากการโจมตีด้วยขีปนาวุธของอิหร่านเมื่อวันที่ 16 มิถุนายน https://t.co/60NTgZZKAa",
+        "download_success": true,
+        "download_message": "Download successful (video_152.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_negativelabel/video_152.mp4",
+        "external_links_info": [
+            {
+                "url": "https://perma.cc/6SQX-FQH7",
+                "description": "A reverse image search using keyframes from the falsely shared video led to the same clip posted on Instagram on May 7 (archived link).  According to an archive captured on June 19, its Arabic-language caption said it showed a power plant in Sanaa. The caption was later changed to say Tel Aviv.",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": false,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": true,
+                    "fact_verifiability": false,
+                    "clarity_relevance": false
+                }
+            },
+            {
+                "url": "https://www.middleeasteye.net/news/israel-attack-yemen-sanaa-airport",
+                "description": "Media reports from May 6 and a post on the Israel Defense Forces' official X account say Yemen's capital Sanaa was hit by a series of airstrikes that targeted infrastructure including power stations (archived here, here and here).  Among the sites struck was the Haziz power plant.",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": true,
+                    "definitive_proof": false,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": false,
+                    "clarity_relevance": true
+                }
+            }
+        ],
+        "ooc_temporal_misattribution": true,
+        "ooc_geographical_misattribution": true,
+        "ooc_person_misidentification": true,
+        "ooc_contextual_misrepresentation": true,
+        "ooc_exaggeration_scale": false,
+        "ooc_exaggeration_urgency": false,
+        "ooc_fabricated_consequences": true,
+        "ooc_misleading_intent": false,
+        "ooc_misleading_emotional_framing": false,
+        "ooc_causal_misattribution": true
+    },
+    {
+        "id": 153,
+        "politifact_url": "https://factcheck.afp.com/doc.afp.com.62ZY7ZR",
+        "politifact_headline": "Video shows a Russian pilgrimage, not Israelis evacuating over Iran strikes",
+        "politifact_subheadline": "Israel's attack on Iran on June 13, 2025, triggered retaliatory measures by Iran and turned the decades-long enmity between the two into a rapidly-spiralling military conflict.  A video compilation circulating on Facebook in Ethiopia claims to show Israelis fleeing cities en masse following a warning from Iran. However, this is false: the video shows footage from the Velikoretsky religious pilgrimage in Russia, which took place earlier this month, as well as people setting off en masse to collect a medicinal fungus on a mountainside in Nepal.",
+        "rating": "Negative Label",
+        "social_link": "https://www.facebook.com/reel/577548548447941",
+        "social_platform": "facebook",
+        "social_duration": 28.93,
+        "social_text": "Title: Video\n\nDescription: ኢራን ከተማችዉን ለቃችዉ ዉጡ ባለችዉ መሠረት እስራ'ኢሎች መዉጣት ጀምሯሉ!\n\n እናመሠግናለን😂",
+        "download_success": true,
+        "download_message": "Download successful (video_153.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_negativelabel/video_153.mp4",
+        "external_links_info": [
+            {
+                "url": "https://x.com/k_ollga/status/1930949845847540049",
+                "description": "AFP Fact Check used the video verification tool InVID-WeVerify to conduct reverse image searches on keyframes from the video.   For the footage of the crowd walking in the street and across a bridge, the search results include an X post from June 6, 2025 (archived here).    Text in Russian accompanying the video indicates that it shows thousands of Russians who took part in the Velikoretsky religious pilgrimage earlier this month.",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": true,
+                    "definitive_proof": true,
+                    "direct_connection": false,
+                    "source_transparency": false,
+                    "evidence_integrity": true,
+                    "fact_verifiability": false,
+                    "clarity_relevance": false
+                }
+            },
+            {
+                "url": "https://www.instagram.com/reel/DKZpu5FT3Gd/",
+                "description": "Meanwhile, search results for the clip of people walking in the hills established that it was originally posted on Instagram on June 2, 2025, more than a week before the start of the Israeli-Iranian conflict.   The clip shows a crowd of people in search of a medical fungus known as Yarsagumba around Mount Dolpa in western Nepal.",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": true,
+                    "definitive_proof": false,
+                    "direct_connection": false,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": true,
+                    "clarity_relevance": false
+                }
+            }
+        ],
+        "ooc_temporal_misattribution": true,
+        "ooc_geographical_misattribution": true,
+        "ooc_person_misidentification": true,
+        "ooc_contextual_misrepresentation": true,
+        "ooc_exaggeration_scale": false,
+        "ooc_exaggeration_urgency": true,
+        "ooc_fabricated_consequences": true,
+        "ooc_misleading_intent": true,
+        "ooc_misleading_emotional_framing": true,
+        "ooc_causal_misattribution": true
+    },
+    {
+        "id": 154,
+        "politifact_url": "https://factcheck.afp.com/doc.afp.com.63422CP",
+        "politifact_headline": "Video shows Chinese firefighting exercise, not Iranian strike on Israeli power station",
+        "politifact_subheadline": "After Tehran responded to waves of strikes from arch foe Israel with missiles and drones, a video was shared in social media posts falsely claiming it showed an Iranian attack destroying an Israeli power plant. The clip in fact shows a firefighting drill conducted in the Chinese city of Chengdu in November 2015 and matches satellite imagery of a training base in the southwestern metropolis.",
+        "rating": "Negative Label",
+        "social_link": "https://www.facebook.com/awanish.kumar.395/videos/1049690280471774/",
+        "social_platform": "facebook",
+        "social_duration": 29.97,
+        "social_text": "Title: Video\n\nDescription: ईरान का दावा है कि उसके हाइपरसोनिक मिसाईल ने सीधे इजराइल के हाइफा शहर के पावर प्लांट को हिट किया जिससे पूरा पावर प्लांट तहस नहस हो गया।",
+        "download_success": true,
+        "download_message": "Download successful (video_154.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_negativelabel/video_154.mp4",
+        "external_links_info": [
+            {
+                "url": "https://www.youtube.com/watch?feature=youtu.be&v=e9pHStTHLzo",
+                "description": "A reverse image search on Google using keyframes from the falsely shared video led to a longer version published November 17, 2015 on YouTube (archived link).  The title reads: \"Massive explosion at Chinese chemical plant\".",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": true,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": true,
+                    "fact_verifiability": false,
+                    "clarity_relevance": false
+                }
+            },
+            {
+                "url": "https://m.weibo.cn/3053154652/3908753806393286",
+                "description": "Another reverse image search on Chinese search engine Baidu led to a report published by People's Daily Online in 2016 that said the footage in fact showed a fire drill held at the Chengdu Public Security Fire Brigade Training Base in November 2015 (archived here and here). It added that the official Weibo account of the Sichuan Fire Services had shared details of the drill (archived link).  The simplified Chinese Weibo post reads: \"A rescue drill display was held at the Chengdu Public Security Fire Brigade Training Base on the afternoon of November 12 for the eighth meeting of the Shanghai Cooperation Organisation's emergency rescue department.\"  Structures seen in one of the photos in the Weibo post correspond to those seen in the video.",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": true,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": true,
+                    "definitive_proof": false,
+                    "direct_connection": false,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": true,
+                    "clarity_relevance": false
+                }
+            }
+        ],
+        "ooc_temporal_misattribution": true,
+        "ooc_geographical_misattribution": true,
+        "ooc_person_misidentification": true,
+        "ooc_contextual_misrepresentation": true,
+        "ooc_exaggeration_scale": true,
+        "ooc_exaggeration_urgency": true,
+        "ooc_fabricated_consequences": true,
+        "ooc_misleading_intent": true,
+        "ooc_misleading_emotional_framing": false,
+        "ooc_causal_misattribution": true
+    },
+    {
+        "id": 155,
+        "politifact_url": "https://factcheck.afp.com/doc.afp.com.63DX3ZP",
+        "politifact_headline": "Video of cabin crew boarding flight predates Air India disaster",
+        "politifact_subheadline": "A video of flight attendants waving to camera as they board an aeroplane was filmed prior to a flight from Saudi Arabia, contrary to posts claiming it shows the crew of an Air India jet that crashed moments after takeoff from the western Indian city of Ahmedabad. The clip circulated days before the crash, which killed all but one of the 242 people on board, and the flight attendant who filmed it has since posted about it being falsely shared online.",
+        "rating": "Negative Label",
+        "social_link": "https://www.facebook.com/watch/?v=1035932148652172",
+        "social_platform": "facebook",
+        "social_duration": 23.5,
+        "social_text": "Title: Video\n\nDescription: 🤍",
+        "download_success": true,
+        "download_message": "Download successful (video_155.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_negativelabel/video_155.mp4",
+        "external_links_info": [
+            {
+                "url": "https://perma.cc/2NKG-8J3Z",
+                "description": "A reverse image search on Google using keyframes from the falsely shared video led to the same clip posted on Instagram on June 9 by a user who regularly posts about being an Air India flight attendant.  The clip, which was also posted on the user's Threads account, is captioned in Hindi, \"Motivation before the ULH flight\" while superimposed text reads \"All the hardworking crew aboard the same flight\" (archived link).",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": true,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": true,
+                    "fact_verifiability": false,
+                    "clarity_relevance": false
+                }
+            },
+            {
+                "url": "https://www.instagram.com/p/DK36BstJOvl",
+                "description": "After her video resurfaced online, the user posted a request on June 14 for friends and family to report accounts that were falsely sharing it (archived link).   \"How will our families feel if they see that we are not alive. How can someone do this without information.\" reads part of her post.  Image",
+                "checklist": {
+                    "author_expertise": true,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": true,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": false,
+                    "clarity_relevance": false
+                }
+            }
+        ],
+        "ooc_temporal_misattribution": true,
+        "ooc_geographical_misattribution": true,
+        "ooc_person_misidentification": true,
+        "ooc_contextual_misrepresentation": true,
+        "ooc_exaggeration_scale": false,
+        "ooc_exaggeration_urgency": false,
+        "ooc_fabricated_consequences": true,
+        "ooc_misleading_intent": true,
+        "ooc_misleading_emotional_framing": true,
+        "ooc_causal_misattribution": false
+    },
+    {
+        "id": 156,
+        "politifact_url": "https://factcheck.afp.com/doc.afp.com.63ED4CP",
+        "politifact_headline": "Video shows Malaysia factory fire, not Iranian attack on Israel's air defence system",
+        "politifact_subheadline": "Arch foes Iran and Israel exchanged devastating strikes for 12 days before adhering to a US-proposed ceasefire on June 24, but a video shared on social media does not show the result of an Iranian missile attack on an air defence system in Tel Aviv. The video in fact shows a blaze at a factory in Malaysia filmed weeks before the start of the Iran-Israel war.",
+        "rating": "Negative Label",
+        "social_link": "https://x.com/EVILSAGAGemini/status/1935575757717459287",
+        "social_platform": "x",
+        "social_duration": 16.88,
+        "social_text": "Title: 🇹🇭 มณีแดง 🇹🇭 - ภาพระบบป้องกันภัยทางอากาศของอิสราเอลถูกทำลายใน Tel Aviv\n\nDescription: ภาพระบบป้องกันภัยทางอากาศของอิสราเอลถูกทำลายใน Tel Aviv https://t.co/ez9Y6wjebw",
+        "download_success": true,
+        "download_message": "Download successful (video_156.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_negativelabel/video_156.mp4",
+        "external_links_info": [
+            {
+                "url": "https://www.tiktok.com/@hamidhuson937/video/7497089787459865864",
+                "description": "A reverse image search on Google using keyframes from the falsely shared video led to the same footage posted on TikTok on April 25, weeks before the start of the Iran-Israel war (archived link).  The clip was posted by the user \"hamidhudson937\", whose handle can be seen in the top-left corner of the falsely shared video.  The video used in the false posts appears to be a slowed down version of the TikTok clip, and onlookers can be more clearly heard saying in Malay: \"The gas cylinder is flying.\"  Image",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": true,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": true,
+                    "fact_verifiability": false,
+                    "clarity_relevance": false
+                }
+            },
+            {
+                "url": "https://www.youtube.com/watch?v=LgzXNSnDpaU",
+                "description": "Local media outlets Buletin TV3 and The Sun reported that three men were injured in the fire (archived here and here).",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": true,
+                    "definitive_proof": false,
+                    "direct_connection": false,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": true,
+                    "clarity_relevance": true
+                }
+            }
+        ],
+        "ooc_temporal_misattribution": true,
+        "ooc_geographical_misattribution": true,
+        "ooc_person_misidentification": true,
+        "ooc_contextual_misrepresentation": true,
+        "ooc_exaggeration_scale": false,
+        "ooc_exaggeration_urgency": true,
+        "ooc_fabricated_consequences": true,
+        "ooc_misleading_intent": true,
+        "ooc_misleading_emotional_framing": false,
+        "ooc_causal_misattribution": true
+    },
+    {
+        "id": 157,
+        "politifact_url": "https://factcheck.afp.com/doc.afp.com.63GV8CP",
+        "politifact_headline": "'No Kings' protest footage mispresented after US strikes on Iran",
+        "politifact_subheadline": "A video is circulating across platforms with claims it shows a massive anti-war protest that erupted after the US military bombed Iranian nuclear sites. But while some scattered demonstrations sprouted up after US President Donald Trump announced the June 21, 2025 attack, the footage in question was captured a week earlier in San Diego, California, at one of thousands of \"No Kings\" rallies held to oppose Trump's policies.",
+        "rating": "Negative Label",
+        "social_link": "https://x.com/Priyaa_Purohit/status/1936687674443866276",
+        "social_platform": "x",
+        "social_duration": 33.9,
+        "social_text": "Title: Priya Purohit - BIG BREAKING :  Mass protests errupt across America as citizens take ...\n\nDescription: BIG BREAKING :  Mass protests errupt across America as citizens take to the streets in outrage after the US launches attack on Iran.  Demonstrators chant in unison : TRUMP MUST GO - No War in Our Name .......! https://t.co/9fwTDD7Cr4",
+        "download_success": true,
+        "download_message": "Download successful (video_157.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_negativelabel/video_157.mp4",
+        "external_links_info": [
+            {
+                "url": "https://www.instagram.com/p/DK50fLNR6ka/",
+                "description": "Reverse image searches revealed that the same footage had been posted to Instagram as early as June 14, with a caption indicating it was filmed during a so-called \"No Kings\" protest hosted in San Diego (archived here). Similar demonstrations decrying the policies of \"king\" Trump were organized in cities and towns throughout the United States.",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": true,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": true,
+                    "fact_verifiability": false,
+                    "clarity_relevance": false
+                }
+            },
+            {
+                "url": "https://www.google.com/maps/@32.7198062,-117.1696411,3a,90y,44.66h,110.8t/data=!3m7!1e1!3m5!1suUdNOe055WFgGHBoOGgGYg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-20.79687641007142%26panoid%3DuUdNOe055WFgGHBoOGgGYg%26yaw%3D44.66143165806264!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI1MDYxNy4wIKXMDSoASAFQAw%3D%3D",
+                "description": "AFP geolocated the clip to the Savina condominium complex, located on downtown San Diego's Ash Street near the Waterfront Park. Google Street View imagery, Google Earth satellite imagery and photos attached to Google reviews show the same surrounding buildings, as well as the Star of India and other ships harbored at the Maritime Museum of San Diego (archived here, here and here).  Image",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": true,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": false,
+                    "direct_connection": false,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": true,
+                    "clarity_relevance": true
+                }
+            }
+        ],
+        "ooc_temporal_misattribution": true,
+        "ooc_geographical_misattribution": false,
+        "ooc_person_misidentification": false,
+        "ooc_contextual_misrepresentation": true,
+        "ooc_exaggeration_scale": true,
+        "ooc_exaggeration_urgency": true,
+        "ooc_fabricated_consequences": true,
+        "ooc_misleading_intent": false,
+        "ooc_misleading_emotional_framing": false,
+        "ooc_causal_misattribution": true
+    },
+    {
+        "id": 158,
+        "politifact_url": "https://factcheck.afp.com/doc.afp.com.63JB7T2",
+        "politifact_headline": "Video shows festival goers in France, not Israeli citizens fleeing Iranian attacks",
+        "politifact_subheadline": "Governments around the world evacuated thousands of their nationals caught up in the Iran-Israel war, but a video purporting to show Israelis fleeing the conflict in fact shows festival goers in France. The clip was previously shared in a TikTok post about the opening of heavy metal festival Hellfest's campgrounds and corresponds to Google Maps photos of the site.",
+        "rating": "Negative Label",
+        "social_link": "https://www.facebook.com/reel/1372418537208121",
+        "social_platform": "facebook",
+        "social_duration": 12.03,
+        "social_text": "Title: Video\n\nDescription: အစ္စရေးပြည်သူတွေ\nအမြန်စစ်ဘေးရှောင်‌နေပြီ။\n\nဘာတွေဆက်ဖြစ်ဦးမလဲ🥹\n\n#reelsvideoシ #ViewMyReels #news",
+        "download_success": true,
+        "download_message": "Download successful (video_158.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_negativelabel/video_158.mp4",
+        "external_links_info": [
+            {
+                "url": "https://www.tiktok.com/@chris19100505/video/7517545308100807958",
+                "description": "A reverse image search on Google using keyframes from the falsely shared video led to the same footage posted on TikTok on June 19 with overlaid French-language text that reads, \"Hellfest campsite opened yesterday\" (archived link).  Ticket holders for the annual heavy metal festival Hellfest -- held in the western French town of Clisson -- can stay at its official campsite for free (archived link).",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": true,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": true,
+                    "fact_verifiability": false,
+                    "clarity_relevance": false
+                }
+            },
+            {
+                "url": "https://www.youtube.com/watch?t=66&v=8V4dbg39dos&feature=youtu.be",
+                "description": "A subsequent keyword search led to a similar video posted on YouTube by French web channel TV Sèvre et Maine on June 20 (archived link).  A red and black sign that towers over festival goers and tents can be seen in both the falsely shared clip and the YouTube video.  Image",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": true,
+                    "definitive_proof": false,
+                    "direct_connection": false,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": true,
+                    "clarity_relevance": true
+                }
+            }
+        ],
+        "ooc_temporal_misattribution": true,
+        "ooc_geographical_misattribution": true,
+        "ooc_person_misidentification": true,
+        "ooc_contextual_misrepresentation": true,
+        "ooc_exaggeration_scale": false,
+        "ooc_exaggeration_urgency": true,
+        "ooc_fabricated_consequences": true,
+        "ooc_misleading_intent": false,
+        "ooc_misleading_emotional_framing": true,
+        "ooc_causal_misattribution": true
+    },
+    {
+        "id": 159,
+        "politifact_url": "https://factcheck.afp.com/doc.afp.com.63MD762",
+        "politifact_headline": "Clip of turbulence during Pakistani flight falsely linked to Air India tragedy",
+        "politifact_subheadline": "In the days following the fatal Air India plane crash in Ahmedabad, social media posts circulated footage from inside a cabin purporting to show the last moments before the disaster. However, this is false; the video was filmed weeks before the crash and shows a Pakistani flight, operated by private carrier Fly Jinnah, experiencing severe turbulence as it descended into Allama Iqbal International Airport in Lahore in May 2025.",
+        "rating": "Negative Label",
+        "social_link": "https://mvau.lt/media/41d8a484-07ec-4019-8dc1-706ff248e8e0",
+        "social_platform": "mvau",
+        "social_duration": 0,
+        "social_text": "Title: Archived Fact-Checked Media — MediaVault (1)\n\nDescription: “Indian plane crash - Key moment before the Plane crash.”",
+        "download_success": true,
+        "download_message": "Download successful (video_159.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_negativelabel/video_159.mp4",
+        "external_links_info": [
+            {
+                "url": "https://www.facebook.com/watch/?v=899509015647967",
+                "description": "A reverse image search of keyframes in the clip led us to a Facebook post with the same footage published weeks before the Air India crash on May 24, 2025 (archived here).  Published by an account called “Pakistan Republic”, the caption reads: “Flight from Karachi to Lahore Caught in Severe Windstorm! Violent turbulence mid-air causes panic among passengers – terrifying scenes reported.”",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": false,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": false,
+                    "definitive_proof": true,
+                    "direct_connection": true,
+                    "source_transparency": false,
+                    "evidence_integrity": true,
+                    "fact_verifiability": false,
+                    "clarity_relevance": false
+                }
+            },
+            {
+                "url": "https://www.hindustantimes.com/trending/pakistani-flight-s-close-brush-with-disaster-caught-on-camera-plane-was-thrown-around-violently-101748224750285",
+                "description": "A Google search found other articles here and here about the turbulent flight, operated by Fly Jinnah, a private carrier in Pakistan. The aircraft had encountered a sandstorm while attempting to land at Allama Iqbal International Airport (archived here and here).   Image",
+                "checklist": {
+                    "author_expertise": false,
+                    "source_reputation": true,
+                    "neutrality_fairness": false,
+                    "fact_vs_opinion": false,
+                    "purpose": true,
+                    "definitive_proof": false,
+                    "direct_connection": false,
+                    "source_transparency": false,
+                    "evidence_integrity": false,
+                    "fact_verifiability": true,
+                    "clarity_relevance": false
+                }
+            }
+        ],
+        "ooc_temporal_misattribution": true,
+        "ooc_geographical_misattribution": true,
+        "ooc_person_misidentification": false,
+        "ooc_contextual_misrepresentation": true,
+        "ooc_exaggeration_scale": false,
+        "ooc_exaggeration_urgency": false,
+        "ooc_fabricated_consequences": true,
+        "ooc_misleading_intent": true,
+        "ooc_misleading_emotional_framing": false,
+        "ooc_causal_misattribution": true
+    },
+    {
+        "id": 160,
+        "politifact_url": "https://factcheck.afp.com/doc.afp.com.63ME7WD",
+        "politifact_headline": "Video shows Russian submarines firing at Ukraine, not an Iranian missile attack on Israel",
+        "politifact_subheadline": "A fragile ceasefire between Iran and Israel has, for now, ended tit-for-tat missile attacks between the bitter rivals. Before hostilities were suspended, social media users circulated a video that they claimed showed missiles launched by Iranian submarines toward Israel. But the claim is false; the video shows Russian missiles being fired toward Ukraine in 2022. ",
+        "rating": "Negative Label",
+        "social_link": "https://mvau.lt/media/247bd49c-37d8-4013-9c7d-8beb8f8b8172",
+        "social_platform": "mvau",
+        "social_duration": 0,
+        "social_text": "Title: Archived Fact-Checked Media — MediaVault (1)\n\nDescription: “BREAKING NEWS: IRAN 🇮🇷 could carry out nuclear test today - local press\n\nIn addition, after several waves of missile strikes from the outside, the Israeli army allowed the citizens to leave the shelters, but recommended them to stay nearby.\n\n▪️Iran's foreign minister said Tehran was negotiating with the United States, but Israeli strikes had forced the country to \"leave the diplomatic route\".\n\n▪️Video 1 - Missile fired from an Iranian submarine. Video 2 - Fire in the financial center of Tel-Aviv.”",
+        "download_success": true,
+        "download_message": "Download successful (video_160.mp4).",
+        "drive_path": "/Users/ndesai-air/Documents/GitHub/ooc-simpleui/downloads/video_negativelabel/video_160.mp4",
+        "external_links_info": [],
+        "ooc_temporal_misattribution": false,
+        "ooc_geographical_misattribution": false,
+        "ooc_person_misidentification": false,
+        "ooc_contextual_misrepresentation": false,
+        "ooc_exaggeration_scale": false,
+        "ooc_exaggeration_urgency": false,
+        "ooc_fabricated_consequences": false,
+        "ooc_misleading_intent": false,
+        "ooc_misleading_emotional_framing": false,
+        "ooc_causal_misattribution": false
     }
 ]
