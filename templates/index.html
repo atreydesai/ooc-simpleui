@@ -94,18 +94,18 @@
                             <div class="col-md-6">
                                 <div class="mb-3 position-relative">
                                     <label for="source_url_{{ outer_loop_index }}" class="form-label"><i class="bi bi-link-45deg"></i> Source URL:</label>
-                                    <input type="url" id="source_url_{{ outer_loop_index }}" name="data[{{ outer_loop_index }}][politifact_url]" value="{{ item.politifact_url }}" class="form-control source-url-input" placeholder="Enter PolitiFact or other source URL">
+                                    <input type="url" id="source_url_{{ outer_loop_index }}" name="data[{{ outer_loop_index }}][politifact_url]" value="{{ item.politifact_url }}" class="form-control source-url-input" placeholder="Enter PolitiFact, AFP, or other source URL">
                                      <div class="spinner-border spinner-border-sm text-secondary position-absolute top-50 end-0 translate-middle-y me-2 d-none source-spinner" role="status">
                                         <span class="visually-hidden">Loading...</span>
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="source_headline_{{ outer_loop_index }}" class="form-label"><i class="bi bi-card-heading"></i> Headline:</label>
-                                    <input type="text" id="source_headline_{{ outer_loop_index }}" name="data[{{ outer_loop_index }}][politifact_headline]" value="{{ item.politifact_headline }}" class="form-control source-headline-input" {% if item.politifact_headline %}readonly{% endif %}>
+                                    <input type="text" id="source_headline_{{ outer_loop_index }}" name="data[{{ outer_loop_index }}][politifact_headline]" value="{{ item.politifact_headline }}" class="form-control source-headline-input">
                                 </div>
                                 <div class="mb-3">
                                     <label for="source_subheadline_{{ outer_loop_index }}" class="form-label"><i class="bi bi-card-text"></i> Subheadline:</label>
-                                    <input type="text" id="source_subheadline_{{ outer_loop_index }}" name="data[{{ outer_loop_index }}][politifact_subheadline]" value="{{ item.politifact_subheadline }}" class="form-control source-subheadline-input" {% if item.politifact_subheadline %}readonly{% endif %}>
+                                    <input type="text" id="source_subheadline_{{ outer_loop_index }}" name="data[{{ outer_loop_index }}][politifact_subheadline]" value="{{ item.politifact_subheadline }}" class="form-control source-subheadline-input">
                                 </div>
                                 <hr>
                                 <div class="mb-3">
