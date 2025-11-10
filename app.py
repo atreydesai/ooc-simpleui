@@ -270,6 +270,53 @@ def get_afp_page_details(url: str) -> Tuple[Optional[str], Optional[str]]:
         logging.error(f"Unexpected error fetching AFP page {url}: {e}", exc_info=True)
         return None, None
 
+def extract_generic_headline_subheadline(soup: BeautifulSoup) -> Tuple[Optional[str], Optional[str]]:
+    """
+    Extract headline and subheadline using the generic OG/meta approach.
+    
+    Args:
+        soup: BeautifulSoup-parsed HTML content
+        
+    Returns:
+        Tuple[Optional[str], Optional[str]]: (headline, subheadline)
+    """
+    headline, subheadline = None, None
+
+    # Try og:title first
+    og_title = soup.find('meta', property='og:title')
+    logging.info(f"og:title tag found: {og_title is not None}")
+    if og_title and og_title.get('content'):
+        headline = og_title['content'].strip()
+        logging.info(f"og:title content: {headline[:100] if headline else 'empty'}")
+    else:
+        # Fallback to title tag
+        title_tag = soup.find('title')
+        if title_tag:
+            headline = title_tag.get_text(strip=True).replace(" - The New York Times", "").replace(" | Fact Check", "").strip()
+            logging.info(f"Using <title> tag: {headline[:100] if headline else 'empty'}")
+        else:
+            # Fallback to h1
+            h1_tag = soup.find('h1')
+            if h1_tag:
+                headline = h1_tag.get_text(strip=True)
+                logging.info(f"Using <h1> tag: {headline[:100] if headline else 'empty'}")
+
+    # Try og:description first
+    og_desc = soup.find('meta', property='og:description')
+    logging.info(f"og:description tag found: {og_desc is not None}")
+    if og_desc and og_desc.get('content'):
+        subheadline = og_desc['content'].strip()
+        logging.info(f"og:description content: {subheadline[:100] if subheadline else 'empty'}")
+    else:
+        # Fallback to meta description
+        meta_desc = soup.find('meta', attrs={'name': 'description'})
+        if meta_desc and meta_desc.get('content'):
+            subheadline = meta_desc['content'].strip()
+            logging.info(f"Using meta description: {subheadline[:100] if subheadline else 'empty'}")
+
+    return headline, subheadline
+
+
 def get_page_details(url: str) -> Tuple[Optional[str], Optional[str]]:
     """
     Fetches headline and subheadline from a URL, prioritizing OG tags with fallbacks.
@@ -308,39 +355,27 @@ def get_page_details(url: str) -> Tuple[Optional[str], Optional[str]]:
         
         soup = BeautifulSoup(response.content, 'html.parser')
 
-        headline, subheadline = None, None
+        headline, subheadline = extract_generic_headline_subheadline(soup)
 
-        # Try og:title first
-        og_title = soup.find('meta', property='og:title')
-        logging.info(f"og:title tag found: {og_title is not None}")
-        if og_title and og_title.get('content'):
-            headline = og_title['content'].strip()
-            logging.info(f"og:title content: {headline[:100] if headline else 'empty'}")
-        else:
-            # Fallback to title tag
-            title_tag = soup.find('title')
-            if title_tag:
-                headline = title_tag.get_text(strip=True).replace(" - The New York Times", "").replace(" | Fact Check", "").strip()
-                logging.info(f"Using <title> tag: {headline[:100] if headline else 'empty'}")
+        # Custom extraction for PolitiFact URLs
+        if 'politifact.com' in response.url:
+            logging.info("Detected PolitiFact URL, applying custom extraction rules.")
+            quote_div = soup.find('div', class_='m-statement__quote')
+            if quote_div:
+                quote_text = quote_div.get_text(strip=True)
+                logging.info(f"PolitiFact quote extracted: {quote_text[:100] if quote_text else 'empty'}")
+                if quote_text:
+                    previous_headline = headline
+                    headline = quote_text
+                    if previous_headline:
+                        subheadline = previous_headline
+                    elif subheadline:
+                        logging.info("Using existing subheadline as fallback for PolitiFact.")
+                    else:
+                        subheadline = ""
+                        logging.info("No previous headline found; subheadline left blank for PolitiFact.")
             else:
-                # Fallback to h1
-                h1_tag = soup.find('h1')
-                if h1_tag:
-                    headline = h1_tag.get_text(strip=True)
-                    logging.info(f"Using <h1> tag: {headline[:100] if headline else 'empty'}")
-
-        # Try og:description first
-        og_desc = soup.find('meta', property='og:description')
-        logging.info(f"og:description tag found: {og_desc is not None}")
-        if og_desc and og_desc.get('content'):
-            subheadline = og_desc['content'].strip()
-            logging.info(f"og:description content: {subheadline[:100] if subheadline else 'empty'}")
-        else:
-            # Fallback to meta description
-            meta_desc = soup.find('meta', attrs={'name': 'description'})
-            if meta_desc and meta_desc.get('content'):
-                subheadline = meta_desc['content'].strip()
-                logging.info(f"Using meta description: {subheadline[:100] if subheadline else 'empty'}")
+                logging.warning("PolitiFact quote div not found; falling back to generic extraction.")
 
         logging.info(f"Final result for {response.url}: Headline='{str(headline)[:50]}...', Subheadline='{str(subheadline)[:50]}...'")
         return headline, subheadline
