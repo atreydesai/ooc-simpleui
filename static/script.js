@@ -34,6 +34,7 @@
     const MAX_DURATION_DISPLAY = 600; // 10 minutes in seconds
     const AUTOSAVE_DELAY = 1000; // 1 second
     const MAX_HISTORY_SIZE = 50;
+    const FORCE_POLITIFACT_REFRESH = false; // Toggle to re-fetch PolitiFact details each session
 
     const OOC_CRITERIA = [
         { key: 'temporal_misattribution', name: 'Temporal Misattribution', definition: "Does the content demonstrably shift the event's perceived timing to mislead context (e.g., via clear statements, timestamps, editing)?" },
@@ -740,7 +741,8 @@
             }
 
             // Don't re-attempt if headline box already has content
-            if (headlineInput.value.trim()) {
+            const shouldSkipFetch = headlineInput.value.trim() && !(isPolitiFact && FORCE_POLITIFACT_REFRESH);
+            if (shouldSkipFetch) {
                 spinner.classList.add('d-none');
                 return;
             }
