@@ -317,6 +317,21 @@ def extract_generic_headline_subheadline(soup: BeautifulSoup) -> Tuple[Optional[
     return headline, subheadline
 
 
+def strip_surrounding_quotes(text: Optional[str]) -> Optional[str]:
+    """
+    Remove leading/trailing quote characters while preserving inner quotes.
+
+    Args:
+        text: Input string possibly wrapped in quotes.
+
+    Returns:
+        Optional[str]: Text without surrounding quotes.
+    """
+    if not text:
+        return text
+    return text.strip('\'"“”„‟’‘«»‹›')
+
+
 def get_page_details(url: str) -> Tuple[Optional[str], Optional[str]]:
     """
     Fetches headline and subheadline from a URL, prioritizing OG tags with fallbacks.
@@ -362,7 +377,8 @@ def get_page_details(url: str) -> Tuple[Optional[str], Optional[str]]:
             logging.info("Detected PolitiFact URL, applying custom extraction rules.")
             quote_div = soup.find('div', class_='m-statement__quote')
             if quote_div:
-                quote_text = quote_div.get_text(strip=True)
+                quote_text_raw = quote_div.get_text(strip=True)
+                quote_text = strip_surrounding_quotes(quote_text_raw)
                 logging.info(f"PolitiFact quote extracted: {quote_text[:100] if quote_text else 'empty'}")
                 if quote_text:
                     previous_headline = headline
