@@ -12,10 +12,32 @@ import requests
 from bs4 import BeautifulSoup
 import re
 
+# Selenium imports for AFP (optional - will fallback gracefully if not installed)
+try:
+    from selenium import webdriver
+    from selenium.webdriver.chrome.options import Options
+    from selenium.webdriver.chrome.service import Service
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
+    from selenium.webdriver.common.by import By
+    from selenium.common.exceptions import TimeoutException, WebDriverException
+    from webdriver_manager.chrome import ChromeDriverManager
+    SELENIUM_AVAILABLE = True
+except ImportError:
+    SELENIUM_AVAILABLE = False
+    logging.warning("Selenium not available. AFP link scraping will not work. Install with: pip install selenium webdriver-manager")
+
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+# Display which Python is being used
+print("=" * 80)
+print(f"Using Python: {sys.executable}")
+print(f"Python Version: {sys.version}")
+print(f"Selenium Available: {SELENIUM_AVAILABLE}")
+print("=" * 80)
 
 DATA_FILE = 'data.json'
 DOWNLOAD_DIR = 'downloads'
@@ -162,9 +184,158 @@ def parse_social_platform(url_string: str) -> str:
     except ValueError: return ""
     except Exception as e: logging.error(f"Error parsing URL {url_string} for platform: {e}"); return ""
 
+def get_afp_page_details(url: str) -> Tuple[Optional[str], Optional[str]]:
+    """
+    Fetches headline and subheadline from AFP URLs using Selenium (to bypass anti-bot protection).
+    
+    Args:
+        url: The AFP URL to fetch page details from
+        
+    Returns:
+        Tuple[Optional[str], Optional[str]]: (headline, subheadline) or (None, None) on error
+    """
+    if not SELENIUM_AVAILABLE:
+        logging.error("Selenium is not installed. Cannot fetch AFP page details.")
+        return None, None
+    
+    try:
+        # Set up Chrome options (headless mode)
+        chrome_options = Options()
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--disable-dev-shm-usage')
+        chrome_options.add_argument('--disable-blink-features=AutomationControlled')
+        chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+        chrome_options.add_experimental_option('useAutomationExtension', False)
+        chrome_options.add_argument('user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36')
+        
+        # Initialize Chrome service with automatic ChromeDriver management
+        service = Service(ChromeDriverManager().install())
+        
+        # Initialize driver
+        driver = webdriver.Chrome(service=service, options=chrome_options)
+        driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
+        
+        try:
+            logging.info(f"Fetching AFP page with Selenium: {url}")
+            driver.get(url)
+            
+            # Wait for page to load
+            try:
+                WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.TAG_NAME, "meta"))
+                )
+            except TimeoutException:
+                logging.warning(f"Timeout waiting for AFP page to load: {url}")
+            
+            # Get page source and parse with BeautifulSoup
+            page_source = driver.page_source
+            soup = BeautifulSoup(page_source, 'html.parser')
+            
+            headline, subheadline = None, None
+            
+            # Try og:title
+            og_title = soup.find('meta', property='og:title')
+            if og_title and og_title.get('content'):
+                headline = og_title['content'].strip()
+                logging.info(f"AFP og:title found: {headline[:100]}")
+            else:
+                # Fallback to title tag
+                title_tag = soup.find('title')
+                if title_tag:
+                    headline = title_tag.get_text(strip=True).replace(" | Fact Check", "").strip()
+                    logging.info(f"AFP <title> used: {headline[:100]}")
+            
+            # Try og:description
+            og_desc = soup.find('meta', property='og:description')
+            if og_desc and og_desc.get('content'):
+                subheadline = og_desc['content'].strip()
+                logging.info(f"AFP og:description found: {subheadline[:100]}...")
+            else:
+                # Fallback to meta description
+                meta_desc = soup.find('meta', attrs={'name': 'description'})
+                if meta_desc and meta_desc.get('content'):
+                    subheadline = meta_desc['content'].strip()
+                    logging.info(f"AFP meta description used: {subheadline[:100]}...")
+            
+            return headline, subheadline
+            
+        finally:
+            driver.quit()
+            
+    except WebDriverException as e:
+        logging.error(f"Selenium WebDriver error for AFP page {url}: {e}")
+        return None, None
+    except Exception as e:
+        logging.error(f"Unexpected error fetching AFP page {url}: {e}", exc_info=True)
+        return None, None
+
+def extract_generic_headline_subheadline(soup: BeautifulSoup) -> Tuple[Optional[str], Optional[str]]:
+    """
+    Extract headline and subheadline using the generic OG/meta approach.
+    
+    Args:
+        soup: BeautifulSoup-parsed HTML content
+        
+    Returns:
+        Tuple[Optional[str], Optional[str]]: (headline, subheadline)
+    """
+    headline, subheadline = None, None
+
+    # Try og:title first
+    og_title = soup.find('meta', property='og:title')
+    logging.info(f"og:title tag found: {og_title is not None}")
+    if og_title and og_title.get('content'):
+        headline = og_title['content'].strip()
+        logging.info(f"og:title content: {headline[:100] if headline else 'empty'}")
+    else:
+        # Fallback to title tag
+        title_tag = soup.find('title')
+        if title_tag:
+            headline = title_tag.get_text(strip=True).replace(" - The New York Times", "").replace(" | Fact Check", "").strip()
+            logging.info(f"Using <title> tag: {headline[:100] if headline else 'empty'}")
+        else:
+            # Fallback to h1
+            h1_tag = soup.find('h1')
+            if h1_tag:
+                headline = h1_tag.get_text(strip=True)
+                logging.info(f"Using <h1> tag: {headline[:100] if headline else 'empty'}")
+
+    # Try og:description first
+    og_desc = soup.find('meta', property='og:description')
+    logging.info(f"og:description tag found: {og_desc is not None}")
+    if og_desc and og_desc.get('content'):
+        subheadline = og_desc['content'].strip()
+        logging.info(f"og:description content: {subheadline[:100] if subheadline else 'empty'}")
+    else:
+        # Fallback to meta description
+        meta_desc = soup.find('meta', attrs={'name': 'description'})
+        if meta_desc and meta_desc.get('content'):
+            subheadline = meta_desc['content'].strip()
+            logging.info(f"Using meta description: {subheadline[:100] if subheadline else 'empty'}")
+
+    return headline, subheadline
+
+
+def strip_surrounding_quotes(text: Optional[str]) -> Optional[str]:
+    """
+    Remove leading/trailing quote characters while preserving inner quotes.
+
+    Args:
+        text: Input string possibly wrapped in quotes.
+
+    Returns:
+        Optional[str]: Text without surrounding quotes.
+    """
+    if not text:
+        return text
+    return text.strip('\'"“”„‟’‘«»‹›')
+
+
 def get_page_details(url: str) -> Tuple[Optional[str], Optional[str]]:
     """
     Fetches headline and subheadline from a URL, prioritizing OG tags with fallbacks.
+    Routes AFP URLs to Selenium-based scraper due to anti-bot protection.
     
     Args:
         url: The URL to fetch page details from
@@ -175,35 +346,54 @@ def get_page_details(url: str) -> Tuple[Optional[str], Optional[str]]:
     if not url or not url.startswith(('http://', 'https://')):
         logging.warning(f"Invalid URL for page details fetch: {url}")
         return None, None
+    
+    # Route AFP URLs to Selenium scraper
+    if 'factcheck.afp.com' in url or 'factuel.afp.com' in url or 'factual.afp.com' in url:
+        logging.info(f"Detected AFP URL, routing to Selenium scraper: {url}")
+        return get_afp_page_details(url)
+    
+    # For non-AFP URLs, use standard requests
     try:
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.5',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Connection': 'keep-alive',
+            'Upgrade-Insecure-Requests': '1'
+        }
         response = requests.get(url, timeout=15, headers=headers, allow_redirects=True)
         response.raise_for_status()
+        
+        # Debug: Log response details
+        logging.info(f"Response status: {response.status_code}, Final URL: {response.url}, Content-Length: {len(response.content)}")
+        
         soup = BeautifulSoup(response.content, 'html.parser')
 
-        headline, subheadline = None, None
+        headline, subheadline = extract_generic_headline_subheadline(soup)
 
-        og_title = soup.find('meta', property='og:title')
-        if og_title and og_title.get('content'):
-            headline = og_title['content'].strip()
-        else:
-            title_tag = soup.find('title')
-            if title_tag:
-                headline = title_tag.get_text(strip=True).replace(" - The New York Times", "").strip()
+        # Custom extraction for PolitiFact URLs
+        if 'politifact.com' in response.url:
+            logging.info("Detected PolitiFact URL, applying custom extraction rules.")
+            quote_div = soup.find('div', class_='m-statement__quote')
+            if quote_div:
+                quote_text_raw = quote_div.get_text(strip=True)
+                quote_text = strip_surrounding_quotes(quote_text_raw)
+                logging.info(f"PolitiFact quote extracted: {quote_text[:100] if quote_text else 'empty'}")
+                if quote_text:
+                    previous_headline = headline
+                    headline = quote_text
+                    if previous_headline:
+                        subheadline = previous_headline
+                    elif subheadline:
+                        logging.info("Using existing subheadline as fallback for PolitiFact.")
+                    else:
+                        subheadline = ""
+                        logging.info("No previous headline found; subheadline left blank for PolitiFact.")
             else:
-                h1_tag = soup.find('h1')
-                if h1_tag:
-                    headline = h1_tag.get_text(strip=True)
+                logging.warning("PolitiFact quote div not found; falling back to generic extraction.")
 
-        og_desc = soup.find('meta', property='og:description')
-        if og_desc and og_desc.get('content'):
-            subheadline = og_desc['content'].strip()
-        else:
-            meta_desc = soup.find('meta', attrs={'name': 'description'})
-            if meta_desc and meta_desc.get('content'):
-                subheadline = meta_desc['content'].strip()
-
-        logging.info(f"Fetched details for {response.url}: Headline='{str(headline)[:50]}...', Subheadline='{str(subheadline)[:50]}...'")
+        logging.info(f"Final result for {response.url}: Headline='{str(headline)[:50]}...', Subheadline='{str(subheadline)[:50]}...'")
         return headline, subheadline
 
     except requests.exceptions.RequestException as e:

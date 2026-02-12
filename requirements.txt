@@ -3,3 +3,5 @@ requests==2.32.3
 beautifulsoup4==4.13.3
 yt-dlp==2025.5.22
 pytest==8.0.0
+selenium>=4.0.0
+webdriver-manager>=4.0.0

@@ -34,6 +34,7 @@
     const MAX_DURATION_DISPLAY = 600; // 10 minutes in seconds
     const AUTOSAVE_DELAY = 1000; // 1 second
     const MAX_HISTORY_SIZE = 50;
+    const FORCE_POLITIFACT_REFRESH = false; // Toggle to re-fetch PolitiFact details each session
 
     const OOC_CRITERIA = [
         { key: 'temporal_misattribution', name: 'Temporal Misattribution', definition: "Does the content demonstrably shift the event's perceived timing to mislead context (e.g., via clear statements, timestamps, editing)?" },
@@ -599,7 +600,7 @@
                             <div class="col-md-6">
                                 <div class="mb-3 position-relative">
                                     <label for="source_url_${entryIndex}" class="form-label"><i class="bi bi-link-45deg"></i> Source URL:</label>
-                                    <input type="url" id="source_url_${entryIndex}" name="data[${entryIndex}][politifact_url]" value="${initialData.politifact_url || ''}" class="form-control source-url-input" placeholder="Enter PolitiFact or other source URL">
+                                    <input type="url" id="source_url_${entryIndex}" name="data[${entryIndex}][politifact_url]" value="${initialData.politifact_url || ''}" class="form-control source-url-input" placeholder="Enter PolitiFact, AFP, or other source URL">
                                     <div class="spinner-border spinner-border-sm text-secondary position-absolute top-50 end-0 translate-middle-y me-2 d-none source-spinner" role="status"><span class="visually-hidden">Loading...</span></div>
                                 </div>
                                 <div class="mb-3">
@@ -730,7 +731,18 @@
                 return;
             }
 
-            if (!url.includes('politifact.com')) {
+            // Check if URL is from PolitiFact or AFP
+            const isPolitiFact = url.includes('politifact.com');
+            const isAFP = url.includes('factcheck.afp.com');
+            
+            if (!isPolitiFact && !isAFP) {
+                spinner.classList.add('d-none');
+                return;
+            }
+
+            // Don't re-attempt if headline box already has content
+            const shouldSkipFetch = headlineInput.value.trim() && !(isPolitiFact && FORCE_POLITIFACT_REFRESH);
+            if (shouldSkipFetch) {
                 spinner.classList.add('d-none');
                 return;
             }
